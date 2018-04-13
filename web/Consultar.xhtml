@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="conteudo">
+        <p:panel header="Consultar Cliente">
+            <h:form id="frmConsultar">  
+                <p:growl id="msgs" showDetail="true"/>  
+                
+                <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">  
+                                        
+                    <p:column>
+                        
+                        Digite parte do nome: <p:inputText id="nome" value="#{consultarMB.nmeCliente}"/>
+                        
+                    </p:column>
+                        
+                    <p:column style="column-width: 300px">
+                        <p:commandButton id="btnConsultar" update=":frmConsultar" icon="ui-icon-disk" value="Consultar"  actionListener="#{consultarMB.consultar}" ajax="true" />  
+
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Nome:" />  
+                    </p:column>
+                    <p:column>
+                        <h:outputText id="nmeCliente" value="#{consultarMB.pessoa.nmeCliente}"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Data de Nascimento:" />  
+                    </p:column>
+                    <p:column>
+                        <h:outputText id="dtaNascCliente" value="#{consultarMB.pessoa.dtaNascCliente}"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Telefone:" />  
+                    </p:column>
+                    <p:column>
+                        <h:outputText id="telCliente" value="#{consultarMB.pessoa.telCliente}"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Endereço:" />  
+                    </p:column>
+                    <p:column>
+                        <h:outputText id="endCliente" value="#{consultarMB.pessoa.endCliente}"/>
+                    </p:column>
+
+                </p:panelGrid> 
+                
+            </h:form> 
+            
+        </p:panel>
+    </ui:define>
+    
+</ui:composition>

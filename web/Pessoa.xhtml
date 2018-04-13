@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+        <p:panel header="Cadastro de Pessoas">
+            <h:form id="frmConsulta">  
+                <p:growl id="msgs" showDetail="true"/>  
+                <p:panelGrid columns="3">
+                    <p:column>
+                        Nome do Cliente:
+                    </p:column>
+                    <p:column>
+                        <p:inputText size="30" maxlength="50" value="#{pessoaMB.nmePessoa}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Consultar" actionListener="#{pessoaMB.filtrar}" update=":frmConsulta:msgs, :frmConsulta:dtbConsulta" icon="ui-icon-search"/>
+                    </p:column>
+                </p:panelGrid>
+
+                <p:dataTable id="dtbConsulta" var="reg" value="#{pessoaMB.pessoas}" tableStyle="width:auto;" paginator="true" rows="10">  
+
+                    <p:column headerText="Identificador" style="width:100px">  
+                        <h:outputText value="#{reg.idtPessoa}" />  
+                    </p:column>  
+
+                    <p:column headerText="Nome" style="width:300px">  
+                        <h:outputText value="#{reg.nmePessoa}" />  
+                    </p:column>  
+
+                    <p:column headerText="Documento" style="width:100px">  
+                        <p:inputMask value="#{reg.cpfPessoa}" mask="999.999.999-99" />
+                    </p:column>
+
+                    <p:column headerText="Data de Nascimento" style="width:100px">  
+                        <h:outputText value="#{reg.dtaNascimentoPessoa}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column> 
+
+                    <p:column headerText="Gênero" style="width:100px">  
+                        <h:outputText value="#{reg.generoPessoa}" />  
+                    </p:column> 
+
+                    <p:column headerText="Foto" style="width:200px">  
+                        <h:outputText value="#{reg.fotoPessoa}" />  
+                    </p:column> 
+                    
+                    <p:column headerText="Bloco" style="width:100px">  
+                        <h:outputText value="#{reg.tbApartamento.blocoApartamento}" />  
+                    </p:column>
+                    
+                    <p:column headerText="Apartamento" style="width:100px">  
+                        <h:outputText value="#{reg.tbApartamento.numApartamento}" />  
+                    </p:column> 
+                    
+                    <p:column headerText="Operação" style="width:250px">  
+                        <p:panelGrid columns="2">  
+                            <p:column>
+                                <p:commandButton id="btnEditar" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-pencil" value="Editar">  
+                                    <f:setPropertyActionListener value="#{reg}" target="#{pessoaMB.selecionado}" />  
+                                </p:commandButton>
+                            </p:column>
+                            <p:column>
+                                <p:commandButton id="btnExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
+                                    <f:setPropertyActionListener value="#{reg}" target="#{pessoaMB.selecionado}" />  
+                                </p:commandButton>  
+                            </p:column>
+                        </p:panelGrid>  
+                    </p:column>  
+
+                </p:dataTable>  
+
+                <p:commandButton id="btnNovo" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-plusthick" value="Novo" actionListener="#{pessoaMB.novo}" ajax="true"/> 
+            </h:form> 
+
+            <p:dialog header="Editar" widgetVar="dlgEditarView" resizable="false" id="dlgEditar"  
+                      showEffect="fade" hideEffect="explode" modal="true" appendTo="@(body)">  
+                <h:form id="frmEditar">
+                    <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">  
+                        <p:column>
+                            <h:outputText value="Identificador:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="idtPessoa" value="#{pessoaMB.selecionado.idtPessoa}" disabled="true" size="5"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Nome:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="nmeCliente" value="#{pessoaMB.selecionado.nmePessoa}" size="50" required="true" requiredMessage="Nome é um campo obrigatório!"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Documento" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="cpfPessoa" value="#{pessoaMB.selecionado.cpfPessoa}" size="20" maxlength="20" required="true" requiredMessage="Documento é um campo obrigatório!"/>  
+                        </p:column>
+                        
+                        <p:column>
+                            <h:outputText value="Data de Nascimento:" />  
+                        </p:column>
+                        <p:column>
+                            <p:calendar id="dtaNascimentoPessoa" value="#{pessoaMB.selecionado.dtaNascimentoPessoa}" required="true" requiredMessage="Data de Nascimento é um campo obrigatório!"/>  
+                        </p:column>
+                        //TODO
+                        <p:column>
+                            <h:outputText value="Endereço:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="endCliente" value="#{pessoaMB.selecionado.endCliente}" size="50" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Endereço:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="endCliente" value="#{pessoaMB.selecionado.endCliente}" size="50" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
+                        </p:column>
+                        
+                        <p:column>
+                            <h:outputText value="Endereço:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="endCliente" value="#{pessoaMB.selecionado.endCliente}" size="50" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
+                        </p:column>
+                        
+                        <p:column>
+                            <h:outputText value="Endereço:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="endCliente" value="#{pessoaMB.selecionado.endCliente}" size="50" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
+                        </p:column>
+
+                        <p:column>
+                            <p:commandButton id="btnSalvar" update=":frmEditar:pngEditar, :frmConsulta:dtbConsulta, :frmConsulta:msgs" icon="ui-icon-disk" value="Salvar"  actionListener="#{pessoaMB.salvar}" onclick="dlgEditarView.hide()" ajax="true"/>  
+                        </p:column>
+                        <p:column>
+                            <p:commandButton id="btnFechar" value="Fechar" icon="ui-icon-close" onclick="dlgEditarView.hide()"/>  
+                        </p:column>
+                    </p:panelGrid>  
+                </h:form>
+            </p:dialog>  
+
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir?"  
+                             header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
+                <h:form id="frmExcluir">
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta:dtbConsulta, :frmConsulta:msgs" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{pessoaMB.excluir}" />  
+                    <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
+                </h:form>
+            </p:confirmDialog> 
+
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

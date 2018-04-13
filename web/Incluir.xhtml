@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="conteudo">
+        <p:panel header="Inclusão de Cliente">
+            <h:form id="frmIncluir">  
+                <p:growl id="msgs" showDetail="true"/>  
+                
+                <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">  
+                    
+                    <p:column>
+                        <h:outputText value="Nome:" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="nmeCliente" value="#{incluirMB.pessoa.nmeCliente}" size="50" required="true" requiredMessage="Nome é um campo obrigatório!"/>  
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Data de Nascimento:" />  
+                    </p:column>
+                    <p:column>
+                        <p:calendar id="dtaNascCliente" value="#{incluirMB.pessoa.dtaNascCliente}" required="true" requiredMessage="Data de Nascimento é um campo obrigatório!"/>  
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Telefone:" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="telCliente" value="#{incluirMB.pessoa.telCliente}" size="20" maxlength="20" required="true" requiredMessage="Telefone é um campo obrigatório!"/>  
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Endereço:" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="endCliente" value="#{incluirMB.pessoa.endCliente}" size="50" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
+                    </p:column>
+                    
+                    <p:column>
+                        <p:commandButton id="btnSalvar" update=":frmIncluir" icon="ui-icon-disk" value="Incluir"  actionListener="#{incluirMB.incluir}" ajax="true"/>  
+                    </p:column>
+                    <p:column>
+
+                    </p:column>
+                </p:panelGrid> 
+                
+            </h:form> 
+            
+        </p:panel>
+    </ui:define>
+    
+</ui:composition>

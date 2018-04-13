@@ -8,7 +8,7 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Lavajato - versão: 1.0</title>
+        <title>GeCon - versão: 1.0</title>
         <link rel="icon" type="imagem/png" href="../imagens/ico_lavajato.jpg" />
     </h:head>
 
@@ -40,7 +40,13 @@
                             <p:menuitem value="Menu 2" icon="ui-icon-calculator" url="/faces/TipoServico.xhtml"/>
                         </p:submenu>
                         <p:submenu label="Cadastros">
-                            <p:menuitem value="Cliente" icon="ui-icon-contact" url="/faces/Cliente.xhtml"/>
+                            <p:menuitem value="Pessoa" icon="ui-icon-contact" url="/faces/Pessoa.xhtml"/>
+                        </p:submenu>
+                        <p:submenu label="CRUD Pessoa">
+                            <p:menuitem value="Incluir"    icon="ui-icon-contact" url="/faces/Incluir.xhtml"/>
+                            <p:menuitem value="Consultar"  icon="ui-icon-contact" url="/faces/Consultar.xhtml"/>
+                            <p:menuitem value="Alterar"    icon="ui-icon-contact" url="/faces/Incluir.xhtml"/>
+                            <p:menuitem value="Excluir"    icon="ui-icon-contact" url="/faces/Incluir.xhtml"/>
                         </p:submenu>
                         <p:submenu label="Atividades">
                             <p:menuitem value="Atividade 1" icon="ui-icon-star" url=""/>
@@ -62,7 +68,7 @@
             </p:layoutUnit>
 
             <p:layoutUnit position="center">
-                <ui:insert name="conteudo">Lavajato</ui:insert>
+                <ui:insert name="conteudo">GeCon</ui:insert>
             </p:layoutUnit>
 
         </p:layout>

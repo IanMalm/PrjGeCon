@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import pojo.TbPessoa;
+import pojo.TbApartamento;
 
 /**
  *
@@ -20,6 +21,7 @@ import pojo.TbPessoa;
 @ViewScoped
 public class IncluirMB {
     private TbPessoa pessoa;
+    private TbApartamento apartamento;
     /**
      * Creates a new instance of IncluirMB
      */

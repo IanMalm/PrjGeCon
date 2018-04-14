@@ -12,7 +12,7 @@
                 <p:growl id="msgs" showDetail="true"/>  
                 <p:panelGrid columns="3">
                     <p:column>
-                        Nome do Cliente:
+                        Nome da Pessoa:
                     </p:column>
                     <p:column>
                         <p:inputText size="30" maxlength="50" value="#{pessoaMB.nmePessoa}"/>
@@ -97,7 +97,7 @@
                         </p:column>
 
                         <p:column>
-                            <h:outputText value="Documento" />  
+                            <h:outputText value="Documento:" />  
                         </p:column>
                         <p:column>
                             <p:inputText id="cpfPessoa" value="#{pessoaMB.selecionado.cpfPessoa}" size="20" maxlength="20" required="true" requiredMessage="Documento é um campo obrigatório!"/>  
@@ -109,33 +109,33 @@
                         <p:column>
                             <p:calendar id="dtaNascimentoPessoa" value="#{pessoaMB.selecionado.dtaNascimentoPessoa}" required="true" requiredMessage="Data de Nascimento é um campo obrigatório!"/>  
                         </p:column>
-                        //TODO
+                        
                         <p:column>
-                            <h:outputText value="Endereço:" />  
+                            <h:outputText value="Gênero:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="endCliente" value="#{pessoaMB.selecionado.endCliente}" size="50" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
+                            <p:inputText id="generoPessoa" value="#{pessoaMB.selecionado.generoPessoa}" size="5" required="true" requiredMessage="Gênero é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>
-                            <h:outputText value="Endereço:" />  
+                            <h:outputText value="Foto:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="endCliente" value="#{pessoaMB.selecionado.endCliente}" size="50" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
-                        </p:column>
-                        
-                        <p:column>
-                            <h:outputText value="Endereço:" />  
-                        </p:column>
-                        <p:column>
-                            <p:inputText id="endCliente" value="#{pessoaMB.selecionado.endCliente}" size="50" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
+                            <p:inputText id="fotoPessoa" value="#{pessoaMB.selecionado.fotoPessoa}" size="50" required="true" requiredMessage="Foto é um campo obrigatório!"/>  
                         </p:column>
                         
                         <p:column>
-                            <h:outputText value="Endereço:" />  
+                            <h:outputText value="Bloco:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="endCliente" value="#{pessoaMB.selecionado.endCliente}" size="50" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
+                            <p:inputText id="blocoApartamento" value="#{pessoaMB.selecionado.tbApartamento.blocoApartamento}" size="10" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
+                        </p:column>
+                        
+                        <p:column>
+                            <h:outputText value="Apartamento:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="numApartamento" value="#{pessoaMB.selecionado.tbApartamento.numApartamento}" size="10" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>

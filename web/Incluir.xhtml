@@ -17,25 +17,45 @@
                         <h:outputText value="Nome:" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="nmeCliente" value="#{incluirMB.pessoa.nmeCliente}" size="50" required="true" requiredMessage="Nome é um campo obrigatório!"/>  
+                        <p:inputText id="nmePessoa" value="#{incluirMB.pessoa.nmePessoa}" size="50" required="true" requiredMessage="Nome é um campo obrigatório!"/>  
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="Documento:" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="cpfPessoa" value="#{incluirMB.pessoa.cpfPessoa}" size="20" maxlength="20" required="true" requiredMessage="Documento é um campo obrigatório!"/>  
                     </p:column>
                     
                     <p:column>
                         <h:outputText value="Data de Nascimento:" />  
                     </p:column>
                     <p:column>
-                        <p:calendar id="dtaNascCliente" value="#{incluirMB.pessoa.dtaNascCliente}" required="true" requiredMessage="Data de Nascimento é um campo obrigatório!"/>  
+                        <p:calendar id="dtaNascimentoPessoa" value="#{incluirMB.pessoa.dtaNascimentoPessoa}" required="true" requiredMessage="Data de Nascimento é um campo obrigatório!"/>  
                     </p:column>
                     
                     <p:column>
-                        <h:outputText value="Telefone:" />  
+                        <h:outputText value="Gênero:" />  
                     </p:column>
                     <p:column>
-                        <p:inputText id="telCliente" value="#{incluirMB.pessoa.telCliente}" size="20" maxlength="20" required="true" requiredMessage="Telefone é um campo obrigatório!"/>  
+                        <p:inputText id="generoPessoa" value="#{incluirMB.pessoa.generoPessoa}" size="5" required="true" requiredMessage="Gênero é um campo obrigatório!"/>  
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="Foto:" />  
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="fotoPessoa" value="#{incluirMB.pessoa.fotoPessoa}" size="50" required="true" requiredMessage="Foto é um campo obrigatório!"/>  
                     </p:column>
                     
                     <p:column>
-                        <h:outputText value="Endereço:" />  
+                        <h:outputText value="Bloco:" />  
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="endCliente" value="#{incluirMB.pessoa.tbApartamento}" required="true" requiredMessage="Bloco é um campo obrigatório!"/>  
+                    </p:column> 
+                    
+                    <p:column>
+                        <h:outputText value="Apartamento:" />  
                     </p:column>
                     <p:column>
                         <p:inputText id="endCliente" value="#{incluirMB.pessoa.endCliente}" size="50" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  

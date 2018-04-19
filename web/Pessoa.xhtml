@@ -121,7 +121,7 @@
                         </p:column>
                         
                         <p:outputLabel for="perfil" value="Perfil: " />
-                        <p:selectOneMenu id="perfil" value="#{pessoasMB.}" style="width:150px">
+                        <p:selectOneMenu id="perfil" value="#{pessoasMB}" style="width:150px">
                             <p:ajax listener="#{dropdownView.onCountryChange}" update="city" />
                             <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
                             <f:selectItems value="#{dropdownView.countries}" />

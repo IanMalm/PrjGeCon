@@ -4,13 +4,14 @@
  */
 package mb;
 
-import dao.PessoaDAO;
+import dao.TbPessoaDAO;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import pojo.TbPessoa;
+import pojo.TdPerfil;
 
 /**
  *
@@ -23,6 +24,7 @@ public class PessoaMB {
     private TbPessoa selecionado;
     private List<TbPessoa> pessoas;
     private String nmePessoa;
+    private List<TdPerfil> perfis;
 
     /**
      * Creates a new instance of ProdutoMB
@@ -34,7 +36,7 @@ public class PessoaMB {
     }
 
     public void filtrar() {
-        PessoaDAO dao = new PessoaDAO();
+        TbPessoaDAO dao = new TbPessoaDAO();
         setPessoas(dao.consultarPorNme(getNmePessoa()));
     }
 
@@ -42,10 +44,11 @@ public class PessoaMB {
         setSelecionado(new TbPessoa());
         getSelecionado().setIdtPessoa(0);
         setNmePessoa("");
+        getSelecionado().setFlagMoradorPessoa(false);
     }
 
     public void salvar() {
-        PessoaDAO dao = new PessoaDAO();
+        TbPessoaDAO dao = new TbPessoaDAO();
         if (getSelecionado().getIdtPessoa() == 0) {
             getSelecionado().setIdtPessoa(null);
             dao.incluir(getSelecionado());
@@ -58,7 +61,7 @@ public class PessoaMB {
     }
 
     public void excluir() {
-        PessoaDAO dao = new PessoaDAO();
+        TbPessoaDAO dao = new TbPessoaDAO();
         if (getSelecionado().getIdtPessoa() != 0) {
             if (getSelecionado().getTbMensagems().size() > 0) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Existem Mensagens associadas não podemos excluir: " + getSelecionado().getNmePessoa()+ ".");
@@ -120,4 +123,18 @@ public class PessoaMB {
         this.nmePessoa = nmePessoa;
     }
 
+    /**
+     * @return the pessoas
+     */
+    public List<TdPerfil> getPerfis() {
+        return perfis;
+    }
+
+    /**
+     * @param pessoas the pessoas to set
+     */
+    public void setPerfis(List<TdPerfil> perfis) {
+        this.perfis = perfis;
+    }
+    
 }

@@ -50,14 +50,6 @@
                         <h:outputText value="#{reg.fotoPessoa}" />  
                     </p:column> 
                     
-                    <p:column headerText="Bloco" style="width:100px">  
-                        <h:outputText value="#{reg.tbApartamento.blocoApartamento}" />  
-                    </p:column>
-                    
-                    <p:column headerText="Apartamento" style="width:100px">  
-                        <h:outputText value="#{reg.tbApartamento.numApartamento}" />  
-                    </p:column> 
-                    
                     <p:column headerText="Operação" style="width:250px">  
                         <p:panelGrid columns="2">  
                             <p:column>
@@ -121,23 +113,24 @@
                             <h:outputText value="Foto:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="fotoPessoa" value="#{pessoaMB.selecionado.fotoPessoa}" size="50" required="true" requiredMessage="Foto é um campo obrigatório!"/>  
+                            <p:inputText id="fotoPessoa" value="#{pessoaMB.selecionado.fotoPessoa}" size="50" required="false"/>  
                         </p:column>
                         
                         <p:column>
-                            <h:outputText value="Bloco:" />  
-                        </p:column>
-                        <p:column>
-                            <p:inputText id="blocoApartamento" value="#{pessoaMB.selecionado.tbApartamento.blocoApartamento}" size="10" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
+                            <h:outputText value="Perfil:" />  
                         </p:column>
                         
-                        <p:column>
-                            <h:outputText value="Apartamento:" />  
-                        </p:column>
-                        <p:column>
-                            <p:inputText id="numApartamento" value="#{pessoaMB.selecionado.tbApartamento.numApartamento}" size="10" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
-                        </p:column>
-
+                        <p:outputLabel for="perfil" value="Perfil: " />
+                        <p:selectOneMenu id="perfil" value="#{pessoasMB.}" style="width:150px">
+                            <p:ajax listener="#{dropdownView.onCountryChange}" update="city" />
+                            <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{dropdownView.countries}" />
+                        </p:selectOneMenu>
+                        
+<!--                        <p:column>
+                            <p:selectOneMenu id="codPerfilPessoa" value="#{pessoaMB.selecionado.fotoPessoa}" required="true" requiredMessage="Foto é um campo obrigatório!"/>  
+                        </p:column>-->
+                        
                         <p:column>
                             <p:commandButton id="btnSalvar" update=":frmEditar:pngEditar, :frmConsulta:dtbConsulta, :frmConsulta:msgs" icon="ui-icon-disk" value="Salvar"  actionListener="#{pessoaMB.salvar}" onclick="dlgEditarView.hide()" ajax="true"/>  
                         </p:column>

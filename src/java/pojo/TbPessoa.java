@@ -1,5 +1,5 @@
 package pojo;
-// Generated 12/04/2018 19:01:32 by Hibernate Tools 4.3.1
+// Generated 19/04/2018 19:35:03 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -31,13 +31,14 @@ public class TbPessoa  implements java.io.Serializable {
 
 
      private Integer idtPessoa;
-     private TbApartamento tbApartamento;
      private TdPerfil tdPerfil;
      private String nmePessoa;
      private int cpfPessoa;
      private Date dtaNascimentoPessoa;
-     private Character generoPessoa;
+     private char generoPessoa;
      private String fotoPessoa;
+     private boolean flagMoradorPessoa;
+     private Set<TaApartamentoPessoa> taApartamentoPessoas = new HashSet<TaApartamentoPessoa>(0);
      private Set<TbReserva> tbReservas = new HashSet<TbReserva>(0);
      private Set<TbOcorrencia> tbOcorrencias = new HashSet<TbOcorrencia>(0);
      private Set<TbMensagem> tbMensagems = new HashSet<TbMensagem>(0);
@@ -46,19 +47,23 @@ public class TbPessoa  implements java.io.Serializable {
     }
 
 	
-    public TbPessoa(TdPerfil tdPerfil, String nmePessoa, int cpfPessoa) {
+    public TbPessoa(TdPerfil tdPerfil, String nmePessoa, int cpfPessoa, Date dtaNascimentoPessoa, char generoPessoa, boolean flagMoradorPessoa) {
         this.tdPerfil = tdPerfil;
         this.nmePessoa = nmePessoa;
         this.cpfPessoa = cpfPessoa;
+        this.dtaNascimentoPessoa = dtaNascimentoPessoa;
+        this.generoPessoa = generoPessoa;
+        this.flagMoradorPessoa = flagMoradorPessoa;
     }
-    public TbPessoa(TbApartamento tbApartamento, TdPerfil tdPerfil, String nmePessoa, int cpfPessoa, Date dtaNascimentoPessoa, Character generoPessoa, String fotoPessoa, Set<TbReserva> tbReservas, Set<TbOcorrencia> tbOcorrencias, Set<TbMensagem> tbMensagems) {
-       this.tbApartamento = tbApartamento;
+    public TbPessoa(TdPerfil tdPerfil, String nmePessoa, int cpfPessoa, Date dtaNascimentoPessoa, char generoPessoa, String fotoPessoa, boolean flagMoradorPessoa, Set<TaApartamentoPessoa> taApartamentoPessoas, Set<TbReserva> tbReservas, Set<TbOcorrencia> tbOcorrencias, Set<TbMensagem> tbMensagems) {
        this.tdPerfil = tdPerfil;
        this.nmePessoa = nmePessoa;
        this.cpfPessoa = cpfPessoa;
        this.dtaNascimentoPessoa = dtaNascimentoPessoa;
        this.generoPessoa = generoPessoa;
        this.fotoPessoa = fotoPessoa;
+       this.flagMoradorPessoa = flagMoradorPessoa;
+       this.taApartamentoPessoas = taApartamentoPessoas;
        this.tbReservas = tbReservas;
        this.tbOcorrencias = tbOcorrencias;
        this.tbMensagems = tbMensagems;
@@ -77,17 +82,7 @@ public class TbPessoa  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="tb_cod_apartamento")
-    public TbApartamento getTbApartamento() {
-        return this.tbApartamento;
-    }
-    
-    public void setTbApartamento(TbApartamento tbApartamento) {
-        this.tbApartamento = tbApartamento;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="td_cod_perfil", nullable=false)
+    @JoinColumn(name="cod_perfil", nullable=false)
     public TdPerfil getTdPerfil() {
         return this.tdPerfil;
     }
@@ -117,7 +112,7 @@ public class TbPessoa  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="dta_nascimento_pessoa", length=10)
+    @Column(name="dta_nascimento_pessoa", nullable=false, length=10)
     public Date getDtaNascimentoPessoa() {
         return this.dtaNascimentoPessoa;
     }
@@ -127,12 +122,12 @@ public class TbPessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="genero_pessoa", length=1)
-    public Character getGeneroPessoa() {
+    @Column(name="genero_pessoa", nullable=false, length=1)
+    public char getGeneroPessoa() {
         return this.generoPessoa;
     }
     
-    public void setGeneroPessoa(Character generoPessoa) {
+    public void setGeneroPessoa(char generoPessoa) {
         this.generoPessoa = generoPessoa;
     }
 
@@ -144,6 +139,25 @@ public class TbPessoa  implements java.io.Serializable {
     
     public void setFotoPessoa(String fotoPessoa) {
         this.fotoPessoa = fotoPessoa;
+    }
+
+    
+    @Column(name="flag_morador_pessoa", nullable=false)
+    public boolean isFlagMoradorPessoa() {
+        return this.flagMoradorPessoa;
+    }
+    
+    public void setFlagMoradorPessoa(boolean flagMoradorPessoa) {
+        this.flagMoradorPessoa = flagMoradorPessoa;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="tbPessoa")
+    public Set<TaApartamentoPessoa> getTaApartamentoPessoas() {
+        return this.taApartamentoPessoas;
+    }
+    
+    public void setTaApartamentoPessoas(Set<TaApartamentoPessoa> taApartamentoPessoas) {
+        this.taApartamentoPessoas = taApartamentoPessoas;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="tbPessoa")

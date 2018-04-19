@@ -1,5 +1,5 @@
 package pojo;
-// Generated 12/04/2018 19:01:32 by Hibernate Tools 4.3.1
+// Generated 19/04/2018 19:35:03 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -32,26 +32,26 @@ public class TbForum  implements java.io.Serializable {
      private TbApartamento tbApartamento;
      private String tituloForum;
      private String dscForum;
-     private Date dtiCriacaoForum;
-     private Date dtiAtualizacaoForum;
+     private Date dtaCriacaoForum;
+     private Date dtaAtualizacaoForum;
      private Set<TbMensagem> tbMensagems = new HashSet<TbMensagem>(0);
 
     public TbForum() {
     }
 
 	
-    public TbForum(TbApartamento tbApartamento, String tituloForum, Date dtiCriacaoForum, Date dtiAtualizacaoForum) {
+    public TbForum(TbApartamento tbApartamento, String tituloForum, Date dtaCriacaoForum, Date dtaAtualizacaoForum) {
         this.tbApartamento = tbApartamento;
         this.tituloForum = tituloForum;
-        this.dtiCriacaoForum = dtiCriacaoForum;
-        this.dtiAtualizacaoForum = dtiAtualizacaoForum;
+        this.dtaCriacaoForum = dtaCriacaoForum;
+        this.dtaAtualizacaoForum = dtaAtualizacaoForum;
     }
-    public TbForum(TbApartamento tbApartamento, String tituloForum, String dscForum, Date dtiCriacaoForum, Date dtiAtualizacaoForum, Set<TbMensagem> tbMensagems) {
+    public TbForum(TbApartamento tbApartamento, String tituloForum, String dscForum, Date dtaCriacaoForum, Date dtaAtualizacaoForum, Set<TbMensagem> tbMensagems) {
        this.tbApartamento = tbApartamento;
        this.tituloForum = tituloForum;
        this.dscForum = dscForum;
-       this.dtiCriacaoForum = dtiCriacaoForum;
-       this.dtiAtualizacaoForum = dtiAtualizacaoForum;
+       this.dtaCriacaoForum = dtaCriacaoForum;
+       this.dtaAtualizacaoForum = dtaAtualizacaoForum;
        this.tbMensagems = tbMensagems;
     }
    
@@ -98,23 +98,23 @@ public class TbForum  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="dti_criacao_forum", nullable=false, length=19)
-    public Date getDtiCriacaoForum() {
-        return this.dtiCriacaoForum;
+    @Column(name="dta_criacao_forum", nullable=false, length=19)
+    public Date getDtaCriacaoForum() {
+        return this.dtaCriacaoForum;
     }
     
-    public void setDtiCriacaoForum(Date dtiCriacaoForum) {
-        this.dtiCriacaoForum = dtiCriacaoForum;
+    public void setDtaCriacaoForum(Date dtaCriacaoForum) {
+        this.dtaCriacaoForum = dtaCriacaoForum;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="dti_atualizacao_forum", nullable=false, length=19)
-    public Date getDtiAtualizacaoForum() {
-        return this.dtiAtualizacaoForum;
+    @Column(name="dta_atualizacao_forum", nullable=false, length=19)
+    public Date getDtaAtualizacaoForum() {
+        return this.dtaAtualizacaoForum;
     }
     
-    public void setDtiAtualizacaoForum(Date dtiAtualizacaoForum) {
-        this.dtiAtualizacaoForum = dtiAtualizacaoForum;
+    public void setDtaAtualizacaoForum(Date dtaAtualizacaoForum) {
+        this.dtaAtualizacaoForum = dtaAtualizacaoForum;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="tbForum")

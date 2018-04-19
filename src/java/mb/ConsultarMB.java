@@ -5,7 +5,7 @@
 */
 package mb;
 
-import dao.PessoaDAO;
+import dao.TbPessoaDAO;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -32,7 +32,7 @@ public class ConsultarMB {
     }
     
     public void consultar() {
-        PessoaDAO dao = new PessoaDAO();
+        TbPessoaDAO dao = new TbPessoaDAO();
         List<TbPessoa> lista = dao.consultarPorNme(nome);
         
         if(!lista.isEmpty()){

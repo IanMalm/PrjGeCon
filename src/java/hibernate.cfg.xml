@@ -48,8 +48,8 @@ Contributor(s):
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.show_sql">true</property>
     <mapping class="pojo.TbForum"/>
-    <mapping class="pojo.TbEstado"/>
     <mapping class="pojo.TbOcorrencia"/>
+    <mapping class="pojo.TaApartamentoPessoa"/>
     <mapping class="pojo.TbCidade"/>
     <mapping class="pojo.TbLazer"/>
     <mapping class="pojo.TbPessoa"/>

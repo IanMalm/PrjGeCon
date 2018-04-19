@@ -1,5 +1,5 @@
 package pojo;
-// Generated 12/04/2018 19:01:32 by Hibernate Tools 4.3.1
+// Generated 19/04/2018 19:35:03 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -35,8 +35,9 @@ public class TbCondominio  implements java.io.Serializable {
     }
 
 	
-    public TbCondominio(TbCidade tbCidade) {
+    public TbCondominio(TbCidade tbCidade, String nmeCondominio) {
         this.tbCidade = tbCidade;
+        this.nmeCondominio = nmeCondominio;
     }
     public TbCondominio(TbCidade tbCidade, String nmeCondominio, String imgCondominio, Set<TbApartamento> tbApartamentos) {
        this.tbCidade = tbCidade;
@@ -68,7 +69,7 @@ public class TbCondominio  implements java.io.Serializable {
     }
 
     
-    @Column(name="nme_condominio", length=45)
+    @Column(name="nme_condominio", nullable=false, length=45)
     public String getNmeCondominio() {
         return this.nmeCondominio;
     }
@@ -78,7 +79,7 @@ public class TbCondominio  implements java.io.Serializable {
     }
 
     
-    @Column(name="img_condominio", length=45)
+    @Column(name="img_condominio", length=100)
     public String getImgCondominio() {
         return this.imgCondominio;
     }

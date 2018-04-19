@@ -1,5 +1,5 @@
 package pojo;
-// Generated 12/04/2018 19:01:32 by Hibernate Tools 4.3.1
+// Generated 19/04/2018 19:35:03 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -10,8 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,20 +24,21 @@ public class TbCidade  implements java.io.Serializable {
 
 
      private Integer idtCidade;
-     private TbEstado tbEstado;
      private String nmeCidade;
+     private String sglEstadoCidade;
      private Set<TbCondominio> tbCondominios = new HashSet<TbCondominio>(0);
 
     public TbCidade() {
     }
 
 	
-    public TbCidade(TbEstado tbEstado) {
-        this.tbEstado = tbEstado;
+    public TbCidade(String nmeCidade, String sglEstadoCidade) {
+        this.nmeCidade = nmeCidade;
+        this.sglEstadoCidade = sglEstadoCidade;
     }
-    public TbCidade(TbEstado tbEstado, String nmeCidade, Set<TbCondominio> tbCondominios) {
-       this.tbEstado = tbEstado;
+    public TbCidade(String nmeCidade, String sglEstadoCidade, Set<TbCondominio> tbCondominios) {
        this.nmeCidade = nmeCidade;
+       this.sglEstadoCidade = sglEstadoCidade;
        this.tbCondominios = tbCondominios;
     }
    
@@ -55,24 +54,24 @@ public class TbCidade  implements java.io.Serializable {
         this.idtCidade = idtCidade;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="cod_estado", nullable=false)
-    public TbEstado getTbEstado() {
-        return this.tbEstado;
-    }
     
-    public void setTbEstado(TbEstado tbEstado) {
-        this.tbEstado = tbEstado;
-    }
-
-    
-    @Column(name="nme_cidade", length=50)
+    @Column(name="nme_cidade", nullable=false, length=50)
     public String getNmeCidade() {
         return this.nmeCidade;
     }
     
     public void setNmeCidade(String nmeCidade) {
         this.nmeCidade = nmeCidade;
+    }
+
+    
+    @Column(name="sgl_estado_cidade", nullable=false, length=2)
+    public String getSglEstadoCidade() {
+        return this.sglEstadoCidade;
+    }
+    
+    public void setSglEstadoCidade(String sglEstadoCidade) {
+        this.sglEstadoCidade = sglEstadoCidade;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="tbCidade")

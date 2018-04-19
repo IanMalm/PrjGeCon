@@ -1,5 +1,5 @@
 package pojo;
-// Generated 12/04/2018 19:01:32 by Hibernate Tools 4.3.1
+// Generated 19/04/2018 19:35:03 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -47,7 +47,7 @@ public class TaApartamentoGaragem  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="tb_cod_apartamento", nullable=false)
+    @JoinColumn(name="cod_apartamento", nullable=false)
     public TbApartamento getTbApartamento() {
         return this.tbApartamento;
     }
@@ -57,7 +57,7 @@ public class TaApartamentoGaragem  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="tb_cod_garagem", nullable=false)
+    @JoinColumn(name="cod_garagem", nullable=false)
     public TbGaragem getTbGaragem() {
         return this.tbGaragem;
     }

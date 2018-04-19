@@ -5,7 +5,7 @@
 */
 package mb;
 
-import dao.PessoaDAO;
+import dao.TbPessoaDAO;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -30,7 +30,7 @@ public class IncluirMB {
     }
     
     public void incluir() {
-        PessoaDAO dao = new PessoaDAO();
+        TbPessoaDAO dao = new TbPessoaDAO();
         pessoa.setIdtPessoa(null);
         dao.incluir(pessoa);
         pessoa = new TbPessoa();

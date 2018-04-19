@@ -1,5 +1,5 @@
 package pojo;
-// Generated 12/04/2018 19:01:32 by Hibernate Tools 4.3.1
+// Generated 19/04/2018 19:35:03 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -29,22 +29,22 @@ public class TbMensagem  implements java.io.Serializable {
      private TbForum tbForum;
      private TbPessoa tbPessoa;
      private String msgMensagem;
-     private Date dtiMensagem;
+     private Date dtaMensagem;
 
     public TbMensagem() {
     }
 
 	
-    public TbMensagem(TbForum tbForum, TbPessoa tbPessoa, Date dtiMensagem) {
+    public TbMensagem(TbForum tbForum, TbPessoa tbPessoa, Date dtaMensagem) {
         this.tbForum = tbForum;
         this.tbPessoa = tbPessoa;
-        this.dtiMensagem = dtiMensagem;
+        this.dtaMensagem = dtaMensagem;
     }
-    public TbMensagem(TbForum tbForum, TbPessoa tbPessoa, String msgMensagem, Date dtiMensagem) {
+    public TbMensagem(TbForum tbForum, TbPessoa tbPessoa, String msgMensagem, Date dtaMensagem) {
        this.tbForum = tbForum;
        this.tbPessoa = tbPessoa;
        this.msgMensagem = msgMensagem;
-       this.dtiMensagem = dtiMensagem;
+       this.dtaMensagem = dtaMensagem;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -60,7 +60,7 @@ public class TbMensagem  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="tb_forum_idt_forum", nullable=false)
+    @JoinColumn(name="cod_forum", nullable=false)
     public TbForum getTbForum() {
         return this.tbForum;
     }
@@ -70,7 +70,7 @@ public class TbMensagem  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="tb_pessoa_idt_pessoa", nullable=false)
+    @JoinColumn(name="cod_pessoa", nullable=false)
     public TbPessoa getTbPessoa() {
         return this.tbPessoa;
     }
@@ -90,13 +90,13 @@ public class TbMensagem  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="dti_mensagem", nullable=false, length=19)
-    public Date getDtiMensagem() {
-        return this.dtiMensagem;
+    @Column(name="dta_mensagem", nullable=false, length=19)
+    public Date getDtaMensagem() {
+        return this.dtaMensagem;
     }
     
-    public void setDtiMensagem(Date dtiMensagem) {
-        this.dtiMensagem = dtiMensagem;
+    public void setDtaMensagem(Date dtaMensagem) {
+        this.dtaMensagem = dtaMensagem;
     }
 
 

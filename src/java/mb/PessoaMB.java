@@ -4,6 +4,7 @@
  */
 package mb;
 
+import dao.TdPerfilDAO;
 import dao.TbPessoaDAO;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -38,6 +39,8 @@ public class PessoaMB {
     public void filtrar() {
         TbPessoaDAO dao = new TbPessoaDAO();
         setPessoas(dao.consultarPorNme(getNmePessoa()));
+        TdPerfilDAO dao1 = new TdPerfilDAO();
+        setPerfis(dao1.consultarTodos());
     }
 
     public void novo() {

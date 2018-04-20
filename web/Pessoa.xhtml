@@ -120,11 +120,9 @@
                             <h:outputText value="Perfil:" />  
                         </p:column>
                         
-                        <p:outputLabel for="perfil" value="Perfil: " />
-                        <p:selectOneMenu id="perfil" value="#{pessoasMB}" style="width:150px">
-                            <p:ajax listener="#{dropdownView.onCountryChange}" update="city" />
-                            <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{dropdownView.countries}" />
+                        <p:selectOneMenu id="perfil" value="#{pessoasMB.selecionado.codperfil}" style="width:150px">
+                            <f:selectItem itemLabel="Esolha Perfil" itemValue="" noSelectionOption="false" />
+                            <f:selectItems value="#{pessoasMB.perfis}" />
                         </p:selectOneMenu>
                         
 <!--                        <p:column>

@@ -1,13 +1,11 @@
 package pojo;
-// Generated 19/04/2018 19:35:03 by Hibernate Tools 4.3.1
+// Generated 26/04/2018 19:07:01 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,78 +23,57 @@ import javax.persistence.TemporalType;
 public class TbReserva  implements java.io.Serializable {
 
 
-     private Integer idtReserva;
-     private TbLazer tbLazer;
-     private TbPessoa tbPessoa;
-     private Date dtaCadastroReserva;
-     private Date dtaReserva;
+     private int idtReserva;
+     private TbAreaLazer tbAreaLazer;
+     private TbResidencia tbResidencia;
      private Date dtaInicioReserva;
      private Date dtaFimReserva;
-     private boolean flagConfirmaReserva;
+     private Date dtaCadastroReserva;
+     private char stsConfirmadoReserva;
 
     public TbReserva() {
     }
 
-    public TbReserva(TbLazer tbLazer, TbPessoa tbPessoa, Date dtaCadastroReserva, Date dtaReserva, Date dtaInicioReserva, Date dtaFimReserva, boolean flagConfirmaReserva) {
-       this.tbLazer = tbLazer;
-       this.tbPessoa = tbPessoa;
-       this.dtaCadastroReserva = dtaCadastroReserva;
-       this.dtaReserva = dtaReserva;
+    public TbReserva(int idtReserva, TbAreaLazer tbAreaLazer, TbResidencia tbResidencia, Date dtaInicioReserva, Date dtaFimReserva, Date dtaCadastroReserva, char stsConfirmadoReserva) {
+       this.idtReserva = idtReserva;
+       this.tbAreaLazer = tbAreaLazer;
+       this.tbResidencia = tbResidencia;
        this.dtaInicioReserva = dtaInicioReserva;
        this.dtaFimReserva = dtaFimReserva;
-       this.flagConfirmaReserva = flagConfirmaReserva;
+       this.dtaCadastroReserva = dtaCadastroReserva;
+       this.stsConfirmadoReserva = stsConfirmadoReserva;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="idt_reserva", unique=true, nullable=false)
-    public Integer getIdtReserva() {
+    public int getIdtReserva() {
         return this.idtReserva;
     }
     
-    public void setIdtReserva(Integer idtReserva) {
+    public void setIdtReserva(int idtReserva) {
         this.idtReserva = idtReserva;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="cod_lazer", nullable=false)
-    public TbLazer getTbLazer() {
-        return this.tbLazer;
+    @JoinColumn(name="cod_area_lazer", nullable=false)
+    public TbAreaLazer getTbAreaLazer() {
+        return this.tbAreaLazer;
     }
     
-    public void setTbLazer(TbLazer tbLazer) {
-        this.tbLazer = tbLazer;
+    public void setTbAreaLazer(TbAreaLazer tbAreaLazer) {
+        this.tbAreaLazer = tbAreaLazer;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="cod_pessoa", nullable=false)
-    public TbPessoa getTbPessoa() {
-        return this.tbPessoa;
+    @JoinColumn(name="cod_residencia", nullable=false)
+    public TbResidencia getTbResidencia() {
+        return this.tbResidencia;
     }
     
-    public void setTbPessoa(TbPessoa tbPessoa) {
-        this.tbPessoa = tbPessoa;
-    }
-
-    @Temporal(TemporalType.DATE)
-    @Column(name="dta_cadastro_reserva", nullable=false, length=10)
-    public Date getDtaCadastroReserva() {
-        return this.dtaCadastroReserva;
-    }
-    
-    public void setDtaCadastroReserva(Date dtaCadastroReserva) {
-        this.dtaCadastroReserva = dtaCadastroReserva;
-    }
-
-    @Temporal(TemporalType.DATE)
-    @Column(name="dta_reserva", nullable=false, length=10)
-    public Date getDtaReserva() {
-        return this.dtaReserva;
-    }
-    
-    public void setDtaReserva(Date dtaReserva) {
-        this.dtaReserva = dtaReserva;
+    public void setTbResidencia(TbResidencia tbResidencia) {
+        this.tbResidencia = tbResidencia;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -119,14 +96,24 @@ public class TbReserva  implements java.io.Serializable {
         this.dtaFimReserva = dtaFimReserva;
     }
 
-    
-    @Column(name="flag_confirma_reserva", nullable=false)
-    public boolean isFlagConfirmaReserva() {
-        return this.flagConfirmaReserva;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="dta_cadastro_reserva", nullable=false, length=19)
+    public Date getDtaCadastroReserva() {
+        return this.dtaCadastroReserva;
     }
     
-    public void setFlagConfirmaReserva(boolean flagConfirmaReserva) {
-        this.flagConfirmaReserva = flagConfirmaReserva;
+    public void setDtaCadastroReserva(Date dtaCadastroReserva) {
+        this.dtaCadastroReserva = dtaCadastroReserva;
+    }
+
+    
+    @Column(name="sts_confirmado_reserva", nullable=false, length=1)
+    public char getStsConfirmadoReserva() {
+        return this.stsConfirmadoReserva;
+    }
+    
+    public void setStsConfirmadoReserva(char stsConfirmadoReserva) {
+        this.stsConfirmadoReserva = stsConfirmadoReserva;
     }
 
 

@@ -1,5 +1,5 @@
 package pojo;
-// Generated 19/04/2018 19:35:03 by Hibernate Tools 4.3.1
+// Generated 26/04/2018 19:07:01 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -10,8 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,24 +24,24 @@ public class TbCondominio  implements java.io.Serializable {
 
 
      private Integer idtCondominio;
-     private TbCidade tbCidade;
      private String nmeCondominio;
-     private String imgCondominio;
-     private Set<TbApartamento> tbApartamentos = new HashSet<TbApartamento>(0);
+     private String dscLocalCondominio;
+     private Set<TbAreaLazer> tbAreaLazers = new HashSet<TbAreaLazer>(0);
+     private Set<TbResidencia> tbResidencias = new HashSet<TbResidencia>(0);
 
     public TbCondominio() {
     }
 
 	
-    public TbCondominio(TbCidade tbCidade, String nmeCondominio) {
-        this.tbCidade = tbCidade;
+    public TbCondominio(String nmeCondominio, String dscLocalCondominio) {
         this.nmeCondominio = nmeCondominio;
+        this.dscLocalCondominio = dscLocalCondominio;
     }
-    public TbCondominio(TbCidade tbCidade, String nmeCondominio, String imgCondominio, Set<TbApartamento> tbApartamentos) {
-       this.tbCidade = tbCidade;
+    public TbCondominio(String nmeCondominio, String dscLocalCondominio, Set<TbAreaLazer> tbAreaLazers, Set<TbResidencia> tbResidencias) {
        this.nmeCondominio = nmeCondominio;
-       this.imgCondominio = imgCondominio;
-       this.tbApartamentos = tbApartamentos;
+       this.dscLocalCondominio = dscLocalCondominio;
+       this.tbAreaLazers = tbAreaLazers;
+       this.tbResidencias = tbResidencias;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -58,16 +56,6 @@ public class TbCondominio  implements java.io.Serializable {
         this.idtCondominio = idtCondominio;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="cod_cidade", nullable=false)
-    public TbCidade getTbCidade() {
-        return this.tbCidade;
-    }
-    
-    public void setTbCidade(TbCidade tbCidade) {
-        this.tbCidade = tbCidade;
-    }
-
     
     @Column(name="nme_condominio", nullable=false, length=45)
     public String getNmeCondominio() {
@@ -79,22 +67,31 @@ public class TbCondominio  implements java.io.Serializable {
     }
 
     
-    @Column(name="img_condominio", length=100)
-    public String getImgCondominio() {
-        return this.imgCondominio;
+    @Column(name="dsc_local_condominio", nullable=false, length=65535)
+    public String getDscLocalCondominio() {
+        return this.dscLocalCondominio;
     }
     
-    public void setImgCondominio(String imgCondominio) {
-        this.imgCondominio = imgCondominio;
+    public void setDscLocalCondominio(String dscLocalCondominio) {
+        this.dscLocalCondominio = dscLocalCondominio;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="tbCondominio")
-    public Set<TbApartamento> getTbApartamentos() {
-        return this.tbApartamentos;
+    public Set<TbAreaLazer> getTbAreaLazers() {
+        return this.tbAreaLazers;
     }
     
-    public void setTbApartamentos(Set<TbApartamento> tbApartamentos) {
-        this.tbApartamentos = tbApartamentos;
+    public void setTbAreaLazers(Set<TbAreaLazer> tbAreaLazers) {
+        this.tbAreaLazers = tbAreaLazers;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="tbCondominio")
+    public Set<TbResidencia> getTbResidencias() {
+        return this.tbResidencias;
+    }
+    
+    public void setTbResidencias(Set<TbResidencia> tbResidencias) {
+        this.tbResidencias = tbResidencias;
     }
 
 

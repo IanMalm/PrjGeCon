@@ -1,5 +1,5 @@
 package pojo;
-// Generated 19/04/2018 19:35:03 by Hibernate Tools 4.3.1
+// Generated 26/04/2018 19:07:01 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,17 +26,17 @@ public class TbOcorrencia  implements java.io.Serializable {
 
 
      private Integer idtOcorrencia;
-     private TbPessoa tbPessoa;
+     private TaMorador taMorador;
      private Date dtaOcorrencia;
-     private String txtOcorrencia;
+     private String dscOcorrencia;
 
     public TbOcorrencia() {
     }
 
-    public TbOcorrencia(TbPessoa tbPessoa, Date dtaOcorrencia, String txtOcorrencia) {
-       this.tbPessoa = tbPessoa;
+    public TbOcorrencia(TaMorador taMorador, Date dtaOcorrencia, String dscOcorrencia) {
+       this.taMorador = taMorador;
        this.dtaOcorrencia = dtaOcorrencia;
-       this.txtOcorrencia = txtOcorrencia;
+       this.dscOcorrencia = dscOcorrencia;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -52,17 +52,17 @@ public class TbOcorrencia  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="cod_pessoa", nullable=false)
-    public TbPessoa getTbPessoa() {
-        return this.tbPessoa;
+    @JoinColumn(name="cod_morador", nullable=false)
+    public TaMorador getTaMorador() {
+        return this.taMorador;
     }
     
-    public void setTbPessoa(TbPessoa tbPessoa) {
-        this.tbPessoa = tbPessoa;
+    public void setTaMorador(TaMorador taMorador) {
+        this.taMorador = taMorador;
     }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name="dta_ocorrencia", nullable=false, length=10)
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="dta_ocorrencia", nullable=false, length=19)
     public Date getDtaOcorrencia() {
         return this.dtaOcorrencia;
     }
@@ -72,13 +72,13 @@ public class TbOcorrencia  implements java.io.Serializable {
     }
 
     
-    @Column(name="txt_ocorrencia", nullable=false, length=65535)
-    public String getTxtOcorrencia() {
-        return this.txtOcorrencia;
+    @Column(name="dsc_ocorrencia", nullable=false, length=65535)
+    public String getDscOcorrencia() {
+        return this.dscOcorrencia;
     }
     
-    public void setTxtOcorrencia(String txtOcorrencia) {
-        this.txtOcorrencia = txtOcorrencia;
+    public void setDscOcorrencia(String dscOcorrencia) {
+        this.dscOcorrencia = dscOcorrencia;
     }
 
 

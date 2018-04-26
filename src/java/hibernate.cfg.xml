@@ -49,16 +49,16 @@ Contributor(s):
     <property name="hibernate.show_sql">true</property>
     <mapping class="pojo.TbForum"/>
     <mapping class="pojo.TbOcorrencia"/>
-    <mapping class="pojo.TaApartamentoPessoa"/>
-    <mapping class="pojo.TbCidade"/>
-    <mapping class="pojo.TbLazer"/>
     <mapping class="pojo.TbPessoa"/>
+    <mapping class="pojo.TaMorador"/>
+    <mapping class="pojo.TbAreaLazer"/>
     <mapping class="pojo.TbReserva"/>
-    <mapping class="pojo.TaApartamentoGaragem"/>
     <mapping class="pojo.TbGaragem"/>
     <mapping class="pojo.TbMensagem"/>
+    <mapping class="pojo.TbResidencia"/>
     <mapping class="pojo.TbCondominio"/>
-    <mapping class="pojo.TbApartamento"/>
+    <mapping class="pojo.TbVisita"/>
     <mapping class="pojo.TdPerfil"/>
+    <mapping class="pojo.TbUsuario"/>
   </session-factory>
 </hibernate-configuration>

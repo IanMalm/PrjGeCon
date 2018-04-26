@@ -37,17 +37,17 @@
                     </p:column>
 
                     <p:column headerText="Data de Nascimento" style="width:100px">  
-                        <h:outputText value="#{reg.dtaNascimentoPessoa}">
+                        <h:outputText value="#{reg.dtaNascPessoa}">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </h:outputText>
                     </p:column> 
 
-                    <p:column headerText="Gênero" style="width:100px">  
-                        <h:outputText value="#{reg.generoPessoa}" />  
+                    <p:column headerText="Telefone" style="width:100px">  
+                        <h:outputText value="#{reg.telPessoa}" />  
                     </p:column> 
 
-                    <p:column headerText="Foto" style="width:200px">  
-                        <h:outputText value="#{reg.fotoPessoa}" />  
+                    <p:column headerText="Email" style="width:200px">  
+                        <h:outputText value="#{reg.emlPessoa}" />  
                     </p:column> 
                     
                     <p:column headerText="Operação" style="width:250px">  
@@ -99,35 +99,22 @@
                             <h:outputText value="Data de Nascimento:" />  
                         </p:column>
                         <p:column>
-                            <p:calendar id="dtaNascimentoPessoa" value="#{pessoaMB.selecionado.dtaNascimentoPessoa}" required="true" requiredMessage="Data de Nascimento é um campo obrigatório!"/>  
+                            <p:calendar id="dtaNascPessoa" value="#{pessoaMB.selecionado.dtaNascPessoa}" required="true" requiredMessage="Data de Nascimento é um campo obrigatório!"/>  
                         </p:column>
                         
                         <p:column>
-                            <h:outputText value="Gênero:" />  
+                            <h:outputText value="Telefone:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="generoPessoa" value="#{pessoaMB.selecionado.generoPessoa}" size="5" required="true" requiredMessage="Gênero é um campo obrigatório!"/>  
+                            <p:inputText id="telPessoa" value="#{pessoaMB.selecionado.telPessoa}" size="20" required="true" requiredMessage="Telefone é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>
-                            <h:outputText value="Foto:" />  
+                            <h:outputText value="Email:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="fotoPessoa" value="#{pessoaMB.selecionado.fotoPessoa}" size="50" required="false"/>  
+                            <p:inputText id="emlPessoa" value="#{pessoaMB.selecionado.emlPessoa}" size="50" required="false"/>  
                         </p:column>
-                        
-                        <p:column>
-                            <h:outputText value="Perfil:" />  
-                        </p:column>
-                        
-                        <p:selectOneMenu id="perfil" value="#{pessoasMB.selecionado.codperfil}" style="width:150px">
-                            <f:selectItem itemLabel="Esolha Perfil" itemValue="" noSelectionOption="false" />
-                            <f:selectItems value="#{pessoasMB.perfis}" />
-                        </p:selectOneMenu>
-                        
-<!--                        <p:column>
-                            <p:selectOneMenu id="codPerfilPessoa" value="#{pessoaMB.selecionado.fotoPessoa}" required="true" requiredMessage="Foto é um campo obrigatório!"/>  
-                        </p:column>-->
                         
                         <p:column>
                             <p:commandButton id="btnSalvar" update=":frmEditar:pngEditar, :frmConsulta:dtbConsulta, :frmConsulta:msgs" icon="ui-icon-disk" value="Salvar"  actionListener="#{pessoaMB.salvar}" onclick="dlgEditarView.hide()" ajax="true"/>  

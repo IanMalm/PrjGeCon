@@ -1,16 +1,15 @@
 package pojo;
-// Generated 19/04/2018 19:35:03 by Hibernate Tools 4.3.1
+// Generated 26/04/2018 19:07:01 by Hibernate Tools 4.3.1
 
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,19 +23,15 @@ public class TbGaragem  implements java.io.Serializable {
 
 
      private Integer idtGaragem;
-     private int numGaragem;
-     private Set<TaApartamentoGaragem> taApartamentoGaragems = new HashSet<TaApartamentoGaragem>(0);
+     private TbResidencia tbResidencia;
+     private String dscGaragem;
 
     public TbGaragem() {
     }
 
-	
-    public TbGaragem(int numGaragem) {
-        this.numGaragem = numGaragem;
-    }
-    public TbGaragem(int numGaragem, Set<TaApartamentoGaragem> taApartamentoGaragems) {
-       this.numGaragem = numGaragem;
-       this.taApartamentoGaragems = taApartamentoGaragems;
+    public TbGaragem(TbResidencia tbResidencia, String dscGaragem) {
+       this.tbResidencia = tbResidencia;
+       this.dscGaragem = dscGaragem;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -51,23 +46,24 @@ public class TbGaragem  implements java.io.Serializable {
         this.idtGaragem = idtGaragem;
     }
 
-    
-    @Column(name="num_garagem", nullable=false)
-    public int getNumGaragem() {
-        return this.numGaragem;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="cod_residencia", nullable=false)
+    public TbResidencia getTbResidencia() {
+        return this.tbResidencia;
     }
     
-    public void setNumGaragem(int numGaragem) {
-        this.numGaragem = numGaragem;
+    public void setTbResidencia(TbResidencia tbResidencia) {
+        this.tbResidencia = tbResidencia;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbGaragem")
-    public Set<TaApartamentoGaragem> getTaApartamentoGaragems() {
-        return this.taApartamentoGaragems;
+    
+    @Column(name="dsc_garagem", nullable=false)
+    public String getDscGaragem() {
+        return this.dscGaragem;
     }
     
-    public void setTaApartamentoGaragems(Set<TaApartamentoGaragem> taApartamentoGaragems) {
-        this.taApartamentoGaragems = taApartamentoGaragems;
+    public void setDscGaragem(String dscGaragem) {
+        this.dscGaragem = dscGaragem;
     }
 
 

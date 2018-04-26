@@ -1,5 +1,5 @@
 package pojo;
-// Generated 19/04/2018 19:35:03 by Hibernate Tools 4.3.1
+// Generated 26/04/2018 19:07:01 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -7,8 +7,6 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,51 +21,53 @@ import javax.persistence.Table;
 public class TdPerfil  implements java.io.Serializable {
 
 
-     private Integer idtPerfil;
-     private String dscPerfil;
-     private Set<TbPessoa> tbPessoas = new HashSet<TbPessoa>(0);
+     private int idtPerfil;
+     private String nmePerfil;
+     private Set<TbUsuario> tbUsuarios = new HashSet<TbUsuario>(0);
 
     public TdPerfil() {
     }
 
 	
-    public TdPerfil(String dscPerfil) {
-        this.dscPerfil = dscPerfil;
+    public TdPerfil(int idtPerfil, String nmePerfil) {
+        this.idtPerfil = idtPerfil;
+        this.nmePerfil = nmePerfil;
     }
-    public TdPerfil(String dscPerfil, Set<TbPessoa> tbPessoas) {
-       this.dscPerfil = dscPerfil;
-       this.tbPessoas = tbPessoas;
+    public TdPerfil(int idtPerfil, String nmePerfil, Set<TbUsuario> tbUsuarios) {
+       this.idtPerfil = idtPerfil;
+       this.nmePerfil = nmePerfil;
+       this.tbUsuarios = tbUsuarios;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="idt_perfil", unique=true, nullable=false)
-    public Integer getIdtPerfil() {
+    public int getIdtPerfil() {
         return this.idtPerfil;
     }
     
-    public void setIdtPerfil(Integer idtPerfil) {
+    public void setIdtPerfil(int idtPerfil) {
         this.idtPerfil = idtPerfil;
     }
 
     
-    @Column(name="dsc_perfil", nullable=false, length=45)
-    public String getDscPerfil() {
-        return this.dscPerfil;
+    @Column(name="nme_perfil", nullable=false, length=45)
+    public String getNmePerfil() {
+        return this.nmePerfil;
     }
     
-    public void setDscPerfil(String dscPerfil) {
-        this.dscPerfil = dscPerfil;
+    public void setNmePerfil(String nmePerfil) {
+        this.nmePerfil = nmePerfil;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="tdPerfil")
-    public Set<TbPessoa> getTbPessoas() {
-        return this.tbPessoas;
+    public Set<TbUsuario> getTbUsuarios() {
+        return this.tbUsuarios;
     }
     
-    public void setTbPessoas(Set<TbPessoa> tbPessoas) {
-        this.tbPessoas = tbPessoas;
+    public void setTbUsuarios(Set<TbUsuario> tbUsuarios) {
+        this.tbUsuarios = tbUsuarios;
     }
 
 

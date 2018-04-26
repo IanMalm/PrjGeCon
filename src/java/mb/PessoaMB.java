@@ -47,7 +47,6 @@ public class PessoaMB {
         setSelecionado(new TbPessoa());
         getSelecionado().setIdtPessoa(0);
         setNmePessoa("");
-        getSelecionado().setFlagMoradorPessoa(false);
     }
 
     public void salvar() {
@@ -66,8 +65,8 @@ public class PessoaMB {
     public void excluir() {
         TbPessoaDAO dao = new TbPessoaDAO();
         if (getSelecionado().getIdtPessoa() != 0) {
-            if (getSelecionado().getTbMensagems().size() > 0) {
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Existem Mensagens associadas não podemos excluir: " + getSelecionado().getNmePessoa()+ ".");
+            if (getSelecionado().getTaMoradors().size() > 0) {
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Esta pessoa é um(a) morador(a): " + getSelecionado().getNmePessoa()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;
             }

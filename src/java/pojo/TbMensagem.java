@@ -1,13 +1,11 @@
 package pojo;
-// Generated 19/04/2018 19:35:03 by Hibernate Tools 4.3.1
+// Generated 26/04/2018 19:07:01 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,38 +23,43 @@ import javax.persistence.TemporalType;
 public class TbMensagem  implements java.io.Serializable {
 
 
-     private Integer idtbMensagem;
+     private int idtMensagem;
+     private TaMorador taMorador;
      private TbForum tbForum;
-     private TbPessoa tbPessoa;
-     private String msgMensagem;
+     private String txtMensagem;
      private Date dtaMensagem;
 
     public TbMensagem() {
     }
 
-	
-    public TbMensagem(TbForum tbForum, TbPessoa tbPessoa, Date dtaMensagem) {
-        this.tbForum = tbForum;
-        this.tbPessoa = tbPessoa;
-        this.dtaMensagem = dtaMensagem;
-    }
-    public TbMensagem(TbForum tbForum, TbPessoa tbPessoa, String msgMensagem, Date dtaMensagem) {
+    public TbMensagem(int idtMensagem, TaMorador taMorador, TbForum tbForum, String txtMensagem, Date dtaMensagem) {
+       this.idtMensagem = idtMensagem;
+       this.taMorador = taMorador;
        this.tbForum = tbForum;
-       this.tbPessoa = tbPessoa;
-       this.msgMensagem = msgMensagem;
+       this.txtMensagem = txtMensagem;
        this.dtaMensagem = dtaMensagem;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
-    @Column(name="idtb_mensagem", unique=true, nullable=false)
-    public Integer getIdtbMensagem() {
-        return this.idtbMensagem;
+    @Column(name="idt_mensagem", unique=true, nullable=false)
+    public int getIdtMensagem() {
+        return this.idtMensagem;
     }
     
-    public void setIdtbMensagem(Integer idtbMensagem) {
-        this.idtbMensagem = idtbMensagem;
+    public void setIdtMensagem(int idtMensagem) {
+        this.idtMensagem = idtMensagem;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="cod_morador", nullable=false)
+    public TaMorador getTaMorador() {
+        return this.taMorador;
+    }
+    
+    public void setTaMorador(TaMorador taMorador) {
+        this.taMorador = taMorador;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
@@ -69,24 +72,14 @@ public class TbMensagem  implements java.io.Serializable {
         this.tbForum = tbForum;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="cod_pessoa", nullable=false)
-    public TbPessoa getTbPessoa() {
-        return this.tbPessoa;
+    
+    @Column(name="txt_mensagem", nullable=false, length=65535)
+    public String getTxtMensagem() {
+        return this.txtMensagem;
     }
     
-    public void setTbPessoa(TbPessoa tbPessoa) {
-        this.tbPessoa = tbPessoa;
-    }
-
-    
-    @Column(name="msg_mensagem", length=800)
-    public String getMsgMensagem() {
-        return this.msgMensagem;
-    }
-    
-    public void setMsgMensagem(String msgMensagem) {
-        this.msgMensagem = msgMensagem;
+    public void setTxtMensagem(String txtMensagem) {
+        this.txtMensagem = txtMensagem;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

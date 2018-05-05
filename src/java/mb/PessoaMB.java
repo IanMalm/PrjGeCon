@@ -4,7 +4,6 @@
  */
 package mb;
 
-import dao.TdPerfilDAO;
 import dao.TbPessoaDAO;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -12,7 +11,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import pojo.TbPessoa;
-import pojo.TdPerfil;
 
 /**
  *
@@ -25,7 +23,6 @@ public class PessoaMB {
     private TbPessoa selecionado;
     private List<TbPessoa> pessoas;
     private String nmePessoa;
-    private List<TdPerfil> perfis;
 
     /**
      * Creates a new instance of ProdutoMB
@@ -39,8 +36,6 @@ public class PessoaMB {
     public void filtrar() {
         TbPessoaDAO dao = new TbPessoaDAO();
         setPessoas(dao.consultarPorNme(getNmePessoa()));
-        TdPerfilDAO dao1 = new TdPerfilDAO();
-        setPerfis(dao1.consultarTodos());
     }
 
     public void novo() {
@@ -123,20 +118,6 @@ public class PessoaMB {
      */
     public void setNmePessoa(String nmePessoa) {
         this.nmePessoa = nmePessoa;
-    }
-
-    /**
-     * @return the pessoas
-     */
-    public List<TdPerfil> getPerfis() {
-        return perfis;
-    }
-
-    /**
-     * @param pessoas the pessoas to set
-     */
-    public void setPerfis(List<TdPerfil> perfis) {
-        this.perfis = perfis;
     }
     
 }

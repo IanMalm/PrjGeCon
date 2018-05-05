@@ -1,10 +1,12 @@
 package pojo;
-// Generated 26/04/2018 19:07:01 by Hibernate Tools 4.3.1
+// Generated 05/05/2018 15:34:18 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,7 +22,7 @@ import javax.persistence.Table;
 public class TbUsuario  implements java.io.Serializable {
 
 
-     private int idtUsuario;
+     private Integer idtUsuario;
      private TaMorador taMorador;
      private TdPerfil tdPerfil;
      private String nmeUsuario;
@@ -29,23 +31,22 @@ public class TbUsuario  implements java.io.Serializable {
     public TbUsuario() {
     }
 
-    public TbUsuario(int idtUsuario, TaMorador taMorador, TdPerfil tdPerfil, String nmeUsuario, String pwdUsuario) {
-       this.idtUsuario = idtUsuario;
+    public TbUsuario(TaMorador taMorador, TdPerfil tdPerfil, String nmeUsuario, String pwdUsuario) {
        this.taMorador = taMorador;
        this.tdPerfil = tdPerfil;
        this.nmeUsuario = nmeUsuario;
        this.pwdUsuario = pwdUsuario;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="idt_usuario", unique=true, nullable=false)
-    public int getIdtUsuario() {
+    public Integer getIdtUsuario() {
         return this.idtUsuario;
     }
     
-    public void setIdtUsuario(int idtUsuario) {
+    public void setIdtUsuario(Integer idtUsuario) {
         this.idtUsuario = idtUsuario;
     }
 

@@ -67,7 +67,7 @@ public class ResidenciaMB {
     public void excluir() {
         TbResidenciaDAO dao = new TbResidenciaDAO();
         if (getSelecionado().getIdtResidencia() != 0) {
-            if (getSelecionado().getTbReservas().size() > 0) {
+            if (getSelecionado().getTaReservas().size() > 0) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Esta residência possui reserva(s): " + getSelecionado().getDscResidencia()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;
@@ -79,7 +79,7 @@ public class ResidenciaMB {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Esta residência possui garagem(ns): " + getSelecionado().getDscResidencia()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;
-            }else if (getSelecionado().getTbVisitas().size() > 0) {
+            }else if (getSelecionado().getTaVisitas().size() > 0) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Esta residência possui visita(s): " + getSelecionado().getDscResidencia()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;

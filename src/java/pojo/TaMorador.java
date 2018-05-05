@@ -1,5 +1,5 @@
 package pojo;
-// Generated 26/04/2018 19:07:01 by Hibernate Tools 4.3.1
+// Generated 05/05/2018 15:34:18 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,7 +25,7 @@ import javax.persistence.Table;
 public class TaMorador  implements java.io.Serializable {
 
 
-     private int idtMorador;
+     private Integer idtMorador;
      private TbPessoa tbPessoa;
      private TbResidencia tbResidencia;
      private Set<TbUsuario> tbUsuarios = new HashSet<TbUsuario>(0);
@@ -35,13 +37,11 @@ public class TaMorador  implements java.io.Serializable {
     }
 
 	
-    public TaMorador(int idtMorador, TbPessoa tbPessoa, TbResidencia tbResidencia) {
-        this.idtMorador = idtMorador;
+    public TaMorador(TbPessoa tbPessoa, TbResidencia tbResidencia) {
         this.tbPessoa = tbPessoa;
         this.tbResidencia = tbResidencia;
     }
-    public TaMorador(int idtMorador, TbPessoa tbPessoa, TbResidencia tbResidencia, Set<TbUsuario> tbUsuarios, Set<TbForum> tbForums, Set<TbMensagem> tbMensagems, Set<TbOcorrencia> tbOcorrencias) {
-       this.idtMorador = idtMorador;
+    public TaMorador(TbPessoa tbPessoa, TbResidencia tbResidencia, Set<TbUsuario> tbUsuarios, Set<TbForum> tbForums, Set<TbMensagem> tbMensagems, Set<TbOcorrencia> tbOcorrencias) {
        this.tbPessoa = tbPessoa;
        this.tbResidencia = tbResidencia;
        this.tbUsuarios = tbUsuarios;
@@ -50,15 +50,15 @@ public class TaMorador  implements java.io.Serializable {
        this.tbOcorrencias = tbOcorrencias;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="idt_morador", unique=true, nullable=false)
-    public int getIdtMorador() {
+    public Integer getIdtMorador() {
         return this.idtMorador;
     }
     
-    public void setIdtMorador(int idtMorador) {
+    public void setIdtMorador(Integer idtMorador) {
         this.idtMorador = idtMorador;
     }
 

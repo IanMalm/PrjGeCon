@@ -1,5 +1,5 @@
 package pojo;
-// Generated 26/04/2018 19:07:01 by Hibernate Tools 4.3.1
+// Generated 05/05/2018 15:34:18 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,28 +30,26 @@ public class TbAreaLazer  implements java.io.Serializable {
      private String dscAreaLazer;
      private int capMaxAreaLazer;
      private Double vlrReservaAreaLazer;
-     private Set<TbReserva> tbReservas = new HashSet<TbReserva>(0);
+     private Set<TaReserva> taReservas = new HashSet<TaReserva>(0);
 
     public TbAreaLazer() {
     }
 
 	
-    public TbAreaLazer(Integer idtAreaLazer, TbCondominio tbCondominio, String dscAreaLazer, int capMaxAreaLazer) {
-        this.idtAreaLazer = idtAreaLazer;
+    public TbAreaLazer(TbCondominio tbCondominio, String dscAreaLazer, int capMaxAreaLazer) {
         this.tbCondominio = tbCondominio;
         this.dscAreaLazer = dscAreaLazer;
         this.capMaxAreaLazer = capMaxAreaLazer;
     }
-    public TbAreaLazer(Integer idtAreaLazer, TbCondominio tbCondominio, String dscAreaLazer, int capMaxAreaLazer, Double vlrReservaAreaLazer, Set<TbReserva> tbReservas) {
-       this.idtAreaLazer = idtAreaLazer;
+    public TbAreaLazer(TbCondominio tbCondominio, String dscAreaLazer, int capMaxAreaLazer, Double vlrReservaAreaLazer, Set<TaReserva> taReservas) {
        this.tbCondominio = tbCondominio;
        this.dscAreaLazer = dscAreaLazer;
        this.capMaxAreaLazer = capMaxAreaLazer;
        this.vlrReservaAreaLazer = vlrReservaAreaLazer;
-       this.tbReservas = tbReservas;
+       this.taReservas = taReservas;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="idt_area_lazer", unique=true, nullable=false)
@@ -102,12 +102,12 @@ public class TbAreaLazer  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="tbAreaLazer")
-    public Set<TbReserva> getTbReservas() {
-        return this.tbReservas;
+    public Set<TaReserva> getTaReservas() {
+        return this.taReservas;
     }
     
-    public void setTbReservas(Set<TbReserva> tbReservas) {
-        this.tbReservas = tbReservas;
+    public void setTaReservas(Set<TaReserva> taReservas) {
+        this.taReservas = taReservas;
     }
 
 

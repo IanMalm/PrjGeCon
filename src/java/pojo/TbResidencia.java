@@ -1,5 +1,5 @@
 package pojo;
-// Generated 26/04/2018 19:07:01 by Hibernate Tools 4.3.1
+// Generated 05/05/2018 15:34:18 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -31,8 +31,8 @@ public class TbResidencia  implements java.io.Serializable {
      private String dscResidencia;
      private Set<TbGaragem> tbGaragems = new HashSet<TbGaragem>(0);
      private Set<TaMorador> taMoradors = new HashSet<TaMorador>(0);
-     private Set<TbReserva> tbReservas = new HashSet<TbReserva>(0);
-     private Set<TbVisita> tbVisitas = new HashSet<TbVisita>(0);
+     private Set<TaReserva> taReservas = new HashSet<TaReserva>(0);
+     private Set<TaVisita> taVisitas = new HashSet<TaVisita>(0);
 
     public TbResidencia() {
     }
@@ -43,14 +43,14 @@ public class TbResidencia  implements java.io.Serializable {
         this.dscBlocoResidencia = dscBlocoResidencia;
         this.dscResidencia = dscResidencia;
     }
-    public TbResidencia(TbCondominio tbCondominio, String dscBlocoResidencia, String dscResidencia, Set<TbGaragem> tbGaragems, Set<TaMorador> taMoradors, Set<TbReserva> tbReservas, Set<TbVisita> tbVisitas) {
+    public TbResidencia(TbCondominio tbCondominio, String dscBlocoResidencia, String dscResidencia, Set<TbGaragem> tbGaragems, Set<TaMorador> taMoradors, Set<TaReserva> taReservas, Set<TaVisita> taVisitas) {
        this.tbCondominio = tbCondominio;
        this.dscBlocoResidencia = dscBlocoResidencia;
        this.dscResidencia = dscResidencia;
        this.tbGaragems = tbGaragems;
        this.taMoradors = taMoradors;
-       this.tbReservas = tbReservas;
-       this.tbVisitas = tbVisitas;
+       this.taReservas = taReservas;
+       this.taVisitas = taVisitas;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -114,21 +114,21 @@ public class TbResidencia  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="tbResidencia")
-    public Set<TbReserva> getTbReservas() {
-        return this.tbReservas;
+    public Set<TaReserva> getTaReservas() {
+        return this.taReservas;
     }
     
-    public void setTbReservas(Set<TbReserva> tbReservas) {
-        this.tbReservas = tbReservas;
+    public void setTaReservas(Set<TaReserva> taReservas) {
+        this.taReservas = taReservas;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="tbResidencia")
-    public Set<TbVisita> getTbVisitas() {
-        return this.tbVisitas;
+    public Set<TaVisita> getTaVisitas() {
+        return this.taVisitas;
     }
     
-    public void setTbVisitas(Set<TbVisita> tbVisitas) {
-        this.tbVisitas = tbVisitas;
+    public void setTaVisitas(Set<TaVisita> taVisitas) {
+        this.taVisitas = taVisitas;
     }
 
 

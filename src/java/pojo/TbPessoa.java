@@ -1,5 +1,5 @@
 package pojo;
-// Generated 26/04/2018 19:07:01 by Hibernate Tools 4.3.1
+// Generated 05/05/2018 15:34:18 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -33,7 +33,7 @@ public class TbPessoa  implements java.io.Serializable {
      private String telPessoa;
      private String emlPessoa;
      private Set<TaMorador> taMoradors = new HashSet<TaMorador>(0);
-     private Set<TbVisita> tbVisitas = new HashSet<TbVisita>(0);
+     private Set<TaVisita> taVisitas = new HashSet<TaVisita>(0);
 
     public TbPessoa() {
     }
@@ -46,14 +46,14 @@ public class TbPessoa  implements java.io.Serializable {
         this.telPessoa = telPessoa;
         this.emlPessoa = emlPessoa;
     }
-    public TbPessoa(String nmePessoa, String cpfPessoa, Date dtaNascPessoa, String telPessoa, String emlPessoa, Set<TaMorador> taMoradors, Set<TbVisita> tbVisitas) {
+    public TbPessoa(String nmePessoa, String cpfPessoa, Date dtaNascPessoa, String telPessoa, String emlPessoa, Set<TaMorador> taMoradors, Set<TaVisita> taVisitas) {
        this.nmePessoa = nmePessoa;
        this.cpfPessoa = cpfPessoa;
        this.dtaNascPessoa = dtaNascPessoa;
        this.telPessoa = telPessoa;
        this.emlPessoa = emlPessoa;
        this.taMoradors = taMoradors;
-       this.tbVisitas = tbVisitas;
+       this.taVisitas = taVisitas;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -128,12 +128,12 @@ public class TbPessoa  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="tbPessoa")
-    public Set<TbVisita> getTbVisitas() {
-        return this.tbVisitas;
+    public Set<TaVisita> getTaVisitas() {
+        return this.taVisitas;
     }
     
-    public void setTbVisitas(Set<TbVisita> tbVisitas) {
-        this.tbVisitas = tbVisitas;
+    public void setTaVisitas(Set<TaVisita> taVisitas) {
+        this.taVisitas = taVisitas;
     }
 
 

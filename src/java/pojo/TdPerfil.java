@@ -1,5 +1,5 @@
 package pojo;
-// Generated 26/04/2018 19:07:01 by Hibernate Tools 4.3.1
+// Generated 05/05/2018 15:34:18 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,7 +23,7 @@ import javax.persistence.Table;
 public class TdPerfil  implements java.io.Serializable {
 
 
-     private int idtPerfil;
+     private Integer idtPerfil;
      private String nmePerfil;
      private Set<TbUsuario> tbUsuarios = new HashSet<TbUsuario>(0);
 
@@ -29,25 +31,23 @@ public class TdPerfil  implements java.io.Serializable {
     }
 
 	
-    public TdPerfil(int idtPerfil, String nmePerfil) {
-        this.idtPerfil = idtPerfil;
+    public TdPerfil(String nmePerfil) {
         this.nmePerfil = nmePerfil;
     }
-    public TdPerfil(int idtPerfil, String nmePerfil, Set<TbUsuario> tbUsuarios) {
-       this.idtPerfil = idtPerfil;
+    public TdPerfil(String nmePerfil, Set<TbUsuario> tbUsuarios) {
        this.nmePerfil = nmePerfil;
        this.tbUsuarios = tbUsuarios;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="idt_perfil", unique=true, nullable=false)
-    public int getIdtPerfil() {
+    public Integer getIdtPerfil() {
         return this.idtPerfil;
     }
     
-    public void setIdtPerfil(int idtPerfil) {
+    public void setIdtPerfil(Integer idtPerfil) {
         this.idtPerfil = idtPerfil;
     }
 

@@ -48,17 +48,17 @@ Contributor(s):
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.show_sql">true</property>
     <mapping class="pojo.TbForum"/>
-    <mapping class="pojo.TbOcorrencia"/>
-    <mapping class="pojo.TbPessoa"/>
-    <mapping class="pojo.TaMorador"/>
     <mapping class="pojo.TbAreaLazer"/>
-    <mapping class="pojo.TbReserva"/>
+    <mapping class="pojo.TaVisita"/>
+    <mapping class="pojo.TbOcorrencia"/>
     <mapping class="pojo.TbGaragem"/>
+    <mapping class="pojo.TaMorador"/>
+    <mapping class="pojo.TaReserva"/>
     <mapping class="pojo.TbMensagem"/>
-    <mapping class="pojo.TbResidencia"/>
     <mapping class="pojo.TbCondominio"/>
-    <mapping class="pojo.TbVisita"/>
-    <mapping class="pojo.TdPerfil"/>
+    <mapping class="pojo.TbPessoa"/>
+    <mapping class="pojo.TbResidencia"/>
     <mapping class="pojo.TbUsuario"/>
+    <mapping class="pojo.TdPerfil"/>
   </session-factory>
 </hibernate-configuration>

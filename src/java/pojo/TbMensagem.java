@@ -1,11 +1,13 @@
 package pojo;
-// Generated 26/04/2018 19:07:01 by Hibernate Tools 4.3.1
+// Generated 05/05/2018 15:34:18 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,7 +25,7 @@ import javax.persistence.TemporalType;
 public class TbMensagem  implements java.io.Serializable {
 
 
-     private int idtMensagem;
+     private Integer idtMensagem;
      private TaMorador taMorador;
      private TbForum tbForum;
      private String txtMensagem;
@@ -32,23 +34,22 @@ public class TbMensagem  implements java.io.Serializable {
     public TbMensagem() {
     }
 
-    public TbMensagem(int idtMensagem, TaMorador taMorador, TbForum tbForum, String txtMensagem, Date dtaMensagem) {
-       this.idtMensagem = idtMensagem;
+    public TbMensagem(TaMorador taMorador, TbForum tbForum, String txtMensagem, Date dtaMensagem) {
        this.taMorador = taMorador;
        this.tbForum = tbForum;
        this.txtMensagem = txtMensagem;
        this.dtaMensagem = dtaMensagem;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="idt_mensagem", unique=true, nullable=false)
-    public int getIdtMensagem() {
+    public Integer getIdtMensagem() {
         return this.idtMensagem;
     }
     
-    public void setIdtMensagem(int idtMensagem) {
+    public void setIdtMensagem(Integer idtMensagem) {
         this.idtMensagem = idtMensagem;
     }
 

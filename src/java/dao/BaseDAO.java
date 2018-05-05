@@ -91,4 +91,12 @@ public class BaseDAO<Tab> {
         lista = qy.list();
         return lista;
     }
+    
+    public List<Tab> consultarPorDsc(String dsc) {
+        List<Tab> lista;
+        Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE dsc" + getClasse().getSimpleName().substring(2) + " LIKE ?");
+        qy.setString(0, "%" + dsc + "%");
+        lista = qy.list();
+        return lista;
+    }
 }

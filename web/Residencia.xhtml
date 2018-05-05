@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+        <p:panel header="Cadastro de Residência">
+            <h:form id="frmConsulta">  
+                <p:growl id="msgs" showDetail="true"/>  
+                <p:panelGrid columns="3">
+                    <p:column>
+                        Descrição da Residência:
+                    </p:column>
+                    <p:column>
+                        <p:inputText size="30" maxlength="50" value="#{residenciaMB.dscResidencia}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Consultar" actionListener="#{residenciaMB.filtrar}" update=":frmConsulta:msgs, :frmConsulta:dtbConsulta" icon="ui-icon-search"/>
+                    </p:column>
+                </p:panelGrid>
+
+                <p:dataTable id="dtbConsulta" var="reg" value="#{residenciaMB.residencias}" tableStyle="width:auto;" paginator="true" rows="10">  
+
+                   <p:column headerText="Condomínio" style="width:300px">  
+                       <h:outputText value="#{reg.tbCondominio.nmeCondominio}" />  
+                    </p:column>
+                    
+                    <p:column headerText="Identificador" style="width:100px">  
+                        <h:outputText value="#{reg.idtResidencia}" />  
+                    </p:column>  
+
+                    <p:column headerText="Bloco" style="width:300px">  
+                        <h:outputText value="#{reg.dscBlocoResidencia}" />  
+                    </p:column>  
+
+                    <p:column headerText="Descrição" style="width:600px">  
+                        <h:outputText value="#{reg.dscResidencia}" />
+                    </p:column>
+
+                    <p:column headerText="Operação" style="width:250px">  
+                        <p:panelGrid columns="2">  
+                            <p:column>
+                                <p:commandButton id="btnEditar" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-pencil" value="Editar">  
+                                    <f:setPropertyActionListener value="#{reg}" target="#{residenciaMB.selecionado}" />  
+                                </p:commandButton>
+                            </p:column>
+                            <p:column>
+                                <p:commandButton id="btnExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
+                                    <f:setPropertyActionListener value="#{reg}" target="#{residenciaMB.selecionado}" />  
+                                </p:commandButton>  
+                            </p:column>
+                        </p:panelGrid>  
+                    </p:column>  
+
+                </p:dataTable>  
+
+                <p:commandButton id="btnNovo" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-plusthick" value="Novo" actionListener="#{residenciaMB.novo}" ajax="true"/> 
+            </h:form> 
+
+            <p:dialog header="Editar" widgetVar="dlgEditarView" resizable="false" id="dlgEditar"  
+                      showEffect="fade" hideEffect="explode" modal="true" appendTo="@(body)">  
+                <h:form id="frmEditar">
+                    <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">  
+                        <p:column>
+                            <h:outputText value="Condominio" />  
+                        </p:column>
+
+                        <p:column>
+                            <p:selectOneMenu id="simples" value="#{residenciaMB.selecionado.tbCondominio}" converter="converterCondominio">
+                                <f:selectItem itemLabel="Selecione um Condominio" itemValue="#{null}" />
+                                <f:selectItems value="#{residenciaMB.condominios}" var="cond" itemLabel="#{cond.nmeCondominio}" itemValue="#{cond}" />
+                            </p:selectOneMenu>
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Identificador:" />  
+                        </p:column>
+
+                        <p:column>
+                            <p:inputText id="idtResidencia" value="#{residenciaMB.selecionado.idtResidencia}" disabled="true" size="5"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Bloco:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="dscBlocoResidencia" value="#{residenciaMB.selecionado.dscBlocoResidencia}" size="50" required="true" requiredMessage="Bloco é um campo obrigatório!"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Descrição:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="dscResidencia" value="#{residenciaMB.selecionado.dscResidencia}" size="100" maxlength="200" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
+                        </p:column>
+
+                        <p:column>
+                            <p:commandButton id="btnSalvar" update=":frmEditar:pngEditar, :frmConsulta:dtbConsulta, :frmConsulta:msgs" icon="ui-icon-disk" value="Salvar"  actionListener="#{residenciaMB.salvar}" onclick="dlgEditarView.hide()" ajax="true"/>  
+                        </p:column>
+                        <p:column>
+                            <p:commandButton id="btnFechar" value="Fechar" icon="ui-icon-close" onclick="dlgEditarView.hide()"/>  
+                        </p:column>
+                    </p:panelGrid>  
+                </h:form>
+            </p:dialog>  
+
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir?"  
+                             header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
+                <h:form id="frmExcluir">
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta:dtbConsulta, :frmConsulta:msgs" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{residenciaMB.excluir}" />  
+                    <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
+                </h:form>
+            </p:confirmDialog> 
+
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

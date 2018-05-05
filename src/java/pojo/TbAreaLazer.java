@@ -23,7 +23,7 @@ import javax.persistence.Table;
 public class TbAreaLazer  implements java.io.Serializable {
 
 
-     private int idtAreaLazer;
+     private Integer idtAreaLazer;
      private TbCondominio tbCondominio;
      private String dscAreaLazer;
      private int capMaxAreaLazer;
@@ -34,13 +34,13 @@ public class TbAreaLazer  implements java.io.Serializable {
     }
 
 	
-    public TbAreaLazer(int idtAreaLazer, TbCondominio tbCondominio, String dscAreaLazer, int capMaxAreaLazer) {
+    public TbAreaLazer(Integer idtAreaLazer, TbCondominio tbCondominio, String dscAreaLazer, int capMaxAreaLazer) {
         this.idtAreaLazer = idtAreaLazer;
         this.tbCondominio = tbCondominio;
         this.dscAreaLazer = dscAreaLazer;
         this.capMaxAreaLazer = capMaxAreaLazer;
     }
-    public TbAreaLazer(int idtAreaLazer, TbCondominio tbCondominio, String dscAreaLazer, int capMaxAreaLazer, Double vlrReservaAreaLazer, Set<TbReserva> tbReservas) {
+    public TbAreaLazer(Integer idtAreaLazer, TbCondominio tbCondominio, String dscAreaLazer, int capMaxAreaLazer, Double vlrReservaAreaLazer, Set<TbReserva> tbReservas) {
        this.idtAreaLazer = idtAreaLazer;
        this.tbCondominio = tbCondominio;
        this.dscAreaLazer = dscAreaLazer;
@@ -53,11 +53,11 @@ public class TbAreaLazer  implements java.io.Serializable {
 
     
     @Column(name="idt_area_lazer", unique=true, nullable=false)
-    public int getIdtAreaLazer() {
+    public Integer getIdtAreaLazer() {
         return this.idtAreaLazer;
     }
     
-    public void setIdtAreaLazer(int idtAreaLazer) {
+    public void setIdtAreaLazer(Integer idtAreaLazer) {
         this.idtAreaLazer = idtAreaLazer;
     }
 

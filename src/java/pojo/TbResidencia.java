@@ -1,5 +1,5 @@
 package pojo;
-// Generated 05/05/2018 15:34:18 by Hibernate Tools 4.3.1
+// Generated 06/05/2018 18:32:35 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -31,8 +31,6 @@ public class TbResidencia  implements java.io.Serializable {
      private String dscResidencia;
      private Set<TbGaragem> tbGaragems = new HashSet<TbGaragem>(0);
      private Set<TaMorador> taMoradors = new HashSet<TaMorador>(0);
-     private Set<TaReserva> taReservas = new HashSet<TaReserva>(0);
-     private Set<TaVisita> taVisitas = new HashSet<TaVisita>(0);
 
     public TbResidencia() {
     }
@@ -43,14 +41,12 @@ public class TbResidencia  implements java.io.Serializable {
         this.dscBlocoResidencia = dscBlocoResidencia;
         this.dscResidencia = dscResidencia;
     }
-    public TbResidencia(TbCondominio tbCondominio, String dscBlocoResidencia, String dscResidencia, Set<TbGaragem> tbGaragems, Set<TaMorador> taMoradors, Set<TaReserva> taReservas, Set<TaVisita> taVisitas) {
+    public TbResidencia(TbCondominio tbCondominio, String dscBlocoResidencia, String dscResidencia, Set<TbGaragem> tbGaragems, Set<TaMorador> taMoradors) {
        this.tbCondominio = tbCondominio;
        this.dscBlocoResidencia = dscBlocoResidencia;
        this.dscResidencia = dscResidencia;
        this.tbGaragems = tbGaragems;
        this.taMoradors = taMoradors;
-       this.taReservas = taReservas;
-       this.taVisitas = taVisitas;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -111,24 +107,6 @@ public class TbResidencia  implements java.io.Serializable {
     
     public void setTaMoradors(Set<TaMorador> taMoradors) {
         this.taMoradors = taMoradors;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbResidencia")
-    public Set<TaReserva> getTaReservas() {
-        return this.taReservas;
-    }
-    
-    public void setTaReservas(Set<TaReserva> taReservas) {
-        this.taReservas = taReservas;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbResidencia")
-    public Set<TaVisita> getTaVisitas() {
-        return this.taVisitas;
-    }
-    
-    public void setTaVisitas(Set<TaVisita> taVisitas) {
-        this.taVisitas = taVisitas;
     }
 
 

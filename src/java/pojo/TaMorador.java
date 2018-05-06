@@ -1,5 +1,5 @@
 package pojo;
-// Generated 05/05/2018 15:34:18 by Hibernate Tools 4.3.1
+// Generated 06/05/2018 18:32:35 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -32,6 +32,8 @@ public class TaMorador  implements java.io.Serializable {
      private Set<TbForum> tbForums = new HashSet<TbForum>(0);
      private Set<TbMensagem> tbMensagems = new HashSet<TbMensagem>(0);
      private Set<TbOcorrencia> tbOcorrencias = new HashSet<TbOcorrencia>(0);
+     private Set<TaReserva> taReservas = new HashSet<TaReserva>(0);
+     private Set<TaVisita> taVisitas = new HashSet<TaVisita>(0);
 
     public TaMorador() {
     }
@@ -41,13 +43,15 @@ public class TaMorador  implements java.io.Serializable {
         this.tbPessoa = tbPessoa;
         this.tbResidencia = tbResidencia;
     }
-    public TaMorador(TbPessoa tbPessoa, TbResidencia tbResidencia, Set<TbUsuario> tbUsuarios, Set<TbForum> tbForums, Set<TbMensagem> tbMensagems, Set<TbOcorrencia> tbOcorrencias) {
+    public TaMorador(TbPessoa tbPessoa, TbResidencia tbResidencia, Set<TbUsuario> tbUsuarios, Set<TbForum> tbForums, Set<TbMensagem> tbMensagems, Set<TbOcorrencia> tbOcorrencias, Set<TaReserva> taReservas, Set<TaVisita> taVisitas) {
        this.tbPessoa = tbPessoa;
        this.tbResidencia = tbResidencia;
        this.tbUsuarios = tbUsuarios;
        this.tbForums = tbForums;
        this.tbMensagems = tbMensagems;
        this.tbOcorrencias = tbOcorrencias;
+       this.taReservas = taReservas;
+       this.taVisitas = taVisitas;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -116,6 +120,24 @@ public class TaMorador  implements java.io.Serializable {
     
     public void setTbOcorrencias(Set<TbOcorrencia> tbOcorrencias) {
         this.tbOcorrencias = tbOcorrencias;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="taMorador")
+    public Set<TaReserva> getTaReservas() {
+        return this.taReservas;
+    }
+    
+    public void setTaReservas(Set<TaReserva> taReservas) {
+        this.taReservas = taReservas;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="taMorador")
+    public Set<TaVisita> getTaVisitas() {
+        return this.taVisitas;
+    }
+    
+    public void setTaVisitas(Set<TaVisita> taVisitas) {
+        this.taVisitas = taVisitas;
     }
 
 

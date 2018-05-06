@@ -14,9 +14,16 @@ import pojo.TbResidencia;
  * @author ian.malm
  */
 public class TbResidenciaDAO extends BaseDAO<TbResidencia>{
-public List<TbResidencia> consultarResidenciaSemMorador() {
+    public List<TbResidencia> consultarResidenciaSemMorador() {
         List<TbResidencia> lista;
         Query qy = hib.createQuery("SELECT obj FROM TbResidencia obj WHERE NOT EXISTS (SELECT obj FROM TaMorador WHERE obj.idtResidencia = cod_residencia)");
+        lista = qy.list();
+        return lista;
+    }
+    
+    public List<TbResidencia> consultarResidenciaComMorador() {
+        List<TbResidencia> lista;
+        Query qy = hib.createQuery("SELECT obj FROM TbResidencia obj WHERE EXISTS (SELECT obj FROM TaMorador WHERE obj.idtResidencia = cod_residencia)");
         lista = qy.list();
         return lista;
     }

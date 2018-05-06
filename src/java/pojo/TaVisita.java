@@ -1,5 +1,5 @@
 package pojo;
-// Generated 05/05/2018 15:34:18 by Hibernate Tools 4.3.1
+// Generated 06/05/2018 18:32:35 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -25,9 +25,9 @@ import javax.persistence.TemporalType;
 public class TaVisita  implements java.io.Serializable {
 
 
-     private Integer idtOcorrencia;
+     private Integer idtVisita;
+     private TaMorador taMorador;
      private TbPessoa tbPessoa;
-     private TbResidencia tbResidencia;
      private Date dtaInicioVisita;
      private Date dtaFinalVisita;
 
@@ -35,14 +35,14 @@ public class TaVisita  implements java.io.Serializable {
     }
 
 	
-    public TaVisita(TbPessoa tbPessoa, TbResidencia tbResidencia, Date dtaInicioVisita) {
+    public TaVisita(TaMorador taMorador, TbPessoa tbPessoa, Date dtaInicioVisita) {
+        this.taMorador = taMorador;
         this.tbPessoa = tbPessoa;
-        this.tbResidencia = tbResidencia;
         this.dtaInicioVisita = dtaInicioVisita;
     }
-    public TaVisita(TbPessoa tbPessoa, TbResidencia tbResidencia, Date dtaInicioVisita, Date dtaFinalVisita) {
+    public TaVisita(TaMorador taMorador, TbPessoa tbPessoa, Date dtaInicioVisita, Date dtaFinalVisita) {
+       this.taMorador = taMorador;
        this.tbPessoa = tbPessoa;
-       this.tbResidencia = tbResidencia;
        this.dtaInicioVisita = dtaInicioVisita;
        this.dtaFinalVisita = dtaFinalVisita;
     }
@@ -50,13 +50,23 @@ public class TaVisita  implements java.io.Serializable {
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @Column(name="idt_ocorrencia", unique=true, nullable=false)
-    public Integer getIdtOcorrencia() {
-        return this.idtOcorrencia;
+    @Column(name="idt_visita", unique=true, nullable=false)
+    public Integer getIdtVisita() {
+        return this.idtVisita;
     }
     
-    public void setIdtOcorrencia(Integer idtOcorrencia) {
-        this.idtOcorrencia = idtOcorrencia;
+    public void setIdtVisita(Integer idtVisita) {
+        this.idtVisita = idtVisita;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="cod_morador", nullable=false)
+    public TaMorador getTaMorador() {
+        return this.taMorador;
+    }
+    
+    public void setTaMorador(TaMorador taMorador) {
+        this.taMorador = taMorador;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
@@ -67,16 +77,6 @@ public class TaVisita  implements java.io.Serializable {
     
     public void setTbPessoa(TbPessoa tbPessoa) {
         this.tbPessoa = tbPessoa;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="cod_residencia", nullable=false)
-    public TbResidencia getTbResidencia() {
-        return this.tbResidencia;
-    }
-    
-    public void setTbResidencia(TbResidencia tbResidencia) {
-        this.tbResidencia = tbResidencia;
     }
 
     @Temporal(TemporalType.DATE)

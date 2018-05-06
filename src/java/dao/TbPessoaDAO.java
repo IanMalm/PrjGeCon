@@ -28,4 +28,11 @@ public class TbPessoaDAO extends BaseDAO<TbPessoa>{
         lista = qy.list();
         return lista;
     }
+    
+    public List<TbPessoa> consultarPessoaMorador() {
+        List<TbPessoa> lista;
+        Query qy = hib.createQuery("SELECT obj FROM TbPessoa obj WHERE EXISTS (SELECT obj FROM TaMorador WHERE obj.idtPessoa = cod_pessoa)");
+        lista = qy.list();
+        return lista;
+    }
 }

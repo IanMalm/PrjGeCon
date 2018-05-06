@@ -1,5 +1,5 @@
 package pojo;
-// Generated 05/05/2018 15:34:18 by Hibernate Tools 4.3.1
+// Generated 06/05/2018 18:32:35 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,8 +26,8 @@ public class TaReserva  implements java.io.Serializable {
 
 
      private Integer idtReserva;
+     private TaMorador taMorador;
      private TbAreaLazer tbAreaLazer;
-     private TbResidencia tbResidencia;
      private Date dtaInicioReserva;
      private Date dtaFimReserva;
      private Date dtaCadastroReserva;
@@ -36,9 +36,9 @@ public class TaReserva  implements java.io.Serializable {
     public TaReserva() {
     }
 
-    public TaReserva(TbAreaLazer tbAreaLazer, TbResidencia tbResidencia, Date dtaInicioReserva, Date dtaFimReserva, Date dtaCadastroReserva, char stsConfirmadoReserva) {
+    public TaReserva(TaMorador taMorador, TbAreaLazer tbAreaLazer, Date dtaInicioReserva, Date dtaFimReserva, Date dtaCadastroReserva, char stsConfirmadoReserva) {
+       this.taMorador = taMorador;
        this.tbAreaLazer = tbAreaLazer;
-       this.tbResidencia = tbResidencia;
        this.dtaInicioReserva = dtaInicioReserva;
        this.dtaFimReserva = dtaFimReserva;
        this.dtaCadastroReserva = dtaCadastroReserva;
@@ -58,6 +58,16 @@ public class TaReserva  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="cod_morador", nullable=false)
+    public TaMorador getTaMorador() {
+        return this.taMorador;
+    }
+    
+    public void setTaMorador(TaMorador taMorador) {
+        this.taMorador = taMorador;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cod_area_lazer", nullable=false)
     public TbAreaLazer getTbAreaLazer() {
         return this.tbAreaLazer;
@@ -65,16 +75,6 @@ public class TaReserva  implements java.io.Serializable {
     
     public void setTbAreaLazer(TbAreaLazer tbAreaLazer) {
         this.tbAreaLazer = tbAreaLazer;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="cod_residencia", nullable=false)
-    public TbResidencia getTbResidencia() {
-        return this.tbResidencia;
-    }
-    
-    public void setTbResidencia(TbResidencia tbResidencia) {
-        this.tbResidencia = tbResidencia;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

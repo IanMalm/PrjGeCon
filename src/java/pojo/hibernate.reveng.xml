@@ -41,17 +41,17 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="db_gecon"/>
-  <table-filter match-name="tb_ocorrencia"/>
-  <table-filter match-name="tb_area_lazer"/>
-  <table-filter match-name="tb_mensagem"/>
-  <table-filter match-name="ta_morador"/>
-  <table-filter match-name="tb_usuario"/>
-  <table-filter match-name="tb_pessoa"/>
   <table-filter match-name="tb_condominio"/>
-  <table-filter match-name="ta_reserva"/>
-  <table-filter match-name="tb_residencia"/>
+  <table-filter match-name="tb_usuario"/>
   <table-filter match-name="td_perfil"/>
+  <table-filter match-name="tb_mensagem"/>
+  <table-filter match-name="tb_pessoa"/>
+  <table-filter match-name="tb_residencia"/>
+  <table-filter match-name="ta_morador"/>
+  <table-filter match-name="tb_area_lazer"/>
+  <table-filter match-name="ta_reserva"/>
+  <table-filter match-name="tb_ocorrencia"/>
+  <table-filter match-name="tb_forum"/>
   <table-filter match-name="ta_visita"/>
   <table-filter match-name="tb_garagem"/>
-  <table-filter match-name="tb_forum"/>
 </hibernate-reverse-engineering>

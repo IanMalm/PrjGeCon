@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+        <p:panel header="Registro de Ocorrência">
+            <h:form id="frmConsulta">  
+                <p:growl id="msgs" showDetail="true"/>  
+                <p:panelGrid columns="3">
+                    <p:column>
+                        Descrição da Ocorrência
+                    </p:column>
+                    <p:column>
+                        <p:inputText size="30" maxlength="50" value="#{ocorrenciaMB.dscOcorrencia}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Consultar" actionListener="#{ocorrenciaMB.filtrar}" update=":frmConsulta:msgs, :frmConsulta:dtbConsulta" icon="ui-icon-search"/>
+                    </p:column>
+                </p:panelGrid>
+
+                <p:dataTable id="dtbConsulta" var="reg" value="#{ocorrenciaMB.ocorrencias}" tableStyle="width:auto;" paginator="true" rows="10">  
+
+                    <p:column headerText="Morador" style="width:200px">  
+                        <h:outputText value="#{reg.taMorador.tbPessoa.nmePessoa}" />  
+                    </p:column>
+
+                    <p:column headerText="Identificador" style="width:50px">  
+                        <h:outputText value="#{reg.idtOcorrencia}" />  
+                    </p:column>  
+
+                    <p:column headerText="Data da Ocorrência" style="width:200px">  
+                        <h:outputText value="#{reg.dtaOcorrencia}" />  
+                    </p:column>  
+
+                    <p:column headerText="Descrição" style="width:400px">  
+                        <h:outputText value="#{reg.dscOcorrencia}" />
+                    </p:column>
+
+                    <p:column headerText="Operação" style="width:auto">  
+                        <p:commandButton id="btnEditar" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-pencil" value="Editar">  
+                            <f:setPropertyActionListener value="#{reg}" target="#{ocorrenciaMB.selecionado}" />  
+                        </p:commandButton>
+                    </p:column>  
+
+                </p:dataTable>  
+
+                <p:commandButton id="btnNovo" update=":frmCriar:pngCriar" oncomplete="PF('dlgCriarView').show()" icon="ui-icon-plusthick" value="Novo" actionListener="#{ocorrenciaMB.novo}" ajax="true"/> 
+            </h:form> 
+
+            <p:dialog header="Registrar" widgetVar="dlgCriarView" resizable="false" id="dlgCriar"  
+                      showEffect="fade" hideEffect="explode" modal="true" appendTo="@(body)">  
+                <h:form id="frmCriar">
+                    <p:panelGrid id="pngCriar" columns="2" style="margin:0 auto;">  
+
+                        <p:column>
+                            <h:outputText value="Morador:" />  
+                        </p:column>
+
+                        <p:column>
+                            <p:selectOneMenu id="simples" value="#{ocorrenciaMB.selecionado.taMorador}" converter="converterMorador">
+                                <f:selectItem itemLabel="Selecione um Morador" itemValue="#{null}" />
+                                <f:selectItems value="#{ocorrenciaMB.moradores}" var="mor" itemLabel="#{mor.tbPessoa.nmePessoa}" itemValue="#{mor}" />
+                            </p:selectOneMenu>
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Identificador:" />  
+                        </p:column>
+
+                        <p:column>
+                            <p:inputText id="idtOcorrencia" value="#{ocorrenciaMB.selecionado.idtOcorrencia}" disabled="true" size="5"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Data da Ocorrência" />  
+                        </p:column>
+                        <p:column>
+                            <p:calendar id="dtaOcorrencia" value="#{ocorrenciaMB.selecionado.dtaOcorrencia}" size="50" disabled="true"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Descrição:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="dscResidencia" value="#{ocorrenciaMB.selecionado.dscOcorrencia}" size="200" maxlength="500" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
+                        </p:column>
+
+                        <p:column>
+                            <p:commandButton id="btnSalvar" update=":frmCriar:pngCriar, :frmConsulta:dtbConsulta, :frmConsulta:msgs" icon="ui-icon-disk" value="Salvar"  actionListener="#{ocorrenciaMB.salvar}" onclick="dlgEditarView.hide()" ajax="true"/>  
+                        </p:column>
+                        <p:column>
+                            <p:commandButton id="btnFechar" value="Fechar" icon="ui-icon-close" onclick="dlgEditarView.hide()"/>  
+                        </p:column>
+                    </p:panelGrid>  
+                </h:form>
+            </p:dialog>  
+
+            <p:dialog header="Editar" widgetVar="dlgEditarView" resizable="false" id="dlgEditar"  
+                      showEffect="fade" hideEffect="explode" modal="true" appendTo="@(body)">  
+                <h:form id="frmEditar">
+                    <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">  
+
+                        <p:column>
+                            <h:outputText value="Identificador:" />  
+                        </p:column>
+
+                        <p:column>
+                            <p:inputText id="idtOcorrencia" value="#{ocorrenciaMB.selecionado.idtOcorrencia}" disabled="true" size="5"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Data da Ocorrência" />  
+                        </p:column>
+                        <p:column>
+                            <p:calendar id="dtaOcorrencia" value="#{ocorrenciaMB.selecionado.dtaOcorrencia}" size="50" disabled="true"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Descrição:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="dscResidencia" value="#{ocorrenciaMB.selecionado.dscOcorrencia}" size="200" maxlength="500" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
+                        </p:column>
+
+                        <p:column>
+                            <p:commandButton id="btnSalvar" update=":frmEditar:pngEditar, :frmConsulta:dtbConsulta, :frmConsulta:msgs" icon="ui-icon-disk" value="Salvar"  actionListener="#{ocorrenciaMB.salvar}" onclick="dlgEditarView.hide()" ajax="true"/>  
+                        </p:column>
+                        <p:column>
+                            <p:commandButton id="btnFechar" value="Fechar" icon="ui-icon-close" onclick="dlgEditarView.hide()"/>  
+                        </p:column>
+                    </p:panelGrid>  
+                </h:form>
+            </p:dialog>  
+
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

@@ -64,6 +64,10 @@ public class PessoaMB {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Esta pessoa é um(a) morador(a): " + getSelecionado().getNmePessoa()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;
+            } else if (getSelecionado().getTaVisitas().size() > 0) {
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Esta pessoa é um(a) visitante: " + getSelecionado().getNmePessoa()+ ".");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+                return;
             }
 
             if (dao.excluir(getSelecionado().getIdtPessoa())) {

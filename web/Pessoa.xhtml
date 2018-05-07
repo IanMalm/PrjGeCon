@@ -33,7 +33,7 @@
                     </p:column>  
 
                     <p:column headerText="Documento" style="width:100px">  
-                        <p:inputMask value="#{reg.cpfPessoa}" mask="999.999.999-99" />
+                        <h:outputText value="#{reg.cpfPessoa}" />
                     </p:column>
 
                     <p:column headerText="Data de Nascimento" style="width:100px">  
@@ -92,7 +92,7 @@
                             <h:outputText value="Documento:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="cpfPessoa" value="#{pessoaMB.selecionado.cpfPessoa}" size="20" maxlength="20" required="true" requiredMessage="Documento é um campo obrigatório!"/>  
+                            <p:inputMask id="cpfPessoa" value="#{pessoaMB.selecionado.cpfPessoa}" mask="999.999.999-99" size="20" maxlength="20" required="true" requiredMessage="Documento é um campo obrigatório!"/>  
                         </p:column>
                         
                         <p:column>

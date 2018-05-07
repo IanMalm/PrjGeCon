@@ -5,18 +5,18 @@
  */
 package mb;
 
+import dao.TaMoradorDAO;
 import dao.TaVisitaDAO;
 import dao.TbPessoaDAO;
-import dao.TbResidenciaDAO;
 import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import pojo.TaMorador;
 import pojo.TaVisita;
 import pojo.TbPessoa;
-import pojo.TbResidencia;
 
 /**
  *
@@ -29,8 +29,8 @@ public class VisitaMB {
     private TaVisita selecionado;
     private List<TaVisita> visitas;
     private String nmePessoa;
-    private List<TbResidencia> residencias;
-    private TbResidenciaDAO resDao = new TbResidenciaDAO();
+    private List<TaMorador> moradores;
+    private TaMoradorDAO morDao = new TaMoradorDAO();
     private List<TbPessoa> pessoas;
     private TbPessoaDAO pesDao = new TbPessoaDAO();
     
@@ -40,13 +40,35 @@ public class VisitaMB {
     public VisitaMB() {
         selecionado = new TaVisita();
         nmePessoa = "";
-        residencias = resDao.consultarResidenciaComMorador();
-        pessoas = pesDao.consultarPessoaMorador();
-        //filtrar();
+        filtrar();
     }
     
-    //TODO
+    public void filtrar(){
+        TaVisitaDAO dao = new TaVisitaDAO();
+        setVisitas(dao.consultarTodos());
+    }
+    
+    public void novo() {
+        moradores = morDao.consultarTodos();
+        pessoas = pesDao.consultarPessoaNaoMorador();
+        setSelecionado(new TaVisita());
+        getSelecionado().setIdtVisita(0);
+        getSelecionado().setDtaInicioVisita(new Date(System.currentTimeMillis()));
+    }
 
+    public void salvar() {
+        TaVisitaDAO dao = new TaVisitaDAO();
+        if (getSelecionado().getIdtVisita()== 0) {
+            getSelecionado().setIdtVisita(null);
+            dao.incluir(getSelecionado());
+        } else {
+            dao.juntar(getSelecionado());
+        }
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Atualização efetivada na base de dados.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        filtrar();
+    }
+    
     public TaVisita getSelecionado() {
         return selecionado;
     }
@@ -71,20 +93,20 @@ public class VisitaMB {
         this.nmePessoa = nmePessoa;
     }
 
-    public List<TbResidencia> getResidencias() {
-        return residencias;
+    public List<TaMorador> getMoradores() {
+        return moradores;
     }
 
-    public void setResidencias(List<TbResidencia> residencias) {
-        this.residencias = residencias;
+    public void setMoradores(List<TaMorador> moradores) {
+        this.moradores = moradores;
     }
 
-    public TbResidenciaDAO getResDao() {
-        return resDao;
+    public TaMoradorDAO getResDao() {
+        return morDao;
     }
 
-    public void setResDao(TbResidenciaDAO resDao) {
-        this.resDao = resDao;
+    public void setResDao(TaMoradorDAO resDao) {
+        this.morDao = resDao;
     }
 
     public List<TbPessoa> getPessoas() {

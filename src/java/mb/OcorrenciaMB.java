@@ -66,21 +66,6 @@ public class OcorrenciaMB {
         filtrar();
     }
 
-    public void excluir() {
-        TbOcorrenciaDAO dao = new TbOcorrenciaDAO();
-        if (getSelecionado().getIdtOcorrencia() != 0) {            
-            if (dao.excluir(getSelecionado().getIdtOcorrencia())) {
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Exclusão", "Exclusão efetuada com sucesso.");
-                FacesContext.getCurrentInstance().addMessage(null, msg);
-            } else {
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Não foi possível excluir.");
-                FacesContext.getCurrentInstance().addMessage(null, msg);
-                return;
-            }
-        }
-        filtrar();
-    }
-
     public TbOcorrencia getSelecionado() {
         return selecionado;
     }

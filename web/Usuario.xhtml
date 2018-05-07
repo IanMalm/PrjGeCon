@@ -7,12 +7,12 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="conteudo">
-        <p:panel header="Cadastro de Usuarios">
+        <p:panel header="Cadastro de Usuários">
             <h:form id="frmConsulta">  
                 <p:growl id="msgs" showDetail="true"/>  
                 <p:panelGrid columns="3">
                     <p:column>
-                        Nome do Usuario:
+                        Nome do Usuário:
                     </p:column>
                     <p:column>
                         <p:inputText size="30" maxlength="50" value="#{usuarioMB.nmeUsuario}"/>
@@ -40,7 +40,7 @@
                         <h:outputText value="#{reg.idtUsuario}" />  
                     </p:column>  
 
-                    <p:column headerText="Nome Usuario" style="width:300px">  
+                    <p:column headerText="Nome Usuário" style="width:300px">  
                         <h:outputText value="#{reg.nmeUsuario}" />  
                     </p:column>
                     

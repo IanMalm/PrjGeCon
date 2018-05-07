@@ -5,6 +5,8 @@
  */
 package dao;
 
+import java.util.List;
+import org.hibernate.Query;
 import pojo.TbAreaLazer;
 
 /**
@@ -12,5 +14,12 @@ import pojo.TbAreaLazer;
  * @author ianmalm
  */
 public class TbAreaLazerDAO extends BaseDAO<TbAreaLazer> {
-
+    public List<TbAreaLazer> consultarAreaPorMorador(Integer codMorador){
+        List<TbAreaLazer> lista;
+        //SELECT obj FROM TbPessoa obj WHERE obj.tbApartamento.numApartamento = ?
+        Query qy = hib.createQuery("SELECT obj FROM TbAreaLazer obj WHERE obj.TaMorador.TbResidencia.TbCondominio = ?");
+        qy.setInteger(0, codMorador);
+        lista = qy.list();
+        return lista;
+    }
 }

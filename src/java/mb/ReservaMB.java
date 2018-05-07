@@ -48,8 +48,8 @@ public class ReservaMB {
     }
     
     public void novo() {
-//        moradores = morDao.consultarTodos();
-//        perfis = perDao.consultarTodos();
+        moradores = morDao.consultarTodos();
+        areas = areDao.consultarTodos();
 //        setSelecionado(new TaReserva());
 //        getSelecionado().setIdtUsuario(0);
     }

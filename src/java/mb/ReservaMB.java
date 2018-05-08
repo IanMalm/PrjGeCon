@@ -8,6 +8,7 @@ package mb;
 import dao.TaMoradorDAO;
 import dao.TaReservaDAO;
 import dao.TbAreaLazerDAO;
+import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -44,14 +45,21 @@ public class ReservaMB {
     
     public void filtrar(){
         TaReservaDAO dao = new TaReservaDAO();
-        setReservas(dao.consultarTodos());
+        setReservas(dao.consultarReservaPorNomeMorador(nmeMorador));
+    }
+    
+    public void reFiltrar(){
+        if(getSelecionado().getTaMorador() != null){
+            //setAreas(areDao.consultarTodos());
+            setAreas(areDao.consultarAreaPorCondominio(getSelecionado().getTaMorador().getTbResidencia().getTbCondominio().getIdtCondominio()));
+        }
     }
     
     public void novo() {
         moradores = morDao.consultarTodos();
-        areas = areDao.consultarTodos();
-//        setSelecionado(new TaReserva());
-//        getSelecionado().setIdtUsuario(0);
+        setSelecionado(new TaReserva());
+        getSelecionado().setIdtReserva(0);
+        getSelecionado().setDtaCadastroReserva(new Date(System.currentTimeMillis()));
     }
 
     public void salvar() {

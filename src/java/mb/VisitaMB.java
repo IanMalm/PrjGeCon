@@ -45,7 +45,7 @@ public class VisitaMB {
     
     public void filtrar(){
         TaVisitaDAO dao = new TaVisitaDAO();
-        setVisitas(dao.consultarTodos());
+        setVisitas(dao.consultarVisitasPorNmePessoa(nmePessoa));
     }
     
     public void novo() {

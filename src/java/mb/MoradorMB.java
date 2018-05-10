@@ -49,11 +49,10 @@ public class MoradorMB {
 
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Atualização efetivada na base de dados.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        
     }
 
     public void excluir() {
-        TbPessoaDAO dao = new TbPessoaDAO();
+        TaMoradorDAO dao = new TaMoradorDAO();
         if (getSelecionado().getIdtMorador()!= 0) {
             if (getSelecionado().getTbForums().size() > 0) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Este morador criou fóruns: " + getSelecionado().getTbPessoa().getNmePessoa()+ ".");
@@ -79,7 +78,6 @@ public class MoradorMB {
             } else {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Não foi possível excluir.");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
-                return;
             }
         }
         

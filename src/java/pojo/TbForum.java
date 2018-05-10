@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
 @Table(name="tb_forum"
     ,catalog="db_gecon"
 )
-public class TbForum  implements java.io.Serializable {
+public class TbForum  implements java.io.Serializable, Comparable<TbForum> {
 
 
      private Integer idtForum;
@@ -114,7 +114,16 @@ public class TbForum  implements java.io.Serializable {
         this.tbMensagems = tbMensagems;
     }
 
-
+     @Override
+    public int compareTo(TbForum forum) {
+        if(this.dtaCadastroForum.getTime() < forum.dtaCadastroForum.getTime()){
+            return 1;
+        }else if(this.dtaCadastroForum.getTime() > forum.dtaCadastroForum.getTime()){
+            return -1;
+        }
+        return 0;
+        
+    }
 
 
 }

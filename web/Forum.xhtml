@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+        <p:panel header="Fórum">
+            <h:form id="frmConsulta">  
+                <p:growl id="msgs" showDetail="true"/>  
+                <p:panelGrid columns="3">
+                    <p:column>
+                        Título do Fórum:
+                    </p:column>
+                    <p:column>
+                        <p:inputText size="50" maxlength="50" value="#{forumMB.titForum}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Consultar" actionListener="#{forumMB.filtrar}" update=":frmConsulta:msgs, :frmConsulta:dtbConsulta" icon="ui-icon-search"/>
+                    </p:column>
+                </p:panelGrid>
+
+                <p:dataTable id="dtbConsulta" var="reg" value="#{forumMB.foruns}" tableStyle="width:auto;" paginator="true" rows="10">  
+
+                    <p:column headerText="Morador" style="width:200px">  
+                        <h:outputText value="#{reg.taMorador.tbPessoa.nmePessoa}" />  
+                    </p:column>
+
+                    <p:column headerText="Identificador" >  
+                        <h:outputText value="#{reg.idtForum}" />  
+                    </p:column>  
+
+                    <p:column headerText="Título" style="width:200px">  
+                        <h:outputText value="#{reg.titForum}" />  
+                    </p:column>  
+
+                    <p:column headerText="Descrição" style="width:500px">  
+                        <h:outputText value="#{reg.dscForum}" />
+                    </p:column>
+
+                    <p:column headerText="Data de Cadastro" style="width:100px">  
+                        <h:outputText value="#{reg.dtaCadastroForum}">
+                            <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
+                        </h:outputText>
+                    </p:column> 
+                    
+                   <!--
+                   <p:column headerText="Quantidade de Msg's">  
+                        <h:outputText value="#{reg.tbMensagems.size}" />  
+                    </p:column>
+                   -->
+
+                    <p:column headerText="Operação" >  
+                        <p:panelGrid columns="2">  
+                            <p:column>
+                                <p:commandButton id="btnEditar" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-pencil" value="Editar">  
+                                    <f:setPropertyActionListener value="#{reg}" target="#{forumMB.selecionado}" />  
+                                </p:commandButton>
+                            </p:column>
+                            <p:column>
+                                <p:commandButton id="btnExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
+                                    <f:setPropertyActionListener value="#{reg}" target="#{forumMB.selecionado}" />  
+                                </p:commandButton>  
+                            </p:column>
+                        </p:panelGrid>  
+                    </p:column>  
+
+                </p:dataTable>  
+
+                <p:commandButton id="btnNovo" update=":frmCriar:pngCriar" oncomplete="PF('dlgCriarView').show()" icon="ui-icon-plusthick" value="Novo" actionListener="#{forumMB.novo}" ajax="true"/> 
+            </h:form> 
+
+            <p:dialog header="Criar" widgetVar="dlgCriarView" resizable="false" id="dlgCriar"  
+                      showEffect="fade" hideEffect="explode" modal="true" appendTo="@(body)">  
+                <h:form id="frmCriar">
+                    <p:panelGrid id="pngCriar" columns="2" style="margin:0 auto;">  
+
+                        <p:column>
+                            <h:outputText value="Morador:" />  
+                        </p:column>
+
+                        <p:column>
+                            <p:selectOneMenu id="simples" value="#{forumMB.selecionado.taMorador}" converter="converterMorador">
+                                <f:selectItem itemLabel="Selecione um Morador" itemValue="#{null}" />
+                                <f:selectItems value="#{forumMB.moradores}" var="mor" itemLabel="#{mor.tbPessoa.nmePessoa}" itemValue="#{mor}" />
+                            </p:selectOneMenu>
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Identificador:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="idtForum" value="#{forumMB.selecionado.idtForum}" disabled="true" size="5"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Título:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="titForum" value="#{forumMB.selecionado.titForum}" size="50" required="true" requiredMessage="Título é um campo obrigatório!"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Descrição:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputTextarea id="dscForum" value="#{forumMB.selecionado.dscForum}"  maxlength="250" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Data de Cadastro" />  
+                        </p:column>
+                        <p:column>
+                            <p:calendar id="dtaCadastroForum" value="#{forumMB.selecionado.dtaCadastroForum}" disabled="true" />  
+                        </p:column>
+
+                        <p:column>
+                            <p:commandButton id="btnSalvar" update=":frmCriar:pngCriar, :frmConsulta:dtbConsulta, :frmConsulta:msgs" icon="ui-icon-disk" value="Salvar"  actionListener="#{forumMB.salvar}" onclick="dlgEditarView.hide()" ajax="true"/>  
+                        </p:column>
+                        <p:column>
+                            <p:commandButton id="btnFechar" value="Fechar" icon="ui-icon-close" onclick="dlgEditarView.hide()"/>  
+                        </p:column>
+                    </p:panelGrid>  
+                </h:form>
+            </p:dialog> 
+
+            <p:dialog header="Editar" widgetVar="dlgEditarView" resizable="false" id="dlgEditar"  
+                      showEffect="fade" hideEffect="explode" modal="true" appendTo="@(body)">  
+                <h:form id="frmEditar">
+                    <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">  
+
+                        <p:column>
+                            <h:outputText value="Identificador:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="idtForum" value="#{forumMB.selecionado.idtForum}" disabled="true" size="5"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Título:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="titForum" value="#{forumMB.selecionado.titForum}" size="50" required="true" requiredMessage="Título é um campo obrigatório!"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Descrição:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputTextarea id="dscForum" value="#{forumMB.selecionado.dscForum}"  maxlength="250" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Data de Cadastro" />  
+                        </p:column>
+                        <p:column>
+                            <p:calendar id="dtaCadastroForum" value="#{forumMB.selecionado.dtaCadastroForum}" disabled="true" />  
+                        </p:column>
+
+                        <p:column>
+                            <p:commandButton id="btnSalvar" update=":frmEditar:pngEditar, :frmConsulta:dtbConsulta, :frmConsulta:msgs" icon="ui-icon-disk" value="Salvar"  actionListener="#{forumMB.salvar}" onclick="dlgEditarView.hide()" ajax="true"/>  
+                        </p:column>
+                        <p:column>
+                            <p:commandButton id="btnFechar" value="Fechar" icon="ui-icon-close" onclick="dlgEditarView.hide()"/>  
+                        </p:column>
+                    </p:panelGrid>  
+                </h:form>
+            </p:dialog>  
+
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir?"  
+                             header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
+                <h:form id="frmExcluir">
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta:dtbConsulta, :frmConsulta:msgs" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{forumMB.excluir}" />  
+                    <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
+                </h:form>
+            </p:confirmDialog> 
+
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

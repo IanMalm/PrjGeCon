@@ -25,8 +25,8 @@ public class ConverterPessoa implements Converter {
         if (value.equals("")){
             return null;
         }
-        TbPessoa tdPessoa = dao.consultarPorIdt(Integer.parseInt(value));
-        return tdPessoa;
+        TbPessoa tbPessoa = dao.consultarPorIdt(Integer.parseInt(value));
+        return tbPessoa;
     }
 
     @Override
@@ -34,8 +34,8 @@ public class ConverterPessoa implements Converter {
         if (value == null){
             return "";
         }
-        TbPessoa tdPessoa = (TbPessoa) value;
-        return String.valueOf( tdPessoa.getIdtPessoa());
+        TbPessoa tbPessoa = (TbPessoa) value;
+        return String.valueOf( tbPessoa.getIdtPessoa());
     }
 
 }

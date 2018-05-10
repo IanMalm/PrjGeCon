@@ -25,8 +25,8 @@ public class ConverterCondominio implements Converter {
         if (value.equals("")){
             return null;
         }
-        TbCondominio tdCondominio = dao.consultarPorIdt(Integer.parseInt(value));
-        return tdCondominio;
+        TbCondominio tbCondominio = dao.consultarPorIdt(Integer.parseInt(value));
+        return tbCondominio;
     }
 
     @Override
@@ -34,8 +34,8 @@ public class ConverterCondominio implements Converter {
         if (value == null){
             return "";
         }
-        TbCondominio tdCondominio = (TbCondominio) value;
-        return String.valueOf( tdCondominio.getIdtCondominio());
+        TbCondominio tbCondominio = (TbCondominio) value;
+        return String.valueOf( tbCondominio.getIdtCondominio());
     }
 
 }

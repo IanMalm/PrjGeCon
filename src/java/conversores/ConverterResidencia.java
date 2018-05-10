@@ -25,8 +25,8 @@ public class ConverterResidencia implements Converter {
         if (value.equals("")){
             return null;
         }
-        TbResidencia tdResidencia = dao.consultarPorIdt(Integer.parseInt(value));
-        return tdResidencia;
+        TbResidencia tbResidencia = dao.consultarPorIdt(Integer.parseInt(value));
+        return tbResidencia;
     }
 
     @Override
@@ -34,8 +34,8 @@ public class ConverterResidencia implements Converter {
         if (value == null){
             return "";
         }
-        TbResidencia tdResidencia = (TbResidencia) value;
-        return String.valueOf( tdResidencia.getIdtResidencia());
+        TbResidencia tbResidencia = (TbResidencia) value;
+        return String.valueOf( tbResidencia.getIdtResidencia());
     }
 
 }

@@ -6,8 +6,9 @@
 package mb;
 
 import dao.TaMoradorDAO;
-import dao.TaReservaDAO;
-import dao.TbAreaLazerDAO;
+import dao.TbMensagemDAO;
+import dao.TbForumDAO;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -15,8 +16,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import pojo.TaMorador;
-import pojo.TaReserva;
-import pojo.TbAreaLazer;
+import pojo.TbMensagem;
+import pojo.TbForum;
 
 /**
  *
@@ -24,47 +25,49 @@ import pojo.TbAreaLazer;
  */
 @ManagedBean
 @ViewScoped
-public class ReservaMB {
+public class MensagemMB {
     
-    private TaReserva selecionado;
-    private List<TaReserva> reservas;
-    private String nmeMorador;
+    private TbMensagem selecionado;
+    private List<TbMensagem> mensagens;
+    private String txtMensagem;
     private List<TaMorador> moradores;
     private TaMoradorDAO morDao = new TaMoradorDAO();
-    private List<TbAreaLazer> areas;
-    private TbAreaLazerDAO areDao = new TbAreaLazerDAO();
+    private List<TbForum> foruns;
+    private TbForumDAO forDao = new TbForumDAO();
     
     /**
      * Creates a new instance of VisitaMB
      */
-    public ReservaMB() {
-        selecionado = new TaReserva();
-        nmeMorador = "";
+    public MensagemMB() {
+        selecionado = new TbMensagem();
+        txtMensagem = "";
         filtrar();
     }
     
     public void filtrar(){
-        TaReservaDAO dao = new TaReservaDAO();
-        setReservas(dao.consultarReservaPorNomeMorador(nmeMorador));
+        TbMensagemDAO dao = new TbMensagemDAO();
+        mensagens = dao.consultarPorTxt(txtMensagem);
+        ordenar(mensagens);
+        setMensagens(mensagens);
     }
     
     public void reFiltrar(){
         if(getSelecionado().getTaMorador() != null){
-            setAreas(areDao.consultarAreaPorCondominio(getSelecionado().getTaMorador().getTbResidencia().getTbCondominio().getIdtCondominio()));
+            setForuns(forDao.consultarForumPorCondominio(getSelecionado().getTaMorador().getTbResidencia().getTbCondominio().getIdtCondominio()));
         }
     }
     
     public void novo() {
         moradores = morDao.consultarTodos();
-        setSelecionado(new TaReserva());
-        getSelecionado().setIdtReserva(0);
-        getSelecionado().setDtaCadastroReserva(new Date(System.currentTimeMillis()));
+        setSelecionado(new TbMensagem());
+        getSelecionado().setIdtMensagem(0);
+        getSelecionado().setDtaMensagem(new Date(System.currentTimeMillis()));
     }
 
     public void salvar() {
-        TaReservaDAO dao = new TaReservaDAO();
-        if (getSelecionado().getIdtReserva()== 0) {
-            getSelecionado().setIdtReserva(null);
+        TbMensagemDAO dao = new TbMensagemDAO();
+        if (getSelecionado().getIdtMensagem()== 0) {
+            getSelecionado().setIdtMensagem(null);
             dao.incluir(getSelecionado());
         } else {
             dao.juntar(getSelecionado());
@@ -75,9 +78,9 @@ public class ReservaMB {
     }
     
     public void excluir() {
-        TaReservaDAO dao = new TaReservaDAO();
-        if (getSelecionado().getIdtReserva()!= 0) {
-            if (dao.excluir(getSelecionado().getIdtReserva())) {
+        TbMensagemDAO dao = new TbMensagemDAO();
+        if (getSelecionado().getIdtMensagem() != 0) {
+            if (dao.excluir(getSelecionado().getIdtMensagem())) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Exclusão", "Exclusão efetuada com sucesso.");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
             } else {
@@ -88,29 +91,33 @@ public class ReservaMB {
         }
         filtrar();
     }
+    
+    public void ordenar(List mensagemList){
+        Collections.sort(mensagemList);
+    }
 
-    public TaReserva getSelecionado() {
+    public TbMensagem getSelecionado() {
         return selecionado;
     }
 
-    public void setSelecionado(TaReserva selecionado) {
+    public void setSelecionado(TbMensagem selecionado) {
         this.selecionado = selecionado;
     }
 
-    public List<TaReserva> getReservas() {
-        return reservas;
+    public List<TbMensagem> getMensagens() {
+        return mensagens;
     }
 
-    public void setReservas(List<TaReserva> reservas) {
-        this.reservas = reservas;
+    public void setMensagens(List<TbMensagem> mensagens) {
+        this.mensagens = mensagens;
     }
 
-    public String getNmeMorador() {
-        return nmeMorador;
+    public String getTxtMensagem() {
+        return txtMensagem;
     }
 
-    public void setNmeMorador(String nmeMorador) {
-        this.nmeMorador = nmeMorador;
+    public void setTxtMensagem(String txtMensagem) {
+        this.txtMensagem = txtMensagem;
     }
 
     public List<TaMorador> getMoradores() {
@@ -129,20 +136,20 @@ public class ReservaMB {
         this.morDao = morDao;
     }
 
-    public List<TbAreaLazer> getAreas() {
-        return areas;
+    public List<TbForum> getForuns() {
+        return foruns;
     }
 
-    public void setAreas(List<TbAreaLazer> areas) {
-        this.areas = areas;
+    public void setForuns(List<TbForum> foruns) {
+        this.foruns = foruns;
     }
 
-    public TbAreaLazerDAO getAreDao() {
-        return areDao;
+    public TbForumDAO getForDao() {
+        return forDao;
     }
 
-    public void setAreDao(TbAreaLazerDAO areDao) {
-        this.areDao = areDao;
+    public void setForDao(TbForumDAO forDao) {
+        this.forDao = forDao;
     }
 
     

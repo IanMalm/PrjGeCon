@@ -4,29 +4,29 @@
  */
 package conversores;
 
-import dao.TbAreaLazerDAO;
+import dao.TbForumDAO;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import pojo.TbAreaLazer;
+import pojo.TbForum;
 
 /**
  *
  * @author ian.malm
  */
-@FacesConverter(value="converterAreaLazer")
-public class ConverterAreaLazer implements Converter {
+@FacesConverter(value="converterForum")
+public class ConverterForum implements Converter {
 
-    private TbAreaLazerDAO dao = new TbAreaLazerDAO();
+    private TbForumDAO dao = new TbForumDAO();
     
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         if (value.equals("")){
             return null;
         }
-        TbAreaLazer tbAreaLazer = dao.consultarPorIdt(Integer.parseInt(value));
-        return tbAreaLazer;
+        TbForum tbForum = dao.consultarPorIdt(Integer.parseInt(value));
+        return tbForum;
     }
 
     @Override
@@ -34,8 +34,8 @@ public class ConverterAreaLazer implements Converter {
         if (value == null){
             return "";
         }
-        TbAreaLazer tbAreaLazer = (TbAreaLazer) value;
-        return String.valueOf( tbAreaLazer.getIdtAreaLazer());
+        TbForum tbForum = (TbForum) value;
+        return String.valueOf( tbForum.getIdtForum());
     }
 
 }

@@ -63,12 +63,12 @@
 
                 </p:dataTable>  
 
-                <p:commandButton id="btnNovo" update=":frmCriar:pngCriar1, :frmCriar:pngCriar2" oncomplete="PF('dlgCriarView').show()" icon="ui-icon-plusthick" value="Novo" actionListener="#{mensagemMB.novo}" ajax="true"/> 
+                <p:commandButton id="btnNovo" update=":frmCriarA:pngCriar1, :frmCriarB:pngCriar2" oncomplete="PF('dlgCriarView').show()" icon="ui-icon-plusthick" value="Novo" actionListener="#{mensagemMB.novo}" ajax="true"/> 
             </h:form> 
 
-            <p:dialog header="Reservar" widgetVar="dlgCriarView" resizable="false" id="dlgCriar"  
+            <p:dialog header="Nova Mensagem" widgetVar="dlgCriarView" resizable="false" id="dlgCriar"  
                       showEffect="fade" hideEffect="explode" modal="true" appendTo="@(body)">  
-                <h:form id="frmCriar">
+                <h:form id="frmCriarA">
                     <p:panelGrid id="pngCriar1" columns="3" style="margin:0 auto;">  
 
                         <p:column>
@@ -83,10 +83,12 @@
                         </p:column>
 
                         <p:column>
-                            <p:commandButton value="Consultar Fóruns" actionListener="#{mensagemMB.reFiltrar}" update=":frmCriar:pngCriar2" icon="ui-icon-search"/>
+                            <p:commandButton value="Consultar Fóruns" actionListener="#{mensagemMB.reFiltrar}" update=":frmCriarB:pngCriar2" icon="ui-icon-search"/>
                         </p:column>
 
                     </p:panelGrid>
+                    </h:form>
+                <h:form id="frmCriarB">
                     <p:panelGrid id="pngCriar2" columns="2" style="margin:0 auto;">
 
                         <p:column>
@@ -125,7 +127,7 @@
                         </p:column>
 
                         <p:column>
-                            <p:commandButton id="btnSalvar" update=":frmCriar:pngCriar1, :frmCriar:pngCriar2, :frmConsulta:dtbConsulta, :frmConsulta:msgs" icon="ui-icon-disk" value="Salvar"  actionListener="#{mensagemMB.salvar}" onclick="dlgEditarView.hide()" ajax="true"/>  
+                            <p:commandButton id="btnSalvar" update=":frmCriarA:pngCriar1, :frmCriarB:pngCriar2, :frmConsulta:dtbConsulta, :frmConsulta:msgs" icon="ui-icon-disk" value="Salvar"  actionListener="#{mensagemMB.salvar}" onclick="dlgEditarView.hide()" ajax="true"/>  
                         </p:column>
                         <p:column>
                             <p:commandButton id="btnFechar" value="Fechar" icon="ui-icon-close" onclick="dlgEditarView.hide()"/>  

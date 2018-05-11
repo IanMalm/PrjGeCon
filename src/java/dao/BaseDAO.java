@@ -4,24 +4,29 @@
  */
 package dao;
 
+import util.HibernateUtil;
+import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import pojo.TbUsuario;
 
-/**
- *
- * @author Hiragi
- */
-public class BaseDAO<Tab> {
+@Transactional
+public class BaseDAO<Tab> implements Serializable {
 
     private Class<Tab> classe;
     protected Session hib;
 
+    public BaseDAO(Class<Tab> entity) {
+        this.classe = entity;
+    }
+
     public BaseDAO() {
         classe = (Class<Tab>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        hib = HibernateUtil.getSession();
+        hib = HibernateUtil.getSessionFactory().openSession();
     }
 
     public Class<Tab> getClasse() {
@@ -69,6 +74,15 @@ public class BaseDAO<Tab> {
         return obj;
     }
 
+    public Object findByNameJoin() {
+        Query query = hib.createSQLQuery("select P.nme_pessoa\n"
+                + "    From tb_visita V, tb_pessoa P, tb_condominio C, tb_residencia R\n"
+                + "    Where V.cod_pessoa = P.idt_pessoa and\n"
+                + "    V.cod_residencia = R.idt_residencia and\n"
+                + "    R.cod_condominio = C.idt_condominio;");
+        return query.uniqueResult();
+    }
+
     public List<Tab> consultarTodos() {
         List<Tab> lista;
         Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj ");
@@ -91,12 +105,20 @@ public class BaseDAO<Tab> {
         lista = qy.list();
         return lista;
     }
-    
+
     public List<Tab> consultarPorDsc(String dsc) {
         List<Tab> lista;
         Query qy = hib.createQuery("SELECT obj FROM " + getClasse().getSimpleName() + " obj WHERE dsc" + getClasse().getSimpleName().substring(2) + " LIKE ?");
         qy.setString(0, "%" + dsc + "%");
         lista = qy.list();
         return lista;
+    }
+
+    public TbUsuario findByLogin(String loginUsuario) {
+        hib.beginTransaction();
+        TbUsuario user = (TbUsuario) hib.getNamedQuery("TbUsuario.findByLoginUsuario")
+                .setParameter("loginUsuario", loginUsuario).uniqueResult();
+        hib.close();
+        return user;
     }
 }

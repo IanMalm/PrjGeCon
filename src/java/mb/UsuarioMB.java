@@ -11,6 +11,11 @@ import dao.TdPerfilDAO;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+import pojo.Role;
+
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import pojo.TaMorador;
@@ -18,13 +23,14 @@ import pojo.TbUsuario;
 import pojo.TdPerfil;
 
 /**
- *
+ * @author Matheus Lopes
  * @author ianmalm
  */
-@ManagedBean
-@ViewScoped
-public class UsuarioMB {
+@ManagedBean(name = "usuarioMB")
+@SessionScoped
+public class UsuarioMB extends AbstractMB{
     
+    public static final String INJECTION_NAME = "#{usuarioMB}";
     private TbUsuario selecionado;
     private List<TbUsuario> usuarios;
     private String nmeUsuario;
@@ -40,6 +46,19 @@ public class UsuarioMB {
         selecionado = new TbUsuario();
         nmeUsuario = "";
         filtrar();
+    }
+    
+    public boolean IsAdmin(){
+      return Role.ADMIN.equals(selecionado.getRole());
+    }
+    
+    public boolean IsDefaultUser(){
+      return Role.USER.equals(selecionado.getRole());
+    }
+    
+    public String logOut(){
+      ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false)).invalidate();
+      return "login";
     }
     
     public void filtrar(){
@@ -136,8 +155,5 @@ public class UsuarioMB {
 
     public void setPerDao(TdPerfilDAO perDao) {
         this.perDao = perDao;
-    }
-    
-
-    
+    }    
 }

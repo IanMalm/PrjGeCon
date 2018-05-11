@@ -10,6 +10,9 @@
         <p:panel header="Cadastro de Residência">
             <h:form id="frmConsulta">  
                 <p:growl id="msgs" showDetail="true"/>  
+                <p:commandButton id="btnNovo" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-plusthick" value="Novo" actionListener="#{residenciaMB.novo}" ajax="true"/> 
+                <h:outputText value="&lt;br/&gt;" escape="false" />
+                <h:outputText value="&lt;br/&gt;" escape="false" />
                 <p:panelGrid columns="3">
                     <p:column>
                         Descrição da Residência:
@@ -18,37 +21,37 @@
                         <p:inputText size="30" maxlength="50" value="#{residenciaMB.dscResidencia}"/>
                     </p:column>
                     <p:column>
-                        <p:commandButton value="Consultar" actionListener="#{residenciaMB.filtrar}" update=":frmConsulta:msgs, :frmConsulta:dtbConsulta" icon="ui-icon-search"/>
+                        <p:commandButton actionListener="#{residenciaMB.filtrar}" update=":frmConsulta:msgs, :frmConsulta:dtbConsulta" icon="ui-icon-search"/>
                     </p:column>
                 </p:panelGrid>
-
-                <p:dataTable id="dtbConsulta" var="reg" value="#{residenciaMB.residencias}" tableStyle="width:auto;" paginator="true" rows="10">  
-
-                   <p:column headerText="Condomínio" style="width:200px">  
-                       <h:outputText value="#{reg.tbCondominio.nmeCondominio}" />  
+                <h:outputText value="&lt;br/&gt;" escape="false" />
+                <p:dataTable id="dtbConsulta" var="reg" value="#{residenciaMB.residencias}" tableStyle="width:auto;"  paginator="true" paginatorAlwaysVisible="false" rows="5">  
+                    
+                    <p:column headerText="Nome" style="width:600px">  
+                        <h:outputText value="#{residenciaMB.nome}" />
                     </p:column>
                     
-                    <p:column headerText="Identificador" style="width:100px">  
-                        <h:outputText value="#{reg.idtResidencia}" />  
-                    </p:column>  
-
-                    <p:column headerText="Bloco" style="width:200px">  
-                        <h:outputText value="#{reg.dscBlocoResidencia}" />  
-                    </p:column>  
-
-                    <p:column headerText="Descrição" style="width:400px">  
-                        <h:outputText value="#{reg.dscResidencia}" />
+                    <p:column headerText="Condomínio" style="width:300px">  
+                        <h:outputText value="#{reg.codCondominio.nmeCondominio}" />  
                     </p:column>
 
-                    <p:column headerText="Operação" style="width:250px">  
+               <!-- <p:column headerText="Identificador" style="width:100px">  
+                        <h:outputText value="#{reg.idtResidencia}" />  
+                    </p:column>  -->
+
+                    <p:column headerText="Bloco" style="width:300px">  
+                        <h:outputText value="#{reg.dscBlocoResidencia}" />  
+                    </p:column> 
+
+                    <p:column headerText="Operação" style="width:450px">  
                         <p:panelGrid columns="2">  
                             <p:column>
-                                <p:commandButton id="btnEditar" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-pencil" value="Editar">  
+                                <p:commandButton id="btnEditar" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-pencil" style="width:100px">  
                                     <f:setPropertyActionListener value="#{reg}" target="#{residenciaMB.selecionado}" />  
                                 </p:commandButton>
                             </p:column>
                             <p:column>
-                                <p:commandButton id="btnExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
+                                <p:commandButton id="btnExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" style="width:100px">  
                                     <f:setPropertyActionListener value="#{reg}" target="#{residenciaMB.selecionado}" />  
                                 </p:commandButton>  
                             </p:column>
@@ -57,44 +60,39 @@
 
                 </p:dataTable>  
 
-                <p:commandButton id="btnNovo" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-plusthick" value="Novo" actionListener="#{residenciaMB.novo}" ajax="true"/> 
             </h:form> 
 
             <p:dialog header="Editar" widgetVar="dlgEditarView" resizable="false" id="dlgEditar"  
                       showEffect="fade" hideEffect="explode" modal="true" appendTo="@(body)">  
                 <h:form id="frmEditar">
                     <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">  
-                        <p:column>
-                            <h:outputText value="Condomínio" />  
-                        </p:column>
+                        <!-- <p:column>
+                         </p:column> -->
 
+                        <p:column>  
+                           <!-- <h:inputHidden id="idtResidencia" value="#{residenciaMB.selecionado.idtResidencia}"/>  -->
+                        </p:column>
                         <p:column>
-                            <p:selectOneMenu id="simples" value="#{residenciaMB.selecionado.tbCondominio}" converter="converterCondominio">
-                                <f:selectItem itemLabel="Selecione um Condomínio" itemValue="#{null}" />
+                            <h:outputText value="Condominio" />  
+                        </p:column>
+                        <p:column>
+                            <p:selectOneMenu id="simples" value="#{residenciaMB.selecionado.codCondominio}" converter="converterCondominio">
+                                <f:selectItem itemLabel="Selecione um Condominio" itemValue="#{null}" />
                                 <f:selectItems value="#{residenciaMB.condominios}" var="cond" itemLabel="#{cond.nmeCondominio}" itemValue="#{cond}" />
                             </p:selectOneMenu>
                         </p:column>
-
-                        <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-
-                        <p:column>
-                            <p:inputText id="idtResidencia" value="#{residenciaMB.selecionado.idtResidencia}" disabled="true" size="5"/>  
-                        </p:column>
-
                         <p:column>
                             <h:outputText value="Bloco:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="dscBlocoResidencia" value="#{residenciaMB.selecionado.dscBlocoResidencia}" size="50" required="true" requiredMessage="Bloco é um campo obrigatório!"/>  
+                            <p:inputText id="dscBlocoResidencia" value="#{residenciaMB.selecionado.dscBlocoResidencia}" size="25" required="true" requiredMessage="Bloco é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>
                             <h:outputText value="Descrição:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="dscResidencia" value="#{residenciaMB.selecionado.dscResidencia}" size="50" maxlength="200" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
+                            <p:inputTextarea id="dscResidencia" value="#{residenciaMB.selecionado.dscResidencia}" maxlength="300" required="true" requiredMessage="Descrição é um campo obrigatório!" style="width:300px"/>  
                         </p:column>
 
                         <p:column>

@@ -60,11 +60,11 @@ public class PessoaMB {
     public void excluir() {
         TbPessoaDAO dao = new TbPessoaDAO();
         if (getSelecionado().getIdtPessoa() != 0) {
-            if (getSelecionado().getTaMoradors().size() > 0) {
+            if (getSelecionado().getTaMoradorSet().size() > 0) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Esta pessoa é um(a) morador(a): " + getSelecionado().getNmePessoa()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;
-            } else if (getSelecionado().getTaVisitas().size() > 0) {
+            } else if (getSelecionado().getTaVisitaSet().size() > 0) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Esta pessoa é um(a) visitante: " + getSelecionado().getNmePessoa()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;

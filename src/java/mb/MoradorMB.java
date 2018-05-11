@@ -39,7 +39,7 @@ public class MoradorMB {
     }
     
     public void salvar() {
-        if(getSelecionado().getTbResidencia() == null){
+        if(getSelecionado().getCodResidencia()== null){
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Gravação", "Não foi possível gravar.");
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return;
@@ -54,20 +54,20 @@ public class MoradorMB {
     public void excluir() {
         TaMoradorDAO dao = new TaMoradorDAO();
         if (getSelecionado().getIdtMorador()!= 0) {
-            if (getSelecionado().getTbForums().size() > 0) {
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Este morador criou fóruns: " + getSelecionado().getTbPessoa().getNmePessoa()+ ".");
+            if (getSelecionado().getTbForumSet().size() > 0) {
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Este morador criou fóruns: " + getSelecionado().getCodPessoa().getNmePessoa()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;
-            }else if (getSelecionado().getTbMensagems().size() > 0) {
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Este morador criou mensagens: " + getSelecionado().getTbPessoa().getNmePessoa()+ ".");
+            }else if (getSelecionado().getTbMensagemSet().size() > 0) {
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Este morador criou mensagens: " + getSelecionado().getCodPessoa().getNmePessoa()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;
-            }else if (getSelecionado().getTbOcorrencias().size() > 0) {
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Este morador criou ocorrências: " + getSelecionado().getTbPessoa().getNmePessoa()+ ".");
+            }else if (getSelecionado().getTbOcorrenciaSet().size() > 0) {
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Este morador criou ocorrências: " + getSelecionado().getCodPessoa().getNmePessoa()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;
-            }else if (getSelecionado().getTbUsuarios().size() > 0) {
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Este morador é um usuário: " + getSelecionado().getTbPessoa().getNmePessoa()+ ".");
+            }else if (getSelecionado().getTbUsuarioSet().size() > 0) {
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Este morador é um usuário: " + getSelecionado().getCodPessoa().getNmePessoa()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;
             }
@@ -129,8 +129,5 @@ public class MoradorMB {
 
     public void setResDao(TbResidenciaDAO resDao) {
         this.resDao = resDao;
-    }
-    
-    
-    
+    }    
 }

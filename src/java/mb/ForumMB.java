@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mb;
 
 import dao.TaMoradorDAO;
@@ -71,7 +66,7 @@ public class ForumMB {
     public void excluir(){
         TbForumDAO dao = new TbForumDAO();
         if(getSelecionado().getIdtForum()!= 0){
-            if (getSelecionado().getTbMensagems().size() > 0){
+            if (getSelecionado().getTbMensagemSet().size() > 0){
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Este fórum possui mensagem(ns): " + getSelecionado().getTitForum()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;
@@ -130,8 +125,6 @@ public class ForumMB {
 
     public void setMorDao(TaMoradorDAO morDao) {
         this.morDao = morDao;
-    }
-    
-    
-    
+    }    
 }
+

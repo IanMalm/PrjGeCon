@@ -49,8 +49,8 @@ public class ReservaMB {
     }
     
     public void reFiltrar(){
-        if(getSelecionado().getTaMorador() != null){
-            setAreas(areDao.consultarAreaPorCondominio(getSelecionado().getTaMorador().getTbResidencia().getTbCondominio().getIdtCondominio()));
+        if(getSelecionado().getCodMorador() != null){
+            setAreas(areDao.consultarAreaPorCondominio(getSelecionado().getCodMorador().getCodResidencia().getCodCondominio().getIdtCondominio()));
         }
     }
     
@@ -143,8 +143,6 @@ public class ReservaMB {
 
     public void setAreDao(TbAreaLazerDAO areDao) {
         this.areDao = areDao;
-    }
-
-    
-    
+    }    
 }
+

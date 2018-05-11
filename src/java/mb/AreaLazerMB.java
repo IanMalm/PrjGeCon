@@ -67,7 +67,7 @@ public class AreaLazerMB {
     public void excluir() {
         TbAreaLazerDAO dao = new TbAreaLazerDAO();
         if (getSelecionado().getIdtAreaLazer()!= 0) {
-            if (getSelecionado().getTaReservas().size() > 0) {
+            if (getSelecionado().getTaReservaSet().size() > 0) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Esta área possui reserva(s): " + getSelecionado().getDscAreaLazer()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;

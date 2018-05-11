@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+        <p:panel header="Novo Morador">
+            <h:form id="frmConsulta">  
+                <p:growl id="msgs" showDetail="true"/>  
+                <p:panelGrid columns="3">
+                    <p:column>
+                        Nome da Pessoa para cadastrar em uma Residência:
+                    </p:column>
+
+                    <p:column>
+                        <p:selectOneMenu id="simples" value="#{pes}" converter="converterPessoa">
+                            <f:selectItem itemLabel="Selecione uma Pessoa" itemValue="#{null}" />
+                            <f:selectItems value="#{moradorMB.pessoas}" var="pes" itemLabel="#{pes.nmePessoa}" itemValue="#{pes}" />
+                        </p:selectOneMenu>
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton id="btnEditar" value="Cadastrar" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-pencil">  
+                            <f:setPropertyActionListener value="#{pes}" target="#{moradorMB.selecionado.tbPessoa}" />  
+                        </p:commandButton>
+                    </p:column>
+                </p:panelGrid>
+
+            </h:form> 
+
+            <p:dialog header="Editar" widgetVar="dlgEditarView" resizable="false" id="dlgEditar"  
+                      showEffect="fade" hideEffect="explode" modal="true" appendTo="@(body)">  
+                <h:form id="frmEditar">
+                    <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">
+
+                        <p:column>
+                            Nova Residência:
+                        </p:column>
+
+                        <p:column>
+                            <p:selectOneMenu id="simples" value="#{moradorMB.selecionado.tbResidencia}" converter="converterResidencia">
+                                <f:selectItem itemLabel="Selecione uma Residência" itemValue="#{null}" />
+                                <f:selectItems value="#{moradorMB.residencias}" var="res" itemLabel="#{res.dscResidencia}" itemValue="#{res}" />
+                            </p:selectOneMenu>
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Identificador:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="idtPessoa" value="#{pes.idtPessoa}" disabled="true" size="5"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Nome:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="nmeCliente" value="#{pes.nmePessoa}" size="50" disabled="true"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Documento:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="cpfPessoa" value="#{pes.cpfPessoa}" size="20" disabled="true"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Data de Nascimento:" />  
+                        </p:column>
+                        <p:column>
+                            <p:calendar id="dtaNascPessoa" value="#{pes.dtaNascPessoa}" disabled="true"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Telefone:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="telPessoa" value="#{pes.telPessoa}" size="20" disabled="true"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Email:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="emlPessoa" value="#{pes.emlPessoa}" size="50" disabled="true"/>  
+                        </p:column>
+
+                        <p:column>
+                            <p:commandButton id="btnSalvar" update=":frmEditar:pngEditar, :frmConsulta:msgs" icon="ui-icon-disk" value="Salvar"  actionListener="#{moradorMB.salvar}" onclick="dlgEditarView.hide()" ajax="true">
+                            <f:setPropertyActionListener value="#{res}" target="#{moradorMB.selecionado.tbResidencia}" />
+                            </p:commandButton>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton id="btnFechar" value="Fechar" icon="ui-icon-close" onclick="dlgEditarView.hide()"/>  
+                        </p:column>
+                    </p:panelGrid>  
+                </h:form>
+            </p:dialog>  
+
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir?"  
+                             header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
+                <h:form id="frmExcluir">
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta:msgs" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{moradorMB.excluir}" />  
+                    <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
+                </h:form>
+            </p:confirmDialog> 
+
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

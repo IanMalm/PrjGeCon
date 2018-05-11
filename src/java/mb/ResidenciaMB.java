@@ -26,21 +26,23 @@ public class ResidenciaMB {
     private TbResidencia selecionado;
     private List<TbResidencia> residencias;
     private String dscResidencia;
+    private Object Nome;
     private List<TbCondominio> condominios;
     private TbCondominioDAO condDao = new TbCondominioDAO();
+    private TbResidenciaDAO dao = new TbResidenciaDAO();
     
     /**
      * Creates a new instance of ResidenciaMB
      */
     public ResidenciaMB() {
         selecionado = new TbResidencia();
+        Nome = dao.findByNameJoin();
         dscResidencia = "";
         condominios = condDao.consultarTodos();
         filtrar();
     }
     
     public void filtrar(){
-        TbResidenciaDAO dao = new TbResidenciaDAO();
         setResidencias(dao.consultarPorDsc(getDscResidencia()));
     }
     
@@ -67,11 +69,11 @@ public class ResidenciaMB {
     public void excluir() {
         TbResidenciaDAO dao = new TbResidenciaDAO();
         if (getSelecionado().getIdtResidencia() != 0) {
-            if (getSelecionado().getTaMoradors().size() > 0) {
+            if (getSelecionado().getTaMoradorSet().size() > 0) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Esta residência possui moradore(s): " + getSelecionado().getDscResidencia()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;
-            }else if (getSelecionado().getTbGaragems().size() > 0) {
+            }else if (getSelecionado().getTbGaragemSet().size() > 0) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Esta residência possui garagem(ns): " + getSelecionado().getDscResidencia()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;
@@ -120,5 +122,12 @@ public class ResidenciaMB {
     public void setCondominios(List<TbCondominio> condominios) {
         this.condominios = condominios;
     }
-    
+
+    public Object getNome() {
+        return Nome;
+    }
+
+    public void setNome(Object Nome) {
+        this.Nome = Nome;
+    }
 }

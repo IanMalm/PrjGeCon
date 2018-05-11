@@ -25,17 +25,13 @@ public class CondominioMB {
     private List<TbCondominio> condominios;
     private String nmeCondominio;
     
-    /**
-     * Creates a new instance of Condominio
-     */
-    public CondominioMB() {
-        
+    public CondominioMB() {    
         selecionado = new TbCondominio();
         nmeCondominio = "";
         filtrar();
         
     }
-    
+  
     public void filtrar() {
         TbCondominioDAO dao = new TbCondominioDAO();
         setCondominios(dao.consultarPorNme(getNmeCondominio()));
@@ -63,11 +59,11 @@ public class CondominioMB {
     public void excluir() {
         TbCondominioDAO dao = new TbCondominioDAO();
         if (getSelecionado().getIdtCondominio() != 0) {
-            if (getSelecionado().getTbResidencias().size() > 0) {
+            if (getSelecionado().getTbResidenciaSet().size() > 0) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Este condomínio possui residência(s): " + getSelecionado().getNmeCondominio()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;
-            }else if (getSelecionado().getTbAreaLazers().size() > 0) {
+            }else if (getSelecionado().getTbAreaLazerSet().size() > 0) {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Exclusão", "Este condomínio possui área(s) de lazer: " + getSelecionado().getNmeCondominio()+ ".");
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 return;
@@ -83,21 +79,21 @@ public class CondominioMB {
         }
         filtrar();
     }
-    
-    public void setSelecionado(TbCondominio selecionado) {
-        this.selecionado = selecionado;
-    }
-
-    public void setCondominios(List<TbCondominio> condominios) {
-        this.condominios = condominios;
-    }
 
     public TbCondominio getSelecionado() {
         return selecionado;
     }
 
+    public void setSelecionado(TbCondominio selecionado) {
+        this.selecionado = selecionado;
+    }
+
     public List<TbCondominio> getCondominios() {
         return condominios;
+    }
+
+    public void setCondominios(List<TbCondominio> condominios) {
+        this.condominios = condominios;
     }
 
     public String getNmeCondominio() {
@@ -107,5 +103,5 @@ public class CondominioMB {
     public void setNmeCondominio(String nmeCondominio) {
         this.nmeCondominio = nmeCondominio;
     }
-    
+        
 }

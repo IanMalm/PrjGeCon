@@ -6,10 +6,15 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
+    <!-- <link rel="stylesheet" href="css/estilo.css"/> -->
+
     <ui:define name="conteudo">
         <p:panel header="Cadastro de Pessoas">
             <h:form id="frmConsulta">  
-                <p:growl id="msgs" showDetail="true"/>  
+                <p:growl id="msgs" showDetail="true"/> 
+                <p:commandButton id="btnNovo" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-plusthick" value="Novo" actionListener="#{pessoaMB.novo}" ajax="true"/> 
+                <h:outputText value="&lt;br/&gt;" escape="false" />
+                <h:outputText value="&lt;br/&gt;" escape="false" />
                 <p:panelGrid columns="3">
                     <p:column>
                         Nome da Pessoa:
@@ -18,25 +23,21 @@
                         <p:inputText size="30" maxlength="50" value="#{pessoaMB.nmePessoa}"/>
                     </p:column>
                     <p:column>
-                        <p:commandButton value="Consultar" actionListener="#{pessoaMB.filtrar}" update=":frmConsulta:msgs, :frmConsulta:dtbConsulta" icon="ui-icon-search"/>
+                        <p:commandButton actionListener="#{pessoaMB.filtrar}" update=":frmConsulta:msgs, :frmConsulta:dtbConsulta" icon="ui-icon-search"/>
                     </p:column>
-                </p:panelGrid>
+                </p:panelGrid > 
+                <h:outputText value="&lt;br/&gt;" escape="false" />
+                <p:dataTable id="dtbConsulta" var="reg" value="#{pessoaMB.pessoas}" tableStyle="width:auto;" paginator="true" paginatorAlwaysVisible="false" rows="5">  
 
-                <p:dataTable id="dtbConsulta" var="reg" value="#{pessoaMB.pessoas}" tableStyle="width:auto;" paginator="true" rows="10">  
-
-                    <p:column headerText="Identificador" style="width:100px">  
-                        <h:outputText value="#{reg.idtPessoa}" />  
-                    </p:column>  
-
-                    <p:column headerText="Nome" style="width:300px">  
+                    <p:column headerText="Nome" style="width:700px">  
                         <h:outputText value="#{reg.nmePessoa}" />  
                     </p:column>  
 
-                    <p:column headerText="Documento" style="width:100px">  
-                        <h:outputText value="#{reg.cpfPessoa}" />
+                    <p:column headerText="Documento" style="width:80px">  
+                        <p:inputMask value="#{reg.cpfPessoa}" mask="999.999.999-99" />
                     </p:column>
 
-                    <p:column headerText="Data de Nascimento" style="width:100px">  
+                    <p:column  headerText="Data de nascimento" style="width:880px">  
                         <h:outputText value="#{reg.dtaNascPessoa}">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </h:outputText>
@@ -49,25 +50,23 @@
                     <p:column headerText="Email" style="width:200px">  
                         <h:outputText value="#{reg.emlPessoa}" />  
                     </p:column> 
-                    
-                    <p:column headerText="Operação" style="width:250px">  
+
+                    <p:column headerText="Operação" style="width:350px">  
                         <p:panelGrid columns="2">  
                             <p:column>
-                                <p:commandButton id="btnEditar" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-pencil" value="Editar">  
+                                <p:commandButton id="btnEditar" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-pencil">  
                                     <f:setPropertyActionListener value="#{reg}" target="#{pessoaMB.selecionado}" />  
                                 </p:commandButton>
                             </p:column>
                             <p:column>
-                                <p:commandButton id="btnExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
+                                <p:commandButton id="btnExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash">  
                                     <f:setPropertyActionListener value="#{reg}" target="#{pessoaMB.selecionado}" />  
                                 </p:commandButton>  
                             </p:column>
                         </p:panelGrid>  
                     </p:column>  
 
-                </p:dataTable>  
-
-                <p:commandButton id="btnNovo" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-plusthick" value="Novo" actionListener="#{pessoaMB.novo}" ajax="true"/> 
+                </p:dataTable> 
             </h:form> 
 
             <p:dialog header="Editar" widgetVar="dlgEditarView" resizable="false" id="dlgEditar"  
@@ -75,33 +74,26 @@
                 <h:form id="frmEditar">
                     <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">  
                         <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-                        <p:column>
-                            <p:inputText id="idtPessoa" value="#{pessoaMB.selecionado.idtPessoa}" disabled="true" size="5"/>  
-                        </p:column>
-
-                        <p:column>
                             <h:outputText value="Nome:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="nmeCliente" value="#{pessoaMB.selecionado.nmePessoa}" size="50" required="true" requiredMessage="Nome é um campo obrigatório!"/>  
+                            <p:inputText id="nmeCliente" value="#{pessoaMB.selecionado.nmePessoa}" size="30" required="true" requiredMessage="Nome é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>
                             <h:outputText value="Documento:" />  
                         </p:column>
                         <p:column>
-                            <p:inputMask id="cpfPessoa" value="#{pessoaMB.selecionado.cpfPessoa}" mask="999.999.999-99" size="20" maxlength="20" required="true" requiredMessage="Documento é um campo obrigatório!"/>  
+                            <p:inputText id="cpfPessoa" value="#{pessoaMB.selecionado.cpfPessoa}" size="20" maxlength="20" required="true" requiredMessage="Documento é um campo obrigatório!"/>  
                         </p:column>
-                        
+
                         <p:column>
                             <h:outputText value="Data de Nascimento:" />  
                         </p:column>
                         <p:column>
                             <p:calendar id="dtaNascPessoa" value="#{pessoaMB.selecionado.dtaNascPessoa}" required="true" requiredMessage="Data de Nascimento é um campo obrigatório!"/>  
                         </p:column>
-                        
+
                         <p:column>
                             <h:outputText value="Telefone:" />  
                         </p:column>
@@ -113,9 +105,9 @@
                             <h:outputText value="Email:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="emlPessoa" value="#{pessoaMB.selecionado.emlPessoa}" size="50" required="false"/>  
+                            <p:inputText id="emlPessoa" value="#{pessoaMB.selecionado.emlPessoa}" size="30" required="false"/>  
                         </p:column>
-                        
+
                         <p:column>
                             <p:commandButton id="btnSalvar" update=":frmEditar:pngEditar, :frmConsulta:dtbConsulta, :frmConsulta:msgs" icon="ui-icon-disk" value="Salvar"  actionListener="#{pessoaMB.salvar}" onclick="dlgEditarView.hide()" ajax="true"/>  
                         </p:column>

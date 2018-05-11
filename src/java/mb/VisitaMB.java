@@ -123,9 +123,6 @@ public class VisitaMB {
 
     public void setPesDao(TbPessoaDAO pesDao) {
         this.pesDao = pesDao;
-    }
-
-    
-    
-    
+    }    
 }
+

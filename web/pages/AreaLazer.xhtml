@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+        <p:panel header="Cadastro de Área de Lazer">
+            <h:form id="frmConsulta">  
+                <p:growl id="msgs" showDetail="true"/>  
+                <p:commandButton id="btnNovo" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-plusthick" value="Novo" actionListener="#{areaLazerMB.novo}" ajax="true"/> 
+                <h:outputText value="&lt;br/&gt;" escape="false" />
+                <h:outputText value="&lt;br/&gt;" escape="false" />
+                <p:panelGrid columns="3">
+                    <p:column>
+                        Descrição da Área de Lazer:
+                    </p:column>
+                    <p:column>
+                        <p:inputText size="30" maxlength="50" value="#{areaLazerMB.dscAreaLazer}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton actionListener="#{areaLazerMB.filtrar}" update=":frmConsulta:msgs, :frmConsulta:dtbConsulta" icon="ui-icon-search" style="width:60px"/>
+                    </p:column>
+                </p:panelGrid>
+                <h:outputText value="&lt;br/&gt;" escape="false" />
+                <p:dataTable id="dtbConsulta" var="reg" value="#{areaLazerMB.areasLazer}" tableStyle="width:auto;" paginator="true" paginatorAlwaysVisible="false" rows="5">  
+
+                   <p:column headerText="Condomínio" style="width:300px">  
+                       <h:outputText value="#{reg.codCondominio.nmeCondominio}" />  
+                    </p:column>
+              
+                    <p:column headerText="Descrição" style="width:300px">  
+                        <h:outputText value="#{reg.dscAreaLazer}" />  
+                    </p:column>  
+
+                    <p:column headerText="Capacidade máxima" style="width:500px">  
+                        <h:outputText value="#{reg.capMaxAreaLazer}" />
+                    </p:column>
+                    
+                    <p:column headerText="Valor da reserva (opcional)" style="width:850px">  
+                        <h:outputText value="#{reg.vlrReservaAreaLazer}" />
+                    </p:column>
+
+                    <p:column headerText="Operação" style="width:250px">  
+                        <p:panelGrid columns="2">  
+                            <p:column>
+                                <p:commandButton id="btnEditar" update=":frmEditar:pngEditar" oncomplete="PF('dlgEditarView').show()" icon="ui-icon-pencil" value="Editar">  
+                                    <f:setPropertyActionListener value="#{reg}" target="#{areaLazerMB.selecionado}" />  
+                                </p:commandButton>
+                            </p:column>
+                            <p:column>
+                                <p:commandButton id="btnExcluir" oncomplete="PF('dlgConfExclusaoView').show()" icon="ui-icon-trash" value="Excluir">  
+                                    <f:setPropertyActionListener value="#{reg}" target="#{areaLazerMB.selecionado}" />  
+                                </p:commandButton>  
+                            </p:column>
+                        </p:panelGrid>  
+                    </p:column>  
+
+                </p:dataTable>  
+            </h:form> 
+
+            <p:dialog header="Editar" widgetVar="dlgEditarView" resizable="false" id="dlgEditar"  
+                      showEffect="fade" hideEffect="explode" modal="true" appendTo="@(body)">  
+                <h:form id="frmEditar">
+                    <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">  
+                        
+                         <p:column>
+                             <h:inputHidden value="Identificador:" />  
+                        </p:column>
+
+                        <p:column>
+                            <h:inputHidden id="idtAreaLazer" value="#{areaLazerMB.selecionado.idtAreaLazer}"/>  
+                        </p:column>
+                        
+                        <p:column>
+                            <h:outputText value="Condominio" />  
+                        </p:column>
+
+                        <p:column>
+                            <p:selectOneMenu id="simples" value="#{areaLazerMB.selecionado.codCondominio}" converter="converterCondominio">
+                                <f:selectItem itemLabel="Selecione um Condomínio" itemValue="#{null}" />
+                                <f:selectItems value="#{areaLazerMB.condominios}" var="cond" itemLabel="#{cond.nmeCondominio}" itemValue="#{cond}" />
+                            </p:selectOneMenu>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="Descrição:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputTextarea id="dscAreaLazer" value="#{areaLazerMB.selecionado.dscAreaLazer}" maxlength="300" required="true" style="width:300px" requiredMessage="Descrição é um campo obrigatório!"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Capacidade máxima:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="capMaxAreaLazer" value="#{areaLazerMB.selecionado.capMaxAreaLazer}" size="10" maxlength="20" required="true" requiredMessage="Capacidade é um campo obrigatório!"/>  
+                        </p:column>
+
+                        <p:column>
+                            <h:outputText value="Valor da reserva:" />  
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="vlrReservaAreaLazer" value="#{areaLazerMB.selecionado.vlrReservaAreaLazer}" size="10" maxlength="200" required="false" />  
+                        </p:column>
+                        
+                        <p:column>
+                            <p:commandButton id="btnSalvar" update=":frmEditar:pngEditar, :frmConsulta:dtbConsulta, :frmConsulta:msgs" icon="ui-icon-disk" value="Salvar"  actionListener="#{areaLazerMB.salvar}" onclick="dlgEditarView.hide()" ajax="true"/>  
+                        </p:column>
+                        <p:column>
+                            <p:commandButton id="btnFechar" value="Fechar" icon="ui-icon-close" onclick="dlgEditarView.hide()"/>  
+                        </p:column>
+                    </p:panelGrid>  
+                </h:form>
+            </p:dialog>  
+
+            <p:confirmDialog id="dlgConfExclusao" message="Tem certeza que deseja excluir?"  
+                             header="Exclusão de Registro" severity="alert" widgetVar="dlgConfExclusaoView" appendTo="@(body)">  
+                <h:form id="frmExcluir">
+                    <p:commandButton id="btnConfirm" value="Sim" update=":frmConsulta:dtbConsulta, :frmConsulta:msgs" oncomplete="PF('dlgConfExclusaoView').hide()" actionListener="#{areaLazerMB.excluir}" />  
+                    <p:commandButton id="btnDecline" value="Não" onclick="PF('dlgConfExclusaoView').hide()" type="button" />   
+                </h:form>
+            </p:confirmDialog> 
+
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

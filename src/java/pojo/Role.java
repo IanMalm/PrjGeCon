@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
-
-import pojo.TbGaragem;
+package pojo;
 
 /**
  *
- * @author ianmalm
+ * @author Matheus Lopes
  */
-public class TbGaragemDAO extends BaseDAO<TbGaragem>{
-    
+public enum Role {
+    ADMIN,USER;
 }

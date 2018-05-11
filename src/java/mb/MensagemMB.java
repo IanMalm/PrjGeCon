@@ -52,8 +52,8 @@ public class MensagemMB {
     }
     
     public void reFiltrar(){
-        if(getSelecionado().getTaMorador() != null){
-            setForuns(forDao.consultarForumPorCondominio(getSelecionado().getTaMorador().getTbResidencia().getTbCondominio().getIdtCondominio()));
+        if(getSelecionado().getCodMorador() != null){
+            setForuns(forDao.consultarForumPorCondominio(getSelecionado().getCodMorador().getCodResidencia().getCodCondominio().getIdtCondominio()));
         }
     }
     

@@ -8,9 +8,10 @@ package dao;
 import pojo.TbUsuario;
 
 /**
- *
- * @author ian.malm
+ * @author Matheus Lopes
+ * @ra 21450510
  */
-public class TbUsuarioDAO extends BaseDAO<TbUsuario>{
-    
+public class TbUsuarioDAO extends BaseDAO<TbUsuario> {
+
+
 }

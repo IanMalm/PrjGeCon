@@ -31,11 +31,13 @@ public class MoradorMB {
     private TbPessoaDAO pesDao = new TbPessoaDAO();
     private List<TbResidencia> residencias;
     private TbResidenciaDAO resDao = new TbResidenciaDAO();
+    private List<TbResidencia> todasResidencias;
 
     public MoradorMB(){
         selecionado = new TaMorador();
         pessoas = pesDao.consultarPessoaNaoMorador();
         residencias = resDao.consultarResidenciaSemMorador();
+        todasResidencias = resDao.consultarTodos();
     }
     
     public void salvar() {
@@ -115,6 +117,14 @@ public class MoradorMB {
         this.pesDao = pesDao;
     }
 
+    public List<TbResidencia> getTodasResidencias() {
+        return todasResidencias;
+    }
+
+    public void setTodasResidencias(List<TbResidencia> residencias) {
+        this.todasResidencias = residencias;
+    }
+    
     public List<TbResidencia> getResidencias() {
         return residencias;
     }

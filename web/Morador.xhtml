@@ -43,7 +43,7 @@
                         <p:column>
                             <p:selectOneMenu id="simples" value="#{moradorMB.selecionado.tbResidencia}" converter="converterResidencia">
                                 <f:selectItem itemLabel="Selecione uma Residência" itemValue="#{null}" />
-                                <f:selectItems value="#{moradorMB.residencias}" var="res" itemLabel="#{res.dscResidencia}" itemValue="#{res}" />
+                                <f:selectItems value="#{moradorMB.todasResidencias}" var="res" itemLabel="#{res.dscResidencia}" itemValue="#{res}" />
                             </p:selectOneMenu>
                         </p:column>
 

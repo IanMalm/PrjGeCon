@@ -31,6 +31,7 @@ import pojo.TdPerfil;
 public class UsuarioMB extends AbstractMB{
     
     public static final String INJECTION_NAME = "#{usuarioMB}";
+    private TbUsuario user;
     private TbUsuario selecionado;
     private List<TbUsuario> usuarios;
     private String nmeUsuario;
@@ -49,11 +50,11 @@ public class UsuarioMB extends AbstractMB{
     }
     
     public boolean IsAdmin(){
-      return Role.ADMIN.equals(selecionado.getRole());
+      return Role.ADMIN.equals(user.getRole());
     }
     
     public boolean IsDefaultUser(){
-      return Role.USER.equals(selecionado.getRole());
+      return Role.USER.equals(user.getRole());
     }
     
     public String logOut(){
@@ -155,5 +156,15 @@ public class UsuarioMB extends AbstractMB{
 
     public void setPerDao(TdPerfilDAO perDao) {
         this.perDao = perDao;
-    }    
+    }
+
+    public TbUsuario getUser() {
+        return user;
+    }
+
+    public void setUser(TbUsuario user) {
+        this.user = user;
+    }
+    
+    
 }

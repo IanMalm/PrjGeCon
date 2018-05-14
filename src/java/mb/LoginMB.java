@@ -43,7 +43,7 @@ public class LoginMB extends AbstractMB {
     public String logar() {
         TbUsuario user = isValidLogin(loginUsuario, pwdUsuario);
         if (user != null) {
-            usuarioMB.setUser(user);
+            usuarioMB.setSelecionado(user);
             FacesContext context = FacesContext.getCurrentInstance();
             HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
             request.getSession().setAttribute("user", user);

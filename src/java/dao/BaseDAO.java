@@ -76,9 +76,9 @@ public class BaseDAO<Tab> implements Serializable {
 
     public Object findByNameJoin() {
         Query query = hib.createSQLQuery("select P.nme_pessoa\n"
-                + "    From ta_morador M, tb_pessoa P, tb_condominio C, tb_residencia R\n"
-                + "    Where M.cod_pessoa = P.idt_pessoa and\n"
-                + "    M.cod_residencia = R.idt_residencia and\n"
+                + "    From tb_visita V, tb_pessoa P, tb_condominio C, tb_residencia R\n"
+                + "    Where V.cod_pessoa = P.idt_pessoa and\n"
+                + "    V.cod_residencia = R.idt_residencia and\n"
                 + "    R.cod_condominio = C.idt_condominio;");
         return query.uniqueResult();
     }

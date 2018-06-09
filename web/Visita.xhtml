@@ -82,26 +82,19 @@
                             </p:selectOneMenu>
                         </p:column>
 
-                        <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-
-                        <p:column>
-                            <p:inputText id="idtVisita" value="#{visitaMB.selecionado.idtVisita}" disabled="true" size="5"/>  
-                        </p:column>
 
                         <p:column>
                             <h:outputText value="Data da Visita" />  
                         </p:column>
                         <p:column>
-                            <p:calendar id="dtaInicioVisita" value="#{visitaMB.selecionado.dtaInicioVisita}" size="50" disabled="true"/>  
+                            <p:calendar id="dtaInicioVisita" value="#{visitaMB.selecionado.dtaInicioVisita}" size="15" disabled="true"/>  
                         </p:column>
 
                         <p:column>
                             <h:outputText value="Data Fim da Visita" />  
                         </p:column>
                         <p:column>
-                            <p:calendar id="dtaFinalVisita" value="#{visitaMB.selecionado.dtaFinalVisita}" size="50" required="false"/>  
+                            <p:calendar id="dtaFinalVisita" value="#{visitaMB.selecionado.dtaFinalVisita}" size="15" required="false"/>  
                         </p:column>
 
                         <p:column>

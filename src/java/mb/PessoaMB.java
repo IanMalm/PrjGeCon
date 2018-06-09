@@ -5,7 +5,10 @@
 package mb;
 
 import dao.TbPessoaDAO;
+import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -45,15 +48,21 @@ public class PessoaMB {
     }
 
     public void salvar() {
-        TbPessoaDAO dao = new TbPessoaDAO();
-        if (getSelecionado().getIdtPessoa() == 0) {
-            getSelecionado().setIdtPessoa(null);
-            dao.incluir(getSelecionado());
+        if (validarNome() && validarEmail() && validarTelefone() && validarDataNascimento()) {
+            TbPessoaDAO dao = new TbPessoaDAO();
+            int idt = getSelecionado().getIdtPessoa();
+            if (idt == 0) {
+                getSelecionado().setIdtPessoa(null);
+                dao.incluir(getSelecionado());
+            } else {
+                dao.juntar(getSelecionado());
+            }
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Atualização efetivada na base de dados.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
         } else {
-            dao.juntar(getSelecionado());
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Cadastro não efetuado, dados inválidos foram inseridos.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
         }
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Atualização efetivada na base de dados.");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
         filtrar();
     }
 
@@ -82,6 +91,42 @@ public class PessoaMB {
         filtrar();
     }
 
+    public boolean validarEmail(){
+        Pattern expressaoRegular = Pattern.compile("@");
+        Matcher match = expressaoRegular.matcher(getSelecionado().getEmlPessoa());
+        
+        if (match.find()) {
+            System.out.println(match.find());
+            expressaoRegular = Pattern.compile(".");
+            match = expressaoRegular.matcher(getSelecionado().getEmlPessoa());
+        }
+        System.out.println(match.find());
+        return match.find();
+    }
+    
+    public boolean validarTelefone(){
+        String telefone = getSelecionado().getTelPessoa();
+        Pattern expressaoRegular = Pattern.compile( "^([0-9]{7,})$");
+        Matcher match = expressaoRegular.matcher(telefone);
+       
+        boolean resultado = match.find();
+        return resultado;
+    }
+    
+    public boolean validarDataNascimento() {
+        Date data = getSelecionado().getDtaNascPessoa();
+        if (data.compareTo(new Date()) >= 0) { // Compara com a data de hoje
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean validarNome(){
+        Pattern expressaoRegular = Pattern.compile( "[0-9]");
+        Matcher match = expressaoRegular.matcher(getSelecionado().getNmePessoa());
+        
+        return !match.find();
+    }
     /**
      * @return the selecionado
      */

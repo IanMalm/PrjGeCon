@@ -8,6 +8,7 @@ package mb;
 import dao.TaMoradorDAO;
 import dao.TaReservaDAO;
 import dao.TbAreaLazerDAO;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -62,16 +63,27 @@ public class ReservaMB {
     }
 
     public void salvar() {
-        TaReservaDAO dao = new TaReservaDAO();
-        if (getSelecionado().getIdtReserva()== 0) {
-            getSelecionado().setIdtReserva(null);
-            dao.incluir(getSelecionado());
+        if (validarDataInicio()){
+            if (validarDataFinal()) {
+                TaReservaDAO dao = new TaReservaDAO();
+                if (getSelecionado().getIdtReserva()== 0) {
+                    getSelecionado().setIdtReserva(null);
+                    dao.incluir(getSelecionado());
+                } else {
+                    dao.juntar(getSelecionado());
+                }
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Atualização efetivada na base de dados.");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+                filtrar();
+            } else {
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "A data do fim da reserva deve ser posterior à de início");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+            }
         } else {
-            dao.juntar(getSelecionado());
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "A data de início da reserva deve ser posterior à data atual.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
         }
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Atualização efetivada na base de dados.");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        filtrar();
+        
     }
     
     public void excluir() {
@@ -89,6 +101,26 @@ public class ReservaMB {
         filtrar();
     }
 
+    public boolean validarDataInicio() {
+        Date dataInicio = getSelecionado().getDtaInicioReserva();
+        Date dataAtual = getSelecionado().getDtaCadastroReserva();
+        int comparacao = dataInicio.compareTo(dataAtual);
+        if (comparacao >= 0) { // Compara as datas
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean validarDataFinal() {
+        Date dataInicio = getSelecionado().getDtaInicioReserva();
+        Date dataFinal = getSelecionado().getDtaFimReserva();
+        int comparacao = dataInicio.compareTo(dataFinal);
+        if (comparacao >= 0) { // Compara as datas
+            return false;
+        }
+        return true;
+    }
+    
     public TaReserva getSelecionado() {
         return selecionado;
     }

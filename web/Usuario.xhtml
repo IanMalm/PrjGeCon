@@ -28,7 +28,7 @@
                         <h:outputText value="#{reg.taMorador.tbResidencia.tbCondominio.nmeCondominio}" />  
                     </p:column>
                     
-                    <p:column headerText="Residência" style="width:300px">  
+                    <p:column headerText="Residência" style="width:200px">  
                         <h:outputText value="#{reg.taMorador.tbResidencia.dscResidencia}" />  
                     </p:column>
                     
@@ -36,11 +36,11 @@
                         <h:outputText value="#{reg.taMorador.tbPessoa.nmePessoa}" />  
                     </p:column>
                     
-                    <p:column headerText="Identificador" >  
+                    <!--p:column headerText="Identificador" >  
                         <h:outputText value="#{reg.idtUsuario}" />  
-                    </p:column>  
+                    </p:column-->  
 
-                    <p:column headerText="Nome Usuário" style="width:300px">  
+                    <p:column headerText="Nome Usuário" style="width:200px">  
                         <h:outputText value="#{reg.nmeUsuario}" />  
                     </p:column>
                     
@@ -73,13 +73,7 @@
                       showEffect="fade" hideEffect="explode" modal="true" appendTo="@(body)">  
                 <h:form id="frmEditar">
                     <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">  
-                        <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-                        <p:column>
-                            <p:inputText id="idtUsuario" value="#{usuarioMB.selecionado.idtUsuario}" disabled="true" size="5"/>  
-                        </p:column>
-
+                       
                         <p:column>
                             <h:outputText value="Morador:" />  
                         </p:column>
@@ -106,14 +100,14 @@
                             <h:outputText value="Nome:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="nmeUsuario" value="#{usuarioMB.selecionado.nmeUsuario}" size="50" required="true" requiredMessage="Nome é um campo obrigatório!"/>  
+                            <p:inputText id="nmeUsuario" value="#{usuarioMB.selecionado.nmeUsuario}" size="35" required="true" requiredMessage="Nome é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>
                             <h:outputText value="Senha:" />  
                         </p:column>
                         <p:column>
-                            <p:password id="emlUsuario" value="#{usuarioMB.selecionado.pwdUsuario}" size="50" required="true" requiredMessage="Senha é um campo obrigatório!"/>  
+                            <p:password id="emlUsuario" value="#{usuarioMB.selecionado.pwdUsuario}" size="18" required="true" requiredMessage="Senha é um campo obrigatório!"/>  
                         </p:column>
                         
                         <p:column>

@@ -8,7 +8,10 @@ package mb;
 import dao.TaMoradorDAO;
 import dao.TbUsuarioDAO;
 import dao.TdPerfilDAO;
+import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -55,15 +58,25 @@ public class UsuarioMB {
     }
 
     public void salvar() {
-        TbUsuarioDAO dao = new TbUsuarioDAO();
-        if (getSelecionado().getIdtUsuario()== 0) {
-            getSelecionado().setIdtUsuario(null);
-            dao.incluir(getSelecionado());
+        if (validarNome()){
+            if (validarSenha()) {
+                TbUsuarioDAO dao = new TbUsuarioDAO();
+                if (getSelecionado().getIdtUsuario()== 0) {
+                    getSelecionado().setIdtUsuario(null);
+                    dao.incluir(getSelecionado());
+                } else {
+                    dao.juntar(getSelecionado());
+                }
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Atualização efetivada na base de dados.");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+            } else {
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Senha muito curta.");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+            }
         } else {
-            dao.juntar(getSelecionado());
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Nome de usuário inválido.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
         }
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Atualização efetivada na base de dados.");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
         filtrar();
     }
     
@@ -82,6 +95,29 @@ public class UsuarioMB {
         filtrar();
     }
 
+    public boolean validarNome(){
+        String nomeUsuario = getSelecionado().getNmeUsuario();
+        if (nomeUsuario.length() > 5) {
+            TbUsuarioDAO dao = new TbUsuarioDAO();
+            List<TbUsuario> usuarios = dao.consultarPorNme(nomeUsuario);
+            for (Iterator<TbUsuario> iterator = usuarios.iterator(); iterator.hasNext();) {
+                TbUsuario next = iterator.next();
+                if (next.getNmeUsuario().equals(nomeUsuario)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean validarSenha() {
+        if (getSelecionado().getPwdUsuario().length() > 5) {
+            return true;
+        }
+        return false;
+    }
+    
     public TbUsuario getSelecionado() {
         return selecionado;
     }

@@ -7,6 +7,8 @@ package mb;
 
 import dao.TbCondominioDAO;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -82,6 +84,13 @@ public class CondominioMB {
             }
         }
         filtrar();
+    }
+    
+    public boolean validarNome(){
+        Pattern expressaoRegular = Pattern.compile( "0-9]");
+        Matcher match = expressaoRegular.matcher(getSelecionado().getNmeCondominio());
+        
+        return !match.find();
     }
     
     public void setSelecionado(TbCondominio selecionado) {

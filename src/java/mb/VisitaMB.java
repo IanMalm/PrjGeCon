@@ -8,6 +8,7 @@ package mb;
 import dao.TaMoradorDAO;
 import dao.TaVisitaDAO;
 import dao.TbPessoaDAO;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -57,16 +58,38 @@ public class VisitaMB {
     }
 
     public void salvar() {
-        TaVisitaDAO dao = new TaVisitaDAO();
-        if (getSelecionado().getIdtVisita()== 0) {
-            getSelecionado().setIdtVisita(null);
-            dao.incluir(getSelecionado());
+        if (validarData()) {
+            TaVisitaDAO dao = new TaVisitaDAO();
+            if (getSelecionado().getIdtVisita()== 0) {
+                getSelecionado().setIdtVisita(null);
+                dao.incluir(getSelecionado());
+            } else {
+                dao.juntar(getSelecionado());
+            }
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Atualização efetivada na base de dados.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            filtrar();
         } else {
-            dao.juntar(getSelecionado());
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Data final da visita posterior à data inicial.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
         }
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Atualização efetivada na base de dados.");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        filtrar();
+    }
+   
+    public boolean validarData() {
+        Date dataFinal = getSelecionado().getDtaFinalVisita();
+        Date dataInicio = getSelecionado().getDtaInicioVisita();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dataInicio);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);  
+        cal.set(Calendar.SECOND, 0);  
+        cal.set(Calendar.MILLISECOND, 0);
+        dataInicio = cal.getTime();
+        int comparacao = dataFinal.compareTo(dataInicio);
+        if (comparacao >= 0) { // Compara as datas
+            return true;
+        }
+        return false;
     }
     
     public TaVisita getSelecionado() {

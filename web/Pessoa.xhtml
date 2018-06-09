@@ -24,9 +24,9 @@
 
                 <p:dataTable id="dtbConsulta" var="reg" value="#{pessoaMB.pessoas}" tableStyle="width:auto;" paginator="true" rows="10">  
 
-                    <p:column headerText="Identificador" style="width:100px">  
+                    <!--p:column headerText="Identificador" style="width:100px">  
                         <h:outputText value="#{reg.idtPessoa}" />  
-                    </p:column>  
+                    </p:column-->  
 
                     <p:column headerText="Nome" style="width:300px">  
                         <h:outputText value="#{reg.nmePessoa}" />  
@@ -113,7 +113,7 @@
                             <h:outputText value="Email:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="emlPessoa" value="#{pessoaMB.selecionado.emlPessoa}" size="50" required="false"/>  
+                            <p:inputText id="emlPessoa" value="#{pessoaMB.selecionado.emlPessoa}" size="30" required="false"/>  
                         </p:column>
                         
                         <p:column>

@@ -28,9 +28,9 @@
                         <h:outputText value="#{reg.taMorador.tbPessoa.nmePessoa}" />  
                     </p:column>
 
-                    <p:column headerText="Identificador" style="width:50px">  
+                    <!--p:column headerText="Identificador" style="width:50px">  
                         <h:outputText value="#{reg.idtOcorrencia}" />  
-                    </p:column>  
+                    </p:column-->  
 
                     <p:column headerText="Data da Ocorrência" style="width:200px">  
                         <h:outputText value="#{reg.dtaOcorrencia}" />  
@@ -67,26 +67,19 @@
                             </p:selectOneMenu>
                         </p:column>
 
-                        <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-
-                        <p:column>
-                            <p:inputText id="idtOcorrencia" value="#{ocorrenciaMB.selecionado.idtOcorrencia}" disabled="true" size="5"/>  
-                        </p:column>
-
+                       
                         <p:column>
                             <h:outputText value="Data da Ocorrência" />  
                         </p:column>
                         <p:column>
-                            <p:calendar id="dtaOcorrencia" value="#{ocorrenciaMB.selecionado.dtaOcorrencia}" size="50" disabled="true"/>  
+                            <p:calendar id="dtaOcorrencia" value="#{ocorrenciaMB.selecionado.dtaOcorrencia}" size="20" disabled="true"/>  
                         </p:column>
 
                         <p:column>
                             <h:outputText value="Descrição:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="dscResidencia" value="#{ocorrenciaMB.selecionado.dscOcorrencia}" size="200" maxlength="500" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
+                            <p:inputTextarea id="dscResidencia" value="#{ocorrenciaMB.selecionado.dscOcorrencia}" cols="35" maxlength="500" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>

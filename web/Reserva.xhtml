@@ -36,9 +36,9 @@
                         <h:outputText value="#{reg.tbAreaLazer.dscAreaLazer}" />  
                     </p:column>
 
-                    <p:column headerText="Identificador" style="width:50px">  
+                    <!--p:column headerText="Identificador" style="width:50px">  
                         <h:outputText value="#{reg.idtReserva}" />  
-                    </p:column>  
+                    </p:column-->  
 
                     <p:column headerText="Data de Cadastro da Reserva" >  
                         <h:outputText value="#{reg.dtaCadastroReserva}">
@@ -117,19 +117,11 @@
                         </p:column>
 
                         <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-
-                        <p:column>
-                            <p:inputText id="idtReserva" value="#{reservaMB.selecionado.idtReserva}" disabled="true" size="5"/>  
-                        </p:column>
-
-                        <p:column>
                             <h:outputText value="Data da Reserva:" />  
                         </p:column>
 
                         <p:column>
-                            <p:calendar id="dtaCadastroReserva" value="#{reservaMB.selecionado.dtaCadastroReserva}" size="50" disabled="true"/>  
+                            <p:calendar id="dtaCadastroReserva" value="#{reservaMB.selecionado.dtaCadastroReserva}" size="20" disabled="true"/>  
                         </p:column>
 
                         <p:column>

@@ -12,7 +12,7 @@ DROP SCHEMA IF EXISTS `db_gecon` ;
 -- -----------------------------------------------------
 -- Schema db_gecon
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `db_gecon` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+CREATE SCHEMA IF NOT EXISTS `db_gecon` DEFAULT CHARACTER SET utf8 ;
 USE `db_gecon` ;
 
 -- -----------------------------------------------------
@@ -281,5 +281,4 @@ INSERT INTO `db_gecon`.`td_perfil` (`idt_perfil`, `nme_perfil`) VALUES (2, 'Func
 INSERT INTO `db_gecon`.`td_perfil` (`idt_perfil`, `nme_perfil`) VALUES (3, 'Morador');
 
 COMMIT;
-
 

@@ -32,10 +32,6 @@
                         <h:outputText value="#{reg.tbResidencia.dscResidencia}" />  
                     </p:column>
                     
-                    <p:column headerText="Identificador" style="width:100px">  
-                        <h:outputText value="#{reg.idtGaragem}" />  
-                    </p:column>  
-
                     <p:column headerText="Descrição" style="width:300px">  
                         <h:outputText value="#{reg.dscGaragem}" />  
                     </p:column>  
@@ -70,7 +66,7 @@
                         </p:column>
 
                         <p:column>
-                            <p:inputText id="nmeCondominio" value="#{garagemMB.selecionado.tbResidencia.tbCondominio.nmeCondominio}" disabled="true" size="50"/>  
+                            <p:inputText id="nmeCondominio" value="#{garagemMB.selecionado.tbResidencia.tbCondominio.nmeCondominio}" disabled="true" size="20"/>  
                         </p:column>
                         
                         <p:column>
@@ -85,18 +81,10 @@
                         </p:column>
 
                         <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-
-                        <p:column>
-                            <p:inputText id="idtGaragem" value="#{garagemMB.selecionado.idtGaragem}" disabled="true" size="5"/>  
-                        </p:column>
-
-                        <p:column>
                             <h:outputText value="Descrição:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="dscGaragem" value="#{garagemMB.selecionado.dscGaragem}" size="50" maxlength="200" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
+                            <p:inputText id="dscGaragem" value="#{garagemMB.selecionado.dscGaragem}" size="10" maxlength="200" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
                         </p:column>
                         
                         <p:column>

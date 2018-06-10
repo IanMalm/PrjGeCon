@@ -52,15 +52,27 @@ public class AreaLazerMB {
     }
 
     public void salvar() {
-        TbAreaLazerDAO dao = new TbAreaLazerDAO();
-        if (getSelecionado().getIdtAreaLazer()== 0) {
-            getSelecionado().setIdtAreaLazer(null);
-            dao.incluir(getSelecionado());
+        if (validarCapacidadeMaxima()){
+            if(validarValor()) {
+                TbAreaLazerDAO dao = new TbAreaLazerDAO();
+                if (getSelecionado().getIdtAreaLazer()== 0) {
+                    getSelecionado().setIdtAreaLazer(null);
+                    dao.incluir(getSelecionado());
+                } else {
+                    dao.juntar(getSelecionado());
+                }
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Atualização efetivada na base de dados.");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+            } else {
+                getSelecionado().setVlrReservaAreaLazer(0.0);
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Gravação", "O valor não pode ser negativo.");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+            }
         } else {
-            dao.juntar(getSelecionado());
+            getSelecionado().setCapMaxAreaLazer(1);
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Gravação", "A capacidade deve ser pelo menos 1.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);  
         }
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Resultado da Gravação", "Atualização efetivada na base de dados.");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
         filtrar();
     }
 
@@ -85,6 +97,20 @@ public class AreaLazerMB {
         filtrar();
     }
 
+    public boolean validarCapacidadeMaxima() {
+        if (getSelecionado().getCapMaxAreaLazer() > 0) {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean validarValor() {
+        if (getSelecionado().getVlrReservaAreaLazer() >= 0) {
+            return true;
+        }
+        return false;
+    }
+    
     public TbAreaLazer getSelecionado() {
         return selecionado;
     }

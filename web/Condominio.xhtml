@@ -24,10 +24,6 @@
 
                 <p:dataTable id="dtbConsulta" var="reg" value="#{condominioMB.condominios}" tableStyle="width:auto;" paginator="true" rows="10">  
 
-                    <p:column headerText="Identificador" style="width:100px">  
-                        <h:outputText value="#{reg.idtCondominio}" />  
-                    </p:column>  
-
                     <p:column headerText="Nome" style="width:300px">  
                         <h:outputText value="#{reg.nmeCondominio}" />  
                     </p:column>  
@@ -61,24 +57,17 @@
                 <h:form id="frmEditar">
                     <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">  
                         <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-                        <p:column>
-                            <p:inputText id="idtCondominio" value="#{condominioMB.selecionado.idtCondominio}" disabled="true" size="5"/>  
-                        </p:column>
-
-                        <p:column>
                             <h:outputText value="Nome:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="nmeCondominio" value="#{condominioMB.selecionado.nmeCondominio}" size="50" required="true" requiredMessage="Nome é um campo obrigatório!"/>  
+                            <p:inputText id="nmeCondominio" value="#{condominioMB.selecionado.nmeCondominio}" size="31" required="true" requiredMessage="Nome é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>
                             <h:outputText value="Endereço:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="dscLocalCondominio" value="#{condominioMB.selecionado.dscLocalCondominio}" size="60" maxlength="256" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
+                            <p:inputText id="dscLocalCondominio" value="#{condominioMB.selecionado.dscLocalCondominio}" size="40" maxlength="256" required="true" requiredMessage="Endereço é um campo obrigatório!"/>  
                         </p:column>
                         
                         <p:column>

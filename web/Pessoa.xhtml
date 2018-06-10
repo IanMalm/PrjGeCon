@@ -74,18 +74,12 @@
                       showEffect="fade" hideEffect="explode" modal="true" appendTo="@(body)">  
                 <h:form id="frmEditar">
                     <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">  
-                        <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-                        <p:column>
-                            <p:inputText id="idtPessoa" value="#{pessoaMB.selecionado.idtPessoa}" disabled="true" size="5"/>  
-                        </p:column>
-
+                        
                         <p:column>
                             <h:outputText value="Nome:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="nmeCliente" value="#{pessoaMB.selecionado.nmePessoa}" size="50" required="true" requiredMessage="Nome é um campo obrigatório!"/>  
+                            <p:inputText id="nmeCliente" value="#{pessoaMB.selecionado.nmePessoa}" size="30" required="true" requiredMessage="Nome é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>
@@ -113,7 +107,7 @@
                             <h:outputText value="Email:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="emlPessoa" value="#{pessoaMB.selecionado.emlPessoa}" size="30" required="false"/>  
+                            <p:inputText id="emlPessoa" value="#{pessoaMB.selecionado.emlPessoa}" size="25" required="false"/>  
                         </p:column>
                         
                         <p:column>

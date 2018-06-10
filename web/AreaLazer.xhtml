@@ -28,10 +28,6 @@
                        <h:outputText value="#{reg.tbCondominio.nmeCondominio}" />  
                     </p:column>
                     
-                    <p:column headerText="Identificador" style="width:100px">  
-                        <h:outputText value="#{reg.idtAreaLazer}" />  
-                    </p:column>  
-
                     <p:column headerText="Descrição" style="width:300px">  
                         <h:outputText value="#{reg.dscAreaLazer}" />  
                     </p:column>  
@@ -80,32 +76,24 @@
                         </p:column>
 
                         <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-
-                        <p:column>
-                            <p:inputText id="idtAreaLazer" value="#{areaLazerMB.selecionado.idtAreaLazer}" disabled="true" size="5"/>  
-                        </p:column>
-
-                        <p:column>
                             <h:outputText value="Descrição:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="dscAreaLazer" value="#{areaLazerMB.selecionado.dscAreaLazer}" size="200" maxlength="200" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
+                            <p:inputText id="dscAreaLazer" value="#{areaLazerMB.selecionado.dscAreaLazer}" size="20" maxlength="200" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>
                             <h:outputText value="Capacidade máxima:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="capMaxAreaLazer" value="#{areaLazerMB.selecionado.capMaxAreaLazer}" size="100" maxlength="20" required="true" requiredMessage="Capacidade é um campo obrigatório!"/>  
+                            <p:inputText id="capMaxAreaLazer" value="#{areaLazerMB.selecionado.capMaxAreaLazer}" size="10" maxlength="20" required="true" requiredMessage="Capacidade é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>
                             <h:outputText value="Valor da reserva:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="vlrReservaAreaLazer" value="#{areaLazerMB.selecionado.vlrReservaAreaLazer}" size="100" maxlength="200" required="false" />  
+                            <p:inputText id="vlrReservaAreaLazer" value="#{areaLazerMB.selecionado.vlrReservaAreaLazer}" size="10" maxlength="200" required="false" />  
                         </p:column>
                         
                         <p:column>

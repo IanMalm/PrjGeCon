@@ -32,10 +32,6 @@
                         <h:outputText value="#{reg.tbForum.titForum}" />  
                     </p:column>
 
-                    <p:column headerText="Identificador" >  
-                        <h:outputText value="#{reg.idtMensagem}" />  
-                    </p:column>
-                    
                     <p:column headerText="Mensagem" >  
                         <h:outputText value="#{reg.txtMensagem}" />  
                     </p:column>
@@ -103,19 +99,11 @@
                         </p:column>
 
                         <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-
-                        <p:column>
-                            <p:inputText id="idtMensagem" value="#{mensagemMB.selecionado.idtMensagem}" disabled="true" size="5"/>  
-                        </p:column>
-
-                        <p:column>
                             <h:outputText value="Mensagem:" />  
                         </p:column>
 
                         <p:column>
-                            <p:inputTextarea id="txtMensagem" value="#{mensagemMB.selecionado.txtMensagem}" required="true" requiredMessage="Texto é um campo obrigatório!"/>  
+                            <p:inputTextarea id="txtMensagem" value="#{mensagemMB.selecionado.txtMensagem}" cols="30" required="true" requiredMessage="Texto é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>
@@ -146,7 +134,7 @@
                         </p:column>
 
                         <p:column>
-                            <p:inputText id="nmePessoa" value="#{mensagemMB.selecionado.taMorador.tbPessoa.nmePessoa}" disabled="true" size="80"/>  
+                            <p:inputText id="nmePessoa" value="#{mensagemMB.selecionado.taMorador.tbPessoa.nmePessoa}" disabled="true" size="31"/>  
                         </p:column>
 
                         <p:column>
@@ -154,22 +142,14 @@
                         </p:column>
 
                         <p:column>
-                            <p:inputText id="titForum" value="#{mensagemMB.selecionado.tbForum.titForum}" disabled="true" size="80"/>  
-                        </p:column>
-
-                        <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-
-                        <p:column>
-                            <p:inputText id="idtMensagem" value="#{mensagemMB.selecionado.idtMensagem}" disabled="true" size="5"/>  
+                            <p:inputText id="titForum" value="#{mensagemMB.selecionado.tbForum.titForum}" disabled="true" size="31"/>  
                         </p:column>
 
                         <p:column>
                             <h:outputText value="Mensagem" />  
                         </p:column>
                         <p:column>
-                            <p:inputTextarea id="txtMensagem" value="#{mensagemMB.selecionado.txtMensagem}" required="true" requiredMessage="Texto é um campo obrigatório!"/>
+                            <p:inputTextarea id="txtMensagem" value="#{mensagemMB.selecionado.txtMensagem}" cols="30" required="true" requiredMessage="Texto é um campo obrigatório!"/>
                         </p:column>
 
                         <p:column>

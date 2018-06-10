@@ -97,14 +97,7 @@
                 <h:form id="frmEditar">
                     <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">  
 
-                        <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-
-                        <p:column>
-                            <p:inputText id="idtOcorrencia" value="#{ocorrenciaMB.selecionado.idtOcorrencia}" disabled="true" size="5"/>  
-                        </p:column>
-
+    
                         <p:column>
                             <h:outputText value="Data da Ocorrência" />  
                         </p:column>
@@ -116,7 +109,7 @@
                             <h:outputText value="Descrição:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="dscOcorrencia" value="#{ocorrenciaMB.selecionado.dscOcorrencia}" size="200" maxlength="500" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
+                            <p:inputTextarea id="dscOcorrencia" value="#{ocorrenciaMB.selecionado.dscOcorrencia}" cols="35" maxlength="500" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>

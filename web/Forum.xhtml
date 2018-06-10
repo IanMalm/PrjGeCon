@@ -28,10 +28,6 @@
                         <h:outputText value="#{reg.taMorador.tbPessoa.nmePessoa}" />  
                     </p:column>
 
-                    <p:column headerText="Identificador" >  
-                        <h:outputText value="#{reg.idtForum}" />  
-                    </p:column>  
-
                     <p:column headerText="Título" style="width:200px">  
                         <h:outputText value="#{reg.titForum}" />  
                     </p:column>  
@@ -89,24 +85,17 @@
                         </p:column>
 
                         <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-                        <p:column>
-                            <p:inputText id="idtForum" value="#{forumMB.selecionado.idtForum}" disabled="true" size="5"/>  
-                        </p:column>
-
-                        <p:column>
                             <h:outputText value="Título:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="titForum" value="#{forumMB.selecionado.titForum}" size="50" required="true" requiredMessage="Título é um campo obrigatório!"/>  
+                            <p:inputText id="titForum" value="#{forumMB.selecionado.titForum}" size="31" required="true" requiredMessage="Título é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>
                             <h:outputText value="Descrição:" />  
                         </p:column>
                         <p:column>
-                            <p:inputTextarea id="dscForum" value="#{forumMB.selecionado.dscForum}"  maxlength="250" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
+                            <p:inputTextarea id="dscForum" value="#{forumMB.selecionado.dscForum}" cols="30" maxlength="250" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>
@@ -131,25 +120,19 @@
                 <h:form id="frmEditar">
                     <p:panelGrid id="pngEditar" columns="2" style="margin:0 auto;">  
 
-                        <p:column>
-                            <h:outputText value="Identificador:" />  
-                        </p:column>
-                        <p:column>
-                            <p:inputText id="idtForum" value="#{forumMB.selecionado.idtForum}" disabled="true" size="5"/>  
-                        </p:column>
-
+                        
                         <p:column>
                             <h:outputText value="Título:" />  
                         </p:column>
                         <p:column>
-                            <p:inputText id="titForum" value="#{forumMB.selecionado.titForum}" size="50" required="true" requiredMessage="Título é um campo obrigatório!"/>  
+                            <p:inputText id="titForum" value="#{forumMB.selecionado.titForum}" size="31" required="true" requiredMessage="Título é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>
                             <h:outputText value="Descrição:" />  
                         </p:column>
                         <p:column>
-                            <p:inputTextarea id="dscForum" value="#{forumMB.selecionado.dscForum}"  maxlength="250" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
+                            <p:inputTextarea id="dscForum" value="#{forumMB.selecionado.dscForum}" cols="30" maxlength="250" required="true" requiredMessage="Descrição é um campo obrigatório!"/>  
                         </p:column>
 
                         <p:column>

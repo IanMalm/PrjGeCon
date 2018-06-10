@@ -269,15 +269,3 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
--- -----------------------------------------------------
--- Data for table `db_gecon`.`td_perfil`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `db_gecon`;
-INSERT INTO `db_gecon`.`td_perfil` (`idt_perfil`, `nme_perfil`) VALUES (1, 'Administrador');
-INSERT INTO `db_gecon`.`td_perfil` (`idt_perfil`, `nme_perfil`) VALUES (2, 'Funcionário');
-INSERT INTO `db_gecon`.`td_perfil` (`idt_perfil`, `nme_perfil`) VALUES (3, 'Morador');
-
-COMMIT;
-

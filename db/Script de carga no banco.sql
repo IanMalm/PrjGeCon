@@ -132,20 +132,20 @@ INSERT INTO `db_gecon`.`ta_morador` (`idt_morador`, `cod_pessoa`, `cod_residenci
 
 INSERT INTO `db_gecon`.`tb_pessoa` (`idt_pessoa`, `nme_pessoa`, `cpf_pessoa`, `dta_nasc_pessoa`, `eml_pessoa`, `tel_pessoa`) VALUES (11,"administrador", "12345678909", "1994-09-08", "admin@sempreceub.com", "61984962717");
 INSERT INTO `db_gecon`.`ta_morador` (`idt_morador`, `cod_pessoa`, `cod_residencia`) VALUES (11, 11, 91);
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `login_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`, `role`) VALUES (1, "admin", "admin", 11, 1, "ADMIN");
+INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (1, "admin", "admin", 11, 1);
 
 INSERT INTO `db_gecon`.`tb_pessoa` (`idt_pessoa`, `nme_pessoa`, `cpf_pessoa`, `dta_nasc_pessoa`, `eml_pessoa`, `tel_pessoa`) VALUES (12,"funcionario1", "12345678909", "1994-09-08", "admin@sempreceub.com", "61984962717");
 INSERT INTO `db_gecon`.`ta_morador` (`idt_morador`, `cod_pessoa`, `cod_residencia`) VALUES (12, 12, 90);
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `login_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`, `role`) VALUES (2, "funcionario1", "funcionario1", 12, 2, "FUNC");
+INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (2, "funcionario1", "funcionario1", 12, 2);
 
 
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `login_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`, `role`) VALUES (3 , "heitorrodrigojosealmeida@email.com"			, "123456", 1 , 3, "MORADOR");
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `login_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`, `role`) VALUES (4 , "aanthonykevinmoreira@bzness.com"				, "123456", 2 , 3, "MORADOR");
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `login_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`, `role`) VALUES (5 , "jorgehugodacruz@carreira.com"					, "123456", 3 , 3, "MORADOR");
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `login_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`, `role`) VALUES (6 , "ricardobrenoalves@me.com"						, "123456", 4 , 3, "MORADOR");
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `login_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`, `role`) VALUES (7 , "victorkaiquecardoso@hpelzer.com"				, "123456", 5 , 3, "MORADOR");
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `login_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`, `role`) VALUES (8 , "louisegabrielafigueiredo@zootecnista.com.br"	, "123456", 6 , 3, "MORADOR");
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `login_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`, `role`) VALUES (9 , "sandraagathacaldeira@uol.om.br"				, "123456", 7 , 3, "MORADOR");
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `login_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`, `role`) VALUES (11, "daianesilvanaassuncao-77@infolink.com.br"		, "123456", 8 , 3, "MORADOR");
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `login_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`, `role`) VALUES (12, "laradaianeaparicio@dpf.gov.br"				, "123456", 9 , 3, "MORADOR");
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `login_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`, `role`) VALUES (13, "marlenelarafernandes-85@profemme.com.br"		, "123456", 10, 3, "MORADOR");
+INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (3 , "heitorrodrigojosealmeida@email.com"				, "123456", 1 , 3);
+INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (4 , "aanthonykevinmoreira@bzness.com"				, "123456", 2 , 3);
+INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (5 , "jorgehugodacruz@carreira.com"					, "123456", 3 , 3);
+INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (6 , "ricardobrenoalves@me.com"						, "123456", 4 , 3);
+INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (7 , "victorkaiquecardoso@hpelzer.com"				, "123456", 5 , 3);
+INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (8 , "louisegabrielafigueiredo@zootecnista.com.br"	, "123456", 6 , 3);
+INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (9 , "sandraagathacaldeira@uol.om.br"					, "123456", 7 , 3);
+INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (11, "daianesilvanaassuncao-77@infolink.com.br"		, "123456", 8 , 3);
+INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (12, "laradaianeaparicio@dpf.gov.br"					, "123456", 9 , 3);
+INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (13, "marlenelarafernandes-85@profemme.com.br"		, "123456", 10, 3);

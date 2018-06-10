@@ -246,14 +246,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_gecon`.`tb_usuario` (
   `idt_usuario` INT NOT NULL AUTO_INCREMENT,
-  `login_usuario` VARCHAR(80) NOT NULL,
-  `pwd_usuario` VARCHAR(255) NOT NULL,
   `cod_morador` INT NOT NULL,
   `cod_perfil` INT NOT NULL,
-  `role` VARCHAR(45) NOT NULL,
+  `nme_usuario` VARCHAR(80) NOT NULL,
+  `pwd_usuario` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`idt_usuario`),
   INDEX `fk_tb_usuario_ta_morador1_idx` (`cod_morador` ASC),
   INDEX `fk_tb_usuario_td_perfil1_idx` (`cod_perfil` ASC),
-  PRIMARY KEY (`idt_usuario`),
   CONSTRAINT `fk_tb_usuario_ta_morador1`
     FOREIGN KEY (`cod_morador`)
     REFERENCES `db_gecon`.`ta_morador` (`idt_morador`)

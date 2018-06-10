@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 @Table(name="ta_visita"
     ,catalog="db_gecon"
 )
-public class TaVisita  implements java.io.Serializable {
+public class TaVisita  implements java.io.Serializable, Comparable<TaVisita>  {
 
 
      private Integer idtVisita;
@@ -99,7 +99,16 @@ public class TaVisita  implements java.io.Serializable {
         this.dtaFinalVisita = dtaFinalVisita;
     }
 
-
+    @Override
+    public int compareTo(TaVisita visita) {
+        if(this.dtaInicioVisita.getTime() < visita.dtaInicioVisita.getTime()){
+            return -1;
+        }else if(this.dtaInicioVisita.getTime() > visita.dtaInicioVisita.getTime()){
+            return 1;
+        }
+        return 0;
+        
+    }
 
 
 }

@@ -58,6 +58,11 @@ public class UsuarioMB {
     }
 
     public void salvar() {
+        if(getSelecionado().getTaMorador().getTbResidencia() == null){
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Gravação", "Não foi possível gravar.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            return;
+        }
         if (validarNome()){
             if (validarSenha()) {
                 TbUsuarioDAO dao = new TbUsuarioDAO();

@@ -76,6 +76,9 @@ public class VisitaMB {
     }
    
     public boolean validarData() {
+        if(getSelecionado().getDtaFinalVisita() == null){
+            return true;
+        }
         Date dataFinal = getSelecionado().getDtaFinalVisita();
         Date dataInicio = getSelecionado().getDtaInicioVisita();
         Calendar cal = Calendar.getInstance();

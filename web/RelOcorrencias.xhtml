@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+        <p:panel header="Relatórios">
+            <h:head>
+                <f:facet name="first">
+                    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                    <title>Gráfico de Barras</title>
+                </f:facet>
+            </h:head>
+
+            <h:body>
+                <p>Gráfico de ocorrêcias por residência</p>
+
+                <p:chart type="bar" model="#{relOcorrenciasMB.ocorrenciasResidencia}" style="height:300px"/>
+            </h:body>
+
+            <h:body>
+                <p>Gráfico de ocorrências por data</p>
+
+                <p:chart type="bar" model="#{relOcorrenciasMB.ocorrenciasData}" style="height:300px"/>
+            </h:body>
+
+        </p:panel>
+    </ui:define>
+</ui:composition>

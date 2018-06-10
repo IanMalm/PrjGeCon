@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 @Table(name="tb_ocorrencia"
     ,catalog="db_gecon"
 )
-public class TbOcorrencia  implements java.io.Serializable {
+public class TbOcorrencia  implements java.io.Serializable, Comparable<TbOcorrencia> {
 
 
      private Integer idtOcorrencia;
@@ -81,7 +81,16 @@ public class TbOcorrencia  implements java.io.Serializable {
         this.dscOcorrencia = dscOcorrencia;
     }
 
-
+    @Override
+    public int compareTo(TbOcorrencia ocorrencia) {
+        if(this.dtaOcorrencia.getTime() < ocorrencia.dtaOcorrencia.getTime()){
+            return -1;
+        }else if(this.dtaOcorrencia.getTime() > ocorrencia.dtaOcorrencia.getTime()){
+            return 1;
+        }
+        return 0;
+        
+    }
 
 
 }

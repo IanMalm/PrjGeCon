@@ -64,7 +64,7 @@ public class RelVisitasMB {
     private BarChartModel dados1() {
         List<TbResidencia> listaResidencias;
         TbResidenciaDAO resDao = new TbResidenciaDAO();
-        listaResidencias = resDao.consultarTodos();
+        listaResidencias = resDao.consultarTodosOrdenado();
         
         List<TaVisita> listaVisitas;
         TaVisitaDAO visDao = new TaVisitaDAO();
@@ -76,13 +76,15 @@ public class RelVisitasMB {
         visitas.setLabel("Número de Visitas");
 
         for (TbResidencia res : listaResidencias) {
-            int numVisitas = 0;
+            int qtdVisita = 0;
             for (TaVisita vis : listaVisitas) {
                 if(res.getTaMoradors().contains(vis.getTaMorador())){
-                    numVisitas++;
+                    qtdVisita++;
                 }
             }
-            visitas.set(res.getDscResidencia(), numVisitas);
+            if(qtdVisita > 0){
+                visitas.set(res.getDscResidencia(), qtdVisita);
+            }
         }
 
         modelo.addSeries(visitas);
@@ -103,21 +105,21 @@ public class RelVisitasMB {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String data = "";
-        int numVisitas = -1;
+        int qtdVisita = -1;
         for (TaVisita vis : listaVisitas) {
-            if(numVisitas == -1){
+            if(qtdVisita == -1){
                 data = sdf.format(vis.getDtaInicioVisita());
-                numVisitas = 1;
+                qtdVisita = 1;
             }else if(data.equals(sdf.format(vis.getDtaInicioVisita()))){
-                numVisitas++;
+                qtdVisita++;
             }else{
-                visitas.set(data, numVisitas);
+                visitas.set(data, qtdVisita);
                 data = new String(sdf.format(vis.getDtaInicioVisita()));
-                numVisitas = 1;
+                qtdVisita = 1;
             }
         }
-        if(numVisitas > 0){
-            visitas.set(sdf.format(listaVisitas.get(listaVisitas.size()-1).getDtaInicioVisita()), numVisitas);
+        if(qtdVisita > 0){
+            visitas.set(sdf.format(listaVisitas.get(listaVisitas.size()-1).getDtaInicioVisita()), qtdVisita);
         }
             
         modelo.addSeries(visitas);

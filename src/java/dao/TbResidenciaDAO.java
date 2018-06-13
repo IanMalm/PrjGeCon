@@ -27,4 +27,11 @@ public class TbResidenciaDAO extends BaseDAO<TbResidencia>{
         lista = qy.list();
         return lista;
     }
+    
+    public List<TbResidencia> consultarTodosOrdenado() {
+        List<TbResidencia> lista;
+        Query qy = hib.createQuery("SELECT obj FROM TbResidencia obj ORDER BY obj.dscResidencia");
+        lista = qy.list();
+        return lista;
+    }
 }

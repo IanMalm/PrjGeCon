@@ -64,7 +64,7 @@ public class RelOcorrenciasMB {
     private BarChartModel dados1() {
         List<TbResidencia> listaResidencias;
         TbResidenciaDAO resDao = new TbResidenciaDAO();
-        listaResidencias = resDao.consultarTodos();
+        listaResidencias = resDao.consultarTodosOrdenado();
         
         List<TbOcorrencia> listaOcorrencias;
         TbOcorrenciaDAO ocoDao = new TbOcorrenciaDAO();
@@ -76,13 +76,15 @@ public class RelOcorrenciasMB {
         ocorrencias.setLabel("Número de Ocorrências");
 
         for (TbResidencia res : listaResidencias) {
-            int numOcorrencias = 0;
+            int qtdOcorrencia = 0;
             for (TbOcorrencia oco : listaOcorrencias) {
                 if(res.getTaMoradors().contains(oco.getTaMorador())){
-                    numOcorrencias++;
+                    qtdOcorrencia++;
                 }
             }
-            ocorrencias.set(res.getDscResidencia(), numOcorrencias);
+            if(qtdOcorrencia > 0){
+                ocorrencias.set(res.getDscResidencia(), qtdOcorrencia);
+            }
         }
 
         modelo.addSeries(ocorrencias);
@@ -103,21 +105,21 @@ public class RelOcorrenciasMB {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String data = "";
-        int numOcorrencias = -1;
+        int qtdOcorrencia = -1;
         for (TbOcorrencia oco : listbOcorrencias) {
-            if(numOcorrencias == -1){
+            if(qtdOcorrencia == -1){
                 data = sdf.format(oco.getDtaOcorrencia());
-                numOcorrencias = 1;
+                qtdOcorrencia = 1;
             }else if(data.equals(sdf.format(oco.getDtaOcorrencia()))){
-                numOcorrencias++;
+                qtdOcorrencia++;
             }else{
-                ocorrencias.set(data, numOcorrencias);
+                ocorrencias.set(data, qtdOcorrencia);
                 data = new String(sdf.format(oco.getDtaOcorrencia()));
-                numOcorrencias = 1;
+                qtdOcorrencia = 1;
             }
         }
-        if(numOcorrencias > 0){
-            ocorrencias.set(sdf.format(listbOcorrencias.get(listbOcorrencias.size()-1).getDtaOcorrencia()), numOcorrencias);
+        if(qtdOcorrencia > 0){
+            ocorrencias.set(sdf.format(listbOcorrencias.get(listbOcorrencias.size()-1).getDtaOcorrencia()), qtdOcorrencia);
         }
             
         modelo.addSeries(ocorrencias);

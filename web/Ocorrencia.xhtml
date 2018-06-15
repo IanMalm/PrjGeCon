@@ -33,7 +33,9 @@
                     </p:column-->  
 
                     <p:column headerText="Data da Ocorrência" style="width:200px">  
-                        <h:outputText value="#{reg.dtaOcorrencia}" />  
+                        <h:outputText value="#{reg.dtaOcorrencia}" >
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText> 
                     </p:column>  
 
                     <p:column headerText="Descrição" style="width:400px">  

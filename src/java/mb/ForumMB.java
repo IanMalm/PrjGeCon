@@ -56,6 +56,11 @@ public class ForumMB {
     }
 
     public void salvar() {
+        if(getSelecionado().getTaMorador() == null){
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Resultado da Gravação", "Não foi possível gravar.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            return;
+        }
         TbForumDAO dao = new TbForumDAO();
         if (getSelecionado().getIdtForum()== 0) {
             getSelecionado().setIdtForum(null);

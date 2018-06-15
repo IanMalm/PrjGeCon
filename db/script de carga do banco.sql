@@ -123,11 +123,6 @@ INSERT INTO `db_gecon`.`ta_morador` (`idt_morador`, `cod_pessoa`, `cod_residenci
 INSERT INTO `db_gecon`.`ta_morador` (`idt_morador`, `cod_pessoa`, `cod_residencia`) VALUES (3 , 3 , 3 );
 INSERT INTO `db_gecon`.`ta_morador` (`idt_morador`, `cod_pessoa`, `cod_residencia`) VALUES (4 , 4 , 4 );
 INSERT INTO `db_gecon`.`ta_morador` (`idt_morador`, `cod_pessoa`, `cod_residencia`) VALUES (5 , 5 , 5 );
-INSERT INTO `db_gecon`.`ta_morador` (`idt_morador`, `cod_pessoa`, `cod_residencia`) VALUES (6 , 6 , 6 );
-INSERT INTO `db_gecon`.`ta_morador` (`idt_morador`, `cod_pessoa`, `cod_residencia`) VALUES (7 , 7 , 7 );
-INSERT INTO `db_gecon`.`ta_morador` (`idt_morador`, `cod_pessoa`, `cod_residencia`) VALUES (8 , 8 , 8 );
-INSERT INTO `db_gecon`.`ta_morador` (`idt_morador`, `cod_pessoa`, `cod_residencia`) VALUES (9 , 9 , 9 );
-INSERT INTO `db_gecon`.`ta_morador` (`idt_morador`, `cod_pessoa`, `cod_residencia`) VALUES (10, 10, 10);
 
 
 INSERT INTO `db_gecon`.`tb_pessoa` (`idt_pessoa`, `nme_pessoa`, `cpf_pessoa`, `dta_nasc_pessoa`, `eml_pessoa`, `tel_pessoa`) VALUES (11,"administrador", "12345678909", "1994-09-08", "admin@sempreceub.com", "61984962717");
@@ -138,14 +133,25 @@ INSERT INTO `db_gecon`.`tb_pessoa` (`idt_pessoa`, `nme_pessoa`, `cpf_pessoa`, `d
 INSERT INTO `db_gecon`.`ta_morador` (`idt_morador`, `cod_pessoa`, `cod_residencia`) VALUES (12, 12, 90);
 INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (2, "funcionario1", "funcionario1", 12, 2);
 
-
 INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (3 , "heitorrodrigojosealmeida@email.com"				, "123456", 1 , 3);
 INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (4 , "aanthonykevinmoreira@bzness.com"				, "123456", 2 , 3);
 INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (5 , "jorgehugodacruz@carreira.com"					, "123456", 3 , 3);
 INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (6 , "ricardobrenoalves@me.com"						, "123456", 4 , 3);
 INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (7 , "victorkaiquecardoso@hpelzer.com"				, "123456", 5 , 3);
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (8 , "louisegabrielafigueiredo@zootecnista.com.br"	, "123456", 6 , 3);
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (9 , "sandraagathacaldeira@uol.om.br"					, "123456", 7 , 3);
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (11, "daianesilvanaassuncao-77@infolink.com.br"		, "123456", 8 , 3);
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (12, "laradaianeaparicio@dpf.gov.br"					, "123456", 9 , 3);
-INSERT INTO `db_gecon`.`tb_usuario` (`idt_usuario`, `nme_usuario`, `pwd_usuario`, `cod_morador`, `cod_perfil`) VALUES (13, "marlenelarafernandes-85@profemme.com.br"		, "123456", 10, 3);
+
+INSERT INTO `db_gecon`.`ta_visita` (`cod_pessoa`,`cod_morador`,`dta_inicio_visita`,`dta_final_visita`) VALUES (6,1,'2018-05-10','2018-05-10');
+INSERT INTO `db_gecon`.`ta_visita` (`cod_pessoa`,`cod_morador`,`dta_inicio_visita`,`dta_final_visita`) VALUES (7,2,'2018-04-23','2018-04-24');
+INSERT INTO `db_gecon`.`ta_visita` (`cod_pessoa`,`cod_morador`,`dta_inicio_visita`,`dta_final_visita`) VALUES (8,3,'2018-05-15','2018-05-25');
+INSERT INTO `db_gecon`.`ta_visita` (`cod_pessoa`,`cod_morador`,`dta_inicio_visita`,`dta_final_visita`) VALUES (9,4,'2018-05-10','2018-05-10');
+INSERT INTO `db_gecon`.`ta_visita` (`cod_pessoa`,`cod_morador`,`dta_inicio_visita`,`dta_final_visita`) VALUES (10,5,'2018-05-12','2018-05-14');
+INSERT INTO `db_gecon`.`ta_visita` (`cod_pessoa`,`cod_morador`,`dta_inicio_visita`,`dta_final_visita`) VALUES (6,3,'2018-04-20','2018-05-20');
+INSERT INTO `db_gecon`.`ta_visita` (`cod_pessoa`,`cod_morador`,`dta_inicio_visita`,`dta_final_visita`) VALUES (8,1,'2018-05-10','2018-05-12');
+
+INSERT INTO `db_gecon`.`tb_ocorrencia` (`cod_morador`,`dta_ocorrencia`,`dsc_ocorrencia`) VALUES (1,'2018-05-10','Muito barulho no vizinho do Lote 2');
+INSERT INTO `db_gecon`.`tb_ocorrencia` (`cod_morador`,`dta_ocorrencia`,`dsc_ocorrencia`) VALUES (3,'2018-05-10','Muito barulho no vizinho do Lote 2');
+INSERT INTO `db_gecon`.`tb_ocorrencia` (`cod_morador`,`dta_ocorrencia`,`dsc_ocorrencia`) VALUES (2,'2018-05-02','Carro estranho estacionado na frente do condominio');
+INSERT INTO `db_gecon`.`tb_ocorrencia` (`cod_morador`,`dta_ocorrencia`,`dsc_ocorrencia`) VALUES (4,'2018-04-26','Piscina se encontra com agua suja');
+INSERT INTO `db_gecon`.`tb_ocorrencia` (`cod_morador`,`dta_ocorrencia`,`dsc_ocorrencia`) VALUES (2,'2018-05-15','Elevador sujo');
+INSERT INTO `db_gecon`.`tb_ocorrencia` (`cod_morador`,`dta_ocorrencia`,`dsc_ocorrencia`) VALUES (5,'2018-05-10','Muito barulho no vizunho do Lote 2');
+INSERT INTO `db_gecon`.`tb_ocorrencia` (`cod_morador`,`dta_ocorrencia`,`dsc_ocorrencia`) VALUES (5,'2018-05-05','Pessoas estranhas rondando o condominio');
+INSERT INTO `db_gecon`.`tb_ocorrencia` (`cod_morador`,`dta_ocorrencia`,`dsc_ocorrencia`) VALUES (5,'2018-05-08','Muito barulho no vizunho do Lote 4');
